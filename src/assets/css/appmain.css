@@ -1,0 +1,15 @@
+.app_main {
+    display: flex;
+    height: 100%;
+}
+.app_left {
+    width: 210px;
+    height: 100%;
+    background: #f0f0f0;
+}
+.app_right {
+    flex: 1;
+    height: 100%;
+    padding-bottom: 80px;
+    background: #fafafa;
+}

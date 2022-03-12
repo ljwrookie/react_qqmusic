@@ -1,6 +1,11 @@
 @import '~normalize.css';
 @import '~antd/dist/antd.css';
-
+@font-face {
+    font-family: 'iconfont';
+    src: url('../fonts/iconfont.woff2?t=1647060698241') format('woff2'),
+        url('../fonts/iconfont.woff?t=1647060698241') format('woff'),
+        url('../fonts/iconfont.ttf?t=1647060698241') format('truetype');
+}
 /* 样式的重置 */
 body,
 html,
@@ -66,4 +71,38 @@ table {
 img {
     border: none;
     vertical-align: middle;
+}
+
+/* 全局样式 */
+body,
+textarea,
+select,
+input,
+button {
+    font-size: 12px;
+    color: #333;
+    /* background-color: #f5f5f5; */
+}
+
+.text-nowrap {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.text-indent {
+    text-indent: -9999px;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+#root {
+    height: 100%;
+}
+.iconfont {
+    font-family: 'iconfont' !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
