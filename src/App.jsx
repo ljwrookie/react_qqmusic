@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import  GetRoutes from './route'
 import '@/assets/css/appmain.css';
 
 import { BrowserRouter } from 'react-router-dom';
@@ -7,6 +8,8 @@ import AppFooter from './components/app-footer';
 import AppSidernav from './components/app-sidernav';
 
 export default memo(function App() {
+    //使用router路由表
+
     return (
         <BrowserRouter>
             <div className="app_main">
@@ -15,7 +18,7 @@ export default memo(function App() {
                 </div>
                 <div className="app_right">
                     <AppHeader />
-                    content部分<span className="iconfont">&#xe617;</span>
+                    <GetRoutes/>
                     <AppFooter />
                 </div>
             </div>
