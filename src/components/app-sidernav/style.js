@@ -10,7 +10,7 @@ export const AppSiderNav = styled.div`
         padding-top: 30px;
         padding-bottom: 30px;
         background: url('${require('@/assets/image/logo.png')}') no-repeat;
-        background-size: 105px 30px;
+        background-size: 90px 25px;
     }
 `;
 

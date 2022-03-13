@@ -43,3 +43,26 @@ export const siderSongLinks = [
         link: '/recent',
     },
 ];
+
+export const discoverLinks = [
+    {
+        title: '精选',
+        link: '/discover/selected',
+    },
+    {
+        title: '歌单',
+        link: '/discover/songlist',
+    },
+    {
+        title: '有声电台',
+        link: '/discover/djradio',
+    },
+    {
+        title: '排行榜',
+        link: '/discover/ranking',
+    },
+    {
+        title: '歌手',
+        link: '/discover/singer',
+    },
+];

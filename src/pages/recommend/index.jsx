@@ -5,7 +5,7 @@ import { RecmdMain } from './style';
 export default memo(function Recommend() {
     useEffect(() => {
         request({
-            url: '/top/category',
+            url: '/top/song?type=96',
         }).then((res) => {
             console.log(res);
         });

@@ -115,3 +115,7 @@ button {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.graymode {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+}

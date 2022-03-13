@@ -32,7 +32,7 @@ export const HeaderLeft = styled.div`
         }
         .ant-input {
             background-color: #e1e1e1;
-            color: #a9a9a9;
+            color: #181818;
             padding-left: 10px;
             margin-top: 2px;
             font-size: 12px;

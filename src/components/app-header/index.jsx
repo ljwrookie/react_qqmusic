@@ -19,11 +19,12 @@ export default memo(function AppHeader() {
                     placeholder="搜索音乐"
                     prefix={<SearchOutlined />}
                     bordered={false}
+                    allowClear={true}
                 />
             </HeaderLeft>
             <HeaderRight>
                 <a href="/login" className="login">
-                    登录
+                    点击登录
                 </a>
                 <span className="iconfont toolbar">&#xe63a;</span>
                 <span className="iconfont toolbar">&#xe650;</span>
