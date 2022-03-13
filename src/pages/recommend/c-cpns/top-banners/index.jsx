@@ -53,18 +53,6 @@ export default memo(function TopBanners() {
                         )
                     })
                 }
-                {/* <div>
-                    <h3 style={contentStyle}>1</h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>2</h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>3</h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>4</h3>
-                </div> */}
             </Carousel>
             <BannerControl>
                 <button
@@ -75,9 +63,7 @@ export default memo(function TopBanners() {
                     className="btn"
                     onClick={() => bannerRef.current.next()}
                 ><span className="iconfont">&#xe61f;</span></button>
-                {/* <span className="iconfont">&#xe603;</span>
-                    <em>&nbsp;&nbsp;&nbsp;&nbsp;</em>
-                    <span className="iconfont">&#xe61f;</span> */}
+            
             </BannerControl>
         </BannerWrapper>
     )

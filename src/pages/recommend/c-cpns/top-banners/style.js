@@ -33,7 +33,7 @@ export const BannerWrapper = styled.div`
             width: 10px !important;
             height: 10px !important;
             border-radius: 50% !important;
-            background-color: #000000 !important;
+            background-color: #3f3f3f !important;
         }
     }
 `;
