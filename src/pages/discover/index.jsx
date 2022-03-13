@@ -4,8 +4,11 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { discoverLinks } from '@/common/local-data';
 
 export default memo(function Discover() {
-    let nav = document.querySelector('.nav_list');
+
     window.addEventListener('scroll', function (e) {
+        let nav = document.querySelector('.nav_list');
+
+
         if (window.pageYOffset > nav.offsetTop) {
             nav.style.position = 'fixed';
             nav.style.top = '75px';
@@ -22,10 +25,7 @@ export default memo(function Discover() {
                     {discoverLinks.map((item) => {
                         return (
                             <li className="nav_item" key={item.title}>
-                                <NavLink to={item.link}>
-                                    {item.title}
-                                </NavLink>
-
+                                <NavLink to={item.link}>{item.title}</NavLink>
                             </li>
                         );
                     })}
