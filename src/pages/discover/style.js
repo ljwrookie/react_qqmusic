@@ -9,10 +9,9 @@ export const TopNav = styled.div`
     }
     .nav_list {
         display: flex;
-        position: sticky;
-        top: 75px;
-        margin: 5px 0;
+        padding: 5px 0;
         font-size: 14px;
+        background-color: #fafafa;
         .nav_item {
             margin-right: 50px;
             text-align: center;
