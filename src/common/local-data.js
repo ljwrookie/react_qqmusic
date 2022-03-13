@@ -46,10 +46,6 @@ export const siderSongLinks = [
 
 export const discoverLinks = [
     {
-        title: '精选',
-        link: '/discover/selected',
-    },
-    {
         title: '歌单',
         link: '/discover/songlist',
     },
@@ -64,5 +60,9 @@ export const discoverLinks = [
     {
         title: '歌手',
         link: '/discover/singer',
+    },
+    {
+        title: '最新音乐',
+        link: '/discover/new',
     },
 ];

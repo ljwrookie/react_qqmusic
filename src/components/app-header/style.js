@@ -3,7 +3,12 @@ import styled from 'styled-components';
 export const HeaderWrapper = styled.div`
     display: flex;
     justify-content: space-between;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
     height: 75px;
+    background-color: #fafafa;
+    z-index: 9999;
 `;
 
 export const HeaderLeft = styled.div`

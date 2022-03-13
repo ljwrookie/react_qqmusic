@@ -6,5 +6,6 @@ export const FooterWrapper = styled.div`
     bottom: 0px;
     width: 100%;
     height: 80px;
+    background-color: #fafafa;
     z-index: 9999;
 `;
