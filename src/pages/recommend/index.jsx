@@ -1,6 +1,14 @@
-import React, { memo } from 'react';
-
+import React, { memo, useEffect } from 'react';
+import request from '@/service/request';
+import { RecmdMain } from './style';
 
 export default memo(function Recommend() {
-    return <div>Recommend</div>;
+    useEffect(() => {
+        request({
+            url: '/top/category',
+        }).then((res) => {
+            console.log(res);
+        });
+    }, []);
+    return <RecmdMain>Recommend</RecmdMain>;
 });

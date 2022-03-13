@@ -1,6 +1,7 @@
 .app_main {
     display: flex;
     height: 100%;
+    min-width: 1310px;
 }
 .app_left {
     width: 210px;

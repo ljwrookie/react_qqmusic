@@ -1,6 +1,8 @@
 // 本地测试API
-const devBaseURL = 'http://118.195.175.41:3300';
-const proBaseURL = 'http://118.195.175.41:3300';
+// const devBaseURL = 'http://localhost:3300';
+// const proBaseURL = 'http://localhost:3300';
+const devBaseURL = 'http://hudd.xyz:3300';
+const proBaseURL = 'http://hudd.xyz:3300';
 
 export const BASE_URL = process.env.NODE_ENV === 'development' ? devBaseURL : proBaseURL;
 

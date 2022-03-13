@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import  GetRoutes from './route'
+import GetRoutes from './route';
 import '@/assets/css/appmain.css';
 
 import { BrowserRouter } from 'react-router-dom';
@@ -18,7 +18,9 @@ export default memo(function App() {
                 </div>
                 <div className="app_right">
                     <AppHeader />
-                    <GetRoutes/>
+                    <div className="w1100">
+                        <GetRoutes />
+                    </div>
                     <AppFooter />
                 </div>
             </div>
