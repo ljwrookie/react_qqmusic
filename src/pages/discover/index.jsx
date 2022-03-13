@@ -12,7 +12,7 @@ export default memo(function Discover() {
                     {discoverLinks.map((item) => {
                         return (
                             <li className="nav_item" key={item.title}>
-                                <NavLink to={item.link} activeClassName="menu-active">
+                                <NavLink to={item.link}>
                                     {item.title}
                                 </NavLink>
                             </li>

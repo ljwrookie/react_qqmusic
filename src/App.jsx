@@ -1,6 +1,9 @@
 import React, { memo } from 'react';
+import { Provider } from 'react-redux';
+
 import GetRoutes from './route';
 import '@/assets/css/appmain.css';
+import store from './store';
 
 import { BrowserRouter } from 'react-router-dom';
 import AppHeader from './components/app-header';
@@ -11,6 +14,7 @@ export default memo(function App() {
     //使用router路由表
 
     return (
+        <Provider store={store}>
         <BrowserRouter>
             <div className="app_main">
                 <div className="app_left">
@@ -25,5 +29,6 @@ export default memo(function App() {
                 </div>
             </div>
         </BrowserRouter>
+         </Provider>
     );
 });

@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from 'react';
 import request from '@/service/request';
 import { RecmdMain } from './style';
-
+import TopBanners from './c-cpns/top-banners'
 export default memo(function Recommend() {
     useEffect(() => {
         request({
@@ -10,5 +10,9 @@ export default memo(function Recommend() {
             console.log(res);
         });
     }, []);
-    return <RecmdMain>Recommend</RecmdMain>;
+    return (
+        <RecmdMain>
+            <TopBanners />
+        </RecmdMain>
+    )
 });
