@@ -17,7 +17,7 @@ export default memo(function MvRecommend() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
     const dispatch = useDispatch()
-    const {mvRecommends} = useSelector(
+    const {mvRecommends = []} = useSelector(
         state => ({
             mvRecommends: state.getIn(["recommend", "mvRecommends"])
     }), shallowEqual);
@@ -30,7 +30,7 @@ export default memo(function MvRecommend() {
 
     return (
         <RecommendWrapper>
-            <ThemeHeaderRCM title="推荐MV"/>
+            <ThemeHeaderRCM title="推荐MV" moreLink="#"/>
             <div>
                     {
                     mvRecommends.slice(0,3).map((item)=>{

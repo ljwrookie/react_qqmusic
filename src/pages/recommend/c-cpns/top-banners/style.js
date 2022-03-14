@@ -1,15 +1,15 @@
 const { default: styled } = require('styled-components');
 
 export const BannerWrapper = styled.div`
-
-    height: 230px;
+    height: 260px;
     /* display: flex; */
     position: relative;
     .content {
         /* position: relative; */
         display: flex !important;
         /* 设置主轴排序方式 */
-        justify-content:space-around;
+        justify-content: space-between;
+        /* justify-content:space-around; */
         /* 设置侧轴排序方式 */
         /* align-items: center; */
         /* height: 186px; */
@@ -22,13 +22,13 @@ export const BannerWrapper = styled.div`
             display: flex;
             align-items: center;
             /* margin: 0 25px; */
-            width: 475px;
+            width: 530px;
             border-radius: 20px;
         }
     }
     .slick-dots {
         position: absolute;
-        bottom: -20px;
+        bottom: -30px !important;
         button {
             width: 10px !important;
             height: 10px !important;
@@ -36,9 +36,12 @@ export const BannerWrapper = styled.div`
             background-color: #3f3f3f !important;
         }
     }
+    /* overflow:scroll;
+    overflow-x:hidden */
 `;
 export const BannerControl = styled.div`
     /* overflow:auto; */
+
     position: absolute;
     left: 0;
     right: 0;
@@ -50,20 +53,28 @@ export const BannerControl = styled.div`
         cursor: pointer;
         span {
             font-size: 40px;
-            /* font-weight: 100; */
+            /* font-weight: 100 !important; */
             visibility: hidden;
+            
         }
         &:hover span {
             color: #00cd98;
             visibility: visible;
+            /* font-weight: 100 !important; */
         }
         &:nth-child(1) {
-            left: -30px;
-            
+            left: -50px;
+            span:nth-child(1) {
+                display: inline-block;
+                -moz-transform: scaleX(-1);
+                -webkit-transform: scaleX(-1);
+                -o-transform: scaleX(-1);
+                transform: scaleX(-1);
+            }
             
         }
         &:nth-child(2) {
-            right: -30px;
+            right: -50px;
         }
     }
 `;

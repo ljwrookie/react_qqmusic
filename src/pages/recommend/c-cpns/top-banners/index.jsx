@@ -12,7 +12,7 @@ export default memo(function TopBanners() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
     const dispatch = useDispatch()
-    const { topBanners } = useSelector(
+    const { topBanners =[]} = useSelector(
         state => ({
             // topBanners: state.get('recommend').get('topBanners')
             // 获取redux-reducer转换成Immutable对象的深层state
@@ -37,6 +37,7 @@ export default memo(function TopBanners() {
 
     return (
         <BannerWrapper >
+            {/* <span className="iconfont" style={{color:'#000',}}>&#xe660;</span> */}
             <Carousel effect="fade" autoplay ref={bannerRef}>
                 {
                     nums.map((item) => {
@@ -58,13 +59,14 @@ export default memo(function TopBanners() {
                 <button
                     className="btn"
                     onClick={() => bannerRef.current.prev()}
-                ><span className="iconfont">&#xe603;</span></button>
+                ><span className="iconfont">&#xe662;</span></button>
                 <button
                     className="btn"
                     onClick={() => bannerRef.current.next()}
-                ><span className="iconfont">&#xe61f;</span></button>
+                ><span className="iconfont">&#xe662;</span></button>
             
             </BannerControl>
+            
         </BannerWrapper>
     )
 });

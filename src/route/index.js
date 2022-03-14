@@ -40,6 +40,10 @@ const GetRoutes = () => {
                     path: 'new',
                     element: <New />,
                 },
+                {
+                    path: '/discover',
+                    element: <Navigate to="songlist" />,
+                },
             ],
         },
         {

@@ -12,7 +12,7 @@ export default memo(function PrivateContent() {
      // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
     const dispatch = useDispatch()
-    const {privateContent} = useSelector(
+    const {privateContent =[]} = useSelector(
         state => ({
         privateContent: state.getIn(["recommend", "privateContent"])
     }), shallowEqual);
@@ -25,7 +25,7 @@ export default memo(function PrivateContent() {
 
     return (
         <RecommendWrapper>
-            <ThemeHeaderRCM title="私人放送"/>
+            <ThemeHeaderRCM title="私人放送" moreLink="#"/>
         
             
                 <div>

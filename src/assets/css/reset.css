@@ -1,11 +1,11 @@
 @import '~normalize.css';
 @import '~antd/dist/antd.css';
 @font-face {
-    font-family: 'iconfont'; /* Project id 3240690 */
-    src: url('//at.alicdn.com/t/font_3240690_cu68u70jopf.woff2?t=1647156083402') format('woff2'),
-        url('//at.alicdn.com/t/font_3240690_cu68u70jopf.woff?t=1647156083402') format('woff'),
-        url('//at.alicdn.com/t/font_3240690_cu68u70jopf.ttf?t=1647156083402') format('truetype');
-}
+    font-family: 'iconfont';  /* Project id 3240690 */
+    src: url('//at.alicdn.com/t/font_3240690_atasxp4p8qd.woff2?t=1647235990980') format('woff2'),
+         url('//at.alicdn.com/t/font_3240690_atasxp4p8qd.woff?t=1647235990980') format('woff'),
+         url('//at.alicdn.com/t/font_3240690_atasxp4p8qd.ttf?t=1647235990980') format('truetype');
+  }
 /* 样式的重置 */
 body,
 html,
@@ -102,6 +102,7 @@ button {
     padding: 0 40px;
     margin: 0 auto;
     overflow: auto;
+     overflow-x: hidden;
 }
 
 .main_center {

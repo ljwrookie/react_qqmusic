@@ -17,7 +17,7 @@ export default memo(function HotRecommend() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
     const dispatch = useDispatch()
-    const { hotRecommends } = useSelector(
+    const { hotRecommends = [] } = useSelector(
         state => ({
             // topBanners: state.get('recommend').get('topBanners')
             // 获取redux-reducer转换成Immutable对象的深层state
@@ -35,7 +35,7 @@ export default memo(function HotRecommend() {
 
     return (
         <RecommendWrapper>
-            <ThemeHeaderRCM title="推荐歌单"/>
+            <ThemeHeaderRCM title="推荐歌单" moreLink="#"/>
             <div>
                 {
                     hotRecommends.map((item)=>{
