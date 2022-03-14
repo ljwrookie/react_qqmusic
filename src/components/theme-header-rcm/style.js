@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.div`
+    
     height: 33px;
 
     display: flex;
@@ -20,11 +21,15 @@ export const HeaderWrapper = styled.div`
             display: flex;
             .item {
                 color: #C1C1C1;
-                span{
+                .link{
+                    text-decoration: none;
                     margin:0 15px;
                     &:hover{
-                    text-decoration: none;
                     color: #00cd98;
+                    }
+                    &:active{
+                        /* background-color:#3f3f3f; */
+                        color: #00cd98;
                     }
                 }
             }
@@ -35,10 +40,11 @@ export const HeaderWrapper = styled.div`
         align-items: center;
         font-size: 13px;
         .link{
-            &:hover {
             text-decoration: none;
-            color: #00cd98;
+            &:hover {
+                color: #00cd98;
             }
+        
         }
     }
 

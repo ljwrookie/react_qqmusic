@@ -46,7 +46,10 @@ function padLeftZero(str) {
 export function formatMonthDay(time) {
   return formatDate(time, "MM月dd日");
 }
-
+export function formatYearMonthDay(time) {
+  return formatDate(time, "YY-MM-dd");
+}
 export function formatMinuteSecond(time) {
   return formatDate(time, "mm:ss");
 }
+

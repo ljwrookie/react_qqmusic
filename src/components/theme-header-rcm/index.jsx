@@ -3,18 +3,17 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { HeaderWrapper } from './style';
 const ThemeHeaderRCM = memo(function (props) {
-    const { title, keywords, moreLink, keywordClick } = props;
+    const { index, title, keywords, moreLink, keywordClick } = props;
     return (
         <HeaderWrapper>
             <div className="left">
                 <h3 className='title'>{title}</h3>
                 <div className="keyword">
                     {
-                        keywords.map((item, index) => {
+                        keywords.map((item, id) => {
                             return (
                                 <div className="item" key={item}>
-                                    <span className="link" onClick={e => keywordClick(item)}>{item}</span>
-                                
+                                    <NavLink to='#' className="link"  style={{color: (index===id ? '#00cd98': '')}} onClick={()=> keywordClick(item)}>{item}</NavLink>
                                 </div>
                             )
                         })

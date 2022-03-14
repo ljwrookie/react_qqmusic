@@ -12,6 +12,8 @@
         "axios": "^0.26.1",
         "http-proxy-middleware": "^2.0.3",
         "immutable": "^4.0.0",
+        "moment": "^2.29.1",
+        "nanoid": "^3.3.1",
         "normalize.css": "^8.0.1",
         "nprogress": "^0.2.0",
         "prop-types": "^15.8.1",

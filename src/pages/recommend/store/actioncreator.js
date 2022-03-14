@@ -68,10 +68,10 @@ export const getPrivateContentAction = () => {
 }
 //全部:0 华语:7 欧美:96 日本:8 韩国:16
 // 最新歌曲network request
-export const getNewSongsAction = () => {
+export const getNewSongsAction = (type=0) => {
     return (dispatch) => {
         // 发送网络请求
-        getNewSongs(0).then((res) => {
+        getNewSongs(type).then((res) => {
             dispatch(changeNewSongsAction(res))
         })
     }

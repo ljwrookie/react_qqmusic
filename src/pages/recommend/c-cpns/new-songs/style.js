@@ -5,7 +5,7 @@ export const RecommendWrapper = styled.div `
     position: relative;
 
     .content {
-        margin: 20px 0 20px;
+        margin: 20px 0 0px;
         display: flex;
         /* width:1100px; */
         align-items: center;
@@ -19,6 +19,37 @@ export const RecommendWrapper = styled.div `
             }
         }
     }
+
+
+  .all_name{
+    width:200px;
+    /* margin-top:5px; */
+    /* margin:0; */
+    line-height:20px;
+    .artist{
+      /* display:inline-block; */
+      text-decoration: none;
+      /* word-wrap:break-word; */
+      margin-right: 6px;
+      
+      &:not(:last-of-type){
+        &::after{
+          content: '  /';
+            color:#666666;
+          
+        }
+        /* margin-right: 5px; */
+      }
+      &:hover{
+        color: #00cd98 ;
+      }
+    }
+  }
+  .time{
+    
+    color:#6F6F6F;
+    line-height:20px;
+  }
 `;
 export const RecommendControl = styled.div `
     /* overflow:auto; */
@@ -26,8 +57,9 @@ export const RecommendControl = styled.div `
     position: absolute;
     left: 0;
     right: 0;
-    top: 45%;
-    transform: translateY(-50%);
+    
+    top: 40%;
+    
     .btn {
         position: absolute;
         background-color: transparent;
@@ -43,7 +75,8 @@ export const RecommendControl = styled.div `
             /* font-weight: 100 !important; */
         }
         &:nth-child(1) {
-            left: -50px;
+            /* left: 50px; */
+            transform: translateX(-100%);
             span:nth-child(1) {
                 display: inline-block;
                 -moz-transform: scaleX(-1);
@@ -53,7 +86,8 @@ export const RecommendControl = styled.div `
             }
         }
         &:nth-child(2) {
-            right: -50px;
+            right:0px;
+            transform: translateX(100%);
         }
     }
 `;
