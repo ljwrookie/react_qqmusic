@@ -1,22 +1,19 @@
-import React, { useEffect, memo} from 'react';
+import React, { useEffect, useRef, memo } from 'react';
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 // import { useHistory } from 'react-router-dom';
+import { Carousel } from 'antd';
+import { getHotRecommendAction } from "../../store/actionCreator";
 
-import {
-    getHotRecommendAction
-} from "../../store/actionCreator";
-
-import {
-    RecommendWrapper
-} from "./style";
+import { RecommendWrapper, RecommendControl } from "./style";
 
 import ThemeHeaderRCM from '@/components/theme-header-rcm';
-
+import ThemeCover from '@/components/theme-cover'
 
 export default memo(function HotRecommend() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
     const dispatch = useDispatch()
+    const recommendRef = useRef()
     const { hotRecommends = [] } = useSelector(
         state => ({
             // topBanners: state.get('recommend').get('topBanners')
@@ -26,32 +23,56 @@ export default memo(function HotRecommend() {
         shallowEqual
     )
     // 其他Hook
-    
+
     useEffect(() => {
         // 在组件渲染之后发送网络请求
         dispatch(getHotRecommendAction())
     }, [dispatch])
-
-
+    // console.log(hotRecommends)
+    const arr = new Array(Math.floor(hotRecommends.length / 5)).fill(0)
+    const nums = arr.map((item, index) => {
+        
+        return index + item
+    })
+    // console.log(nums)
     return (
         <RecommendWrapper>
-            <ThemeHeaderRCM title="推荐歌单" moreLink="#"/>
-            <div>
-                {
-                    hotRecommends.map((item)=>{
-                        return(<div key={item.id}>{item.name}</div>)
-                    })
-                }
+            <ThemeHeaderRCM title="推荐歌单" moreLink="#" />
+            <div className="content">
+                {/* <div className="arrow arrow-left"
+                    onClick={e => carouselRef.current.prev()}></div> */}
+                <div className="album">
+                    <Carousel ref={recommendRef} dots={false}>
+                        {
+                            nums.map(item => {
+                                return (
+                                    <div key={item} className="page">
+                                        {
+                                            hotRecommends.slice(item * 5, (item + 1) * 5).map(it => {
+                                                return (
+                                                    <ThemeCover className="cover" key={it.id} info={it} />
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                )
+                            })
+                        }
+                    </Carousel>
+                </div>
             </div>
-            {/* <div className="recommend-list">
-                {
-                    state.recommends.slice(0, 8).map((item, index) => {
-                        return (
-                            <HYThemeCover info={item} key={item.id} />
-                        )
-                    })
-                }
-            </div> */}
+            <RecommendControl>
+                <button
+                    className="btn"
+                    onClick={() => recommendRef.current.prev()}
+                ><span className="iconfont">&#xe662;</span></button>
+                <button
+                    className="btn"
+                    onClick={() => recommendRef.current.next()}
+                ><span className="iconfont">&#xe662;</span></button>
+
+            </RecommendControl>
+
         </RecommendWrapper>
     )
 })

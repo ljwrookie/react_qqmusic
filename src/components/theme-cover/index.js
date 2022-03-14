@@ -15,17 +15,16 @@ export default memo(function HYThemeCover(props) {
   return (
     <ThemeCoverWrapper right={right}>
       <div className="cover-top">
-        <img src={getSizeImage(info.picUrl || info.coverImgUrl, 140)} alt="" />
+        <img className="image" src={getSizeImage(info.picUrl, 180)} alt={info.name} />
         <div className="cover">
-          <div>
-            <i className="iconfont">&#xe658;</i>
-          </div>
+          <div className="logo"><i className="iconfont icon">&#xe601;</i></div>
+          <div className='play'><i className="iconfont icon">&#xea83;</i></div>
           <div className="info">
             <span>
-              <i className="listen">&#xe718;</i>
+              <i className="iconfont listen">&#xe718;</i>
               {getCount(info.playCount)}
             </span>
-            <i className="sprite_icon play">&#xe600;</i>
+    
           </div>
         </div>
       </div>
