@@ -7,7 +7,7 @@ import store from './store';
 
 import { BrowserRouter } from 'react-router-dom';
 import AppHeader from './components/app-header';
-import AppFooter from './components/app-footer';
+import PlayerBar from './components/playerbar';
 import AppSidernav from './components/app-sidernav';
 
 export default memo(function App() {
@@ -15,20 +15,20 @@ export default memo(function App() {
 
     return (
         <Provider store={store}>
-        <BrowserRouter>
-            <div className="app_main">
-                <div className="app_left">
-                    <AppSidernav />
-                </div>
-                <div className="app_right">
-                    <AppHeader />
-                    <div className="w1100">
-                        <GetRoutes />
+            <BrowserRouter>
+                <div className="app_main">
+                    <div className="app_left">
+                        <AppSidernav />
                     </div>
-                    <AppFooter />
+                    <div className="app_right">
+                        <AppHeader />
+                        <div className="w1100">
+                            <GetRoutes />
+                        </div>
+                        <PlayerBar />
+                    </div>
                 </div>
-            </div>
-        </BrowserRouter>
-         </Provider>
+            </BrowserRouter>
+        </Provider>
     );
 });
