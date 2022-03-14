@@ -61,16 +61,17 @@ export const getHotRecommendAction = () => {
 export const getPrivateContentAction = () => {
     return (dispatch) => {
         // 发送网络请求
-        getPrivateContent(3).then((res) => {
+        getPrivateContent(9).then((res) => {
             dispatch(changePrivateContentAction(res))
         })
     }
 }
+//全部:0 华语:7 欧美:96 日本:8 韩国:16
 // 最新歌曲network request
 export const getNewSongsAction = () => {
     return (dispatch) => {
         // 发送网络请求
-        getNewSongs(0, 12).then((res) => {
+        getNewSongs(0).then((res) => {
             dispatch(changeNewSongsAction(res))
         })
     }
@@ -79,7 +80,7 @@ export const getNewSongsAction = () => {
 export const getMvRecommendAction = () => {
     return (dispatch) => {
         // 发送网络请求
-        getMvRecommends(3).then((res) => {
+        getMvRecommends(9).then((res) => {
             dispatch(changeMvRecommendAction(res))
         })
     }

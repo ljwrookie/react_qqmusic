@@ -14,7 +14,7 @@ const ThemeHeaderRCM = memo(function (props) {
                             return (
                                 <div className="item" key={item}>
                                     <span className="link" onClick={e => keywordClick(item)}>{item}</span>
-                                    {/* <span className="divider">|</span> */}
+                                
                                 </div>
                             )
                         })

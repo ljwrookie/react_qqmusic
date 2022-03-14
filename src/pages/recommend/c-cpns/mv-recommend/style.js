@@ -1,9 +1,22 @@
 import styled from "styled-components";
 
-export const RecommendWrapper = styled.div`
-  .recommend-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-`
+export const RecommendWrapper = styled.div `
+    margin-top: 50px;
+    position: relative;
+
+    .content {
+        margin: 20px 0 20px;
+        display: flex;
+        /* width:1100px; */
+        align-items: center;
+        .album {
+            width: 100%;
+
+            .page {
+                display: flex !important;
+                justify-content: space-between;
+
+            }
+        }
+    }
+`;

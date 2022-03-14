@@ -49,8 +49,10 @@ export default memo(function HotRecommend() {
                                     <div key={item} className="page">
                                         {
                                             hotRecommends.slice(item * 5, (item + 1) * 5).map(it => {
+                                                // key={it.id} info={it}  url_name="picUrl" playCount={true} width={200} height={200}
+                                                const cover_props= {key:it.id, info:it ,url_name:"picUrl", playCount:true, width:200, height:200}
                                                 return (
-                                                    <ThemeCover className="cover" key={it.id} info={it} />
+                                                    <ThemeCover className="cover" {...cover_props} />
                                                 )
                                             })
                                         }

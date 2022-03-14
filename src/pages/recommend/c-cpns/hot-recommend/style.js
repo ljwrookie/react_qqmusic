@@ -1,31 +1,25 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const RecommendWrapper = styled.div `
-  margin-top: 50px;
-  position: relative;
+    margin-top: 50px;
+    position: relative;
 
+    .content {
+        margin: 20px 0 20px;
+        display: flex;
+        /* width:1100px; */
+        align-items: center;
+        .album {
+            width: 100%;
 
-  .content {
-    
-    margin: 20px 0 20px;
-    display: flex;
-    align-items: center;
-    .album {
-      width: 100%;
+            .page {
+                display: flex !important;
+                justify-content: space-between;
 
-      .page {
-        display: flex !important;
-        justify-content: space-between;
-        
-        /* .cover{
-          display: flex;
-          align-items: center;
-        } */
-      } 
-    
-  }
-} 
-`
+            }
+        }
+    }
+`;
 export const RecommendControl = styled.div `
     /* overflow:auto; */
 
@@ -42,7 +36,6 @@ export const RecommendControl = styled.div `
             font-size: 40px;
             /* font-weight: 100 !important; */
             visibility: hidden;
-            
         }
         &:hover span {
             color: #00cd98;
@@ -58,7 +51,6 @@ export const RecommendControl = styled.div `
                 -o-transform: scaleX(-1);
                 transform: scaleX(-1);
             }
-            
         }
         &:nth-child(2) {
             right: -50px;

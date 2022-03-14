@@ -1,15 +1,17 @@
-import React, { useEffect, memo, useCallback } from 'react';
+import React, { useEffect, memo, useCallback, useRef } from 'react';
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import { Carousel } from 'antd';
 import {
     getNewSongsAction
 } from "../../store/actionCreator";
 
 import {
-    RecommendWrapper
+    RecommendWrapper, RecommendControl
 } from "./style";
 
 import ThemeHeaderRCM from '@/components/theme-header-rcm';
+import ThemeCover from '@/components/theme-cover'
 
 
 export default memo(function NewSongs() {
@@ -17,6 +19,7 @@ export default memo(function NewSongs() {
     // redux Hook 组件和redux关联: 获取数据和进行操作
     const dispatch = useDispatch()
     const navigate = useNavigate();
+    const newSongsRef = useRef();
     const { newSongs = [] } = useSelector(
         state => ({
             newSongs: state.getIn(["recommend", "newSongs"])
@@ -28,7 +31,11 @@ export default memo(function NewSongs() {
     useEffect(() => {
         dispatch(getNewSongsAction())
     }, [dispatch]);
-
+    const arr = new Array(Math.floor(newSongs.length / 5)).fill(0)
+    const nums = arr.map((item, index) => {
+        
+        return index + item
+    })
     // 全部:0 华语:7 欧美:96 日本:8 韩国:16
     return (
         <RecommendWrapper>
@@ -37,21 +44,41 @@ export default memo(function NewSongs() {
                 moreLink="#"
                 keywordClick={keywordClick}
             />
-            <div>
-                {
-                    newSongs.slice(0, 12).map((item) => {
-                        return (<div key={item.id}>{item.name}</div>)
-                    })
-                }</div>
-            {/* <div className="recommend-list">
-                {
-                    state.recommends.slice(0, 8).map((item, index) => {
-                        return (
-                            <HYThemeCover info={item} key={item.id} />
-                        )
-                    })
-                }
-            </div> */}
+            <div className="content">
+                {/* <div className="arrow arrow-left"
+                    onClick={e => carouselRef.current.prev()}></div> */}
+                <div className="album">
+                    <Carousel ref={newSongsRef} dots={false}>
+                        {
+                            nums.map(item => {
+                                return (
+                                    <div key={item} className="page">
+                                        {
+                                            newSongs.slice(item * 5, (item + 1) * 5).map(it => {
+                                                return (
+                                                    <ThemeCover className="cover" key={it.id} info={it} url_name={"album.picUrl"} playCount={false} width={200} height={200}/>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                )
+                            })
+                        }
+                    </Carousel>
+                </div>
+            </div>
+            <RecommendControl>
+                <button
+                    className="btn"
+                    onClick={() => newSongsRef.current.prev()}
+                ><span className="iconfont">&#xe662;</span></button>
+                <button
+                    className="btn"
+                    onClick={() => newSongsRef.current.next()}
+                ><span className="iconfont">&#xe662;</span></button>
+
+            </RecommendControl>
+
         </RecommendWrapper>
     )
 })
