@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
-const {themeColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+const {themeColor,grayFontColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
 export const RecommendWrapper = styled.div `
     margin-top: 50px;
     position: relative;
@@ -31,13 +31,14 @@ export const RecommendWrapper = styled.div `
     .artist{
       /* display:inline-block; */
       text-decoration: none;
+      color:${grayFontColor};
       /* word-wrap:break-word; */
       margin-right: 6px;
       
       &:not(:last-of-type){
         &::after{
           content: '  /';
-            color:#666666;
+            color:${grayFontColor};
           
         }
         /* margin-right: 5px; */
@@ -49,7 +50,7 @@ export const RecommendWrapper = styled.div `
   }
   .time{
     
-    color:#6F6F6F;
+    color:${grayFontColor};
     line-height:20px;
   }
 `;

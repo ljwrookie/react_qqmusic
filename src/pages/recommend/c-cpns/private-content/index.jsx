@@ -44,8 +44,9 @@ export default memo(function PrivateContent() {
                                     <div key={item} className="page">
                                         {
                                             privateContent.slice(item * 3, (item + 1) * 3).map(it => {
+                                                const cover_props = { key: it.id, info: it, url_name: "sPicUrl", playCount: false, width: 350, height: 200 }
                                                 return (
-                                                    <ThemeCover className="cover" key={it.id} url_name="sPicUrl" playCount={false} info={it} width={350} height={200}/>
+                                                    <ThemeCover className="cover" {...cover_props}/>
                                                 )
                                             })
                                         }

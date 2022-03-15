@@ -85,9 +85,10 @@ export default memo(function NewSongs() {
                                     <div key={item} className="page">
                                         {
                                             newSongs.slice(item * 5, (item + 1) * 5).map(it => {
+                                                const cover_props = { key: nanoid(), info: it, url_name: "album.picUrl", playCount: false, width: 200, height: 200 }
                                                 return (
                                                     <div key={nanoid()}>                                                    
-                                                        <ThemeCover className="cover" key={nanoid()} info={it} url_name={"album.picUrl"} playCount={false} width={200} height={200} />
+                                                        <ThemeCover className="cover" {...cover_props} />
                                                         <div className='all_name text-nowrap'>
                                                         {
                                                             it.artists.map((artist)=>{

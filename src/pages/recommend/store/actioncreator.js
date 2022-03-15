@@ -33,7 +33,7 @@ export const changeNewSongsAction = (res) => ({
 // 推荐mv Action
 export const changeMvRecommendAction = (res) => ({
     type: actionTypes.CHANGE_MV_RECOMMEND,
-    mvRecommends: res.result,
+    mvRecommends: res.data,
 })
 // --------------------------------------------------------------
 // 发送网络请求将结果传递给派发的Action中 (react-redux可以让该函数返回一个函数而不是返回一个对象: redux-thunk使用)
@@ -80,7 +80,7 @@ export const getNewSongsAction = (type=0) => {
 export const getMvRecommendAction = () => {
     return (dispatch) => {
         // 发送网络请求
-        getMvRecommends(9).then((res) => {
+        getMvRecommends(12).then((res) => {
             dispatch(changeMvRecommendAction(res))
         })
     }

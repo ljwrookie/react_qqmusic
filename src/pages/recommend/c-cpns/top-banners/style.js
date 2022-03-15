@@ -27,26 +27,30 @@ export const BannerWrapper = styled.div`
             display: flex;
             align-items: center;
             /* margin: 0 25px; */
-            width: 540px;
+            width: 537px;
             border-radius: 15px;
         }
         
     }
     .slick-dots {
         position: absolute;
-        bottom: -30px !important;
-        .slick-active {
-            width: 16px !important;
-            button{
-                width: 10px;
-            }
-        }
-        button {
+        bottom: -30px;
+        li {
             width: 10px !important;
-            height: 10px !important;
-            border-radius: 50% !important;
-            background-color: #3f3f3f !important;
+            height:10px ;
+            margin: 0 6px;
+        
+            button {
+                height: 10px ;
+                border-radius: 50%;
+                background-color: ${normalColor} !important;
+                &:hover{
+                    background-color: ${themeColor};
+                }
+            }
+        
         }
+
     }
     /* overflow:scroll;
     overflow-x:hidden */

@@ -8,7 +8,7 @@ import {
 } from "../../store/actionCreator";
 
 import {
-    RecommendWrapper
+    RecommendWrapper, RecommendControl
 } from "./style";
 
 import ThemeHeaderRCM from '@/components/theme-header-rcm';
@@ -44,13 +44,17 @@ export default memo(function MvRecommend() {
                 <div className="album">
                     <Carousel ref={mvRecommendsRef} dots={false}>
                         {
+                            // const cover_props= {key:it.id, info:it ,url_name:"picUrl", playCount:true, width:200, height:200}
                             nums.map(item => {
                                 return (
                                     <div key={item} className="page">
                                         {
+                                            // const cover_props= {key:it.id, info:it ,url_name:"picUrl", playCount:true, width:200, height:200}
+                                            
                                             mvRecommends.slice(item * 3, (item + 1) * 3).map(it => {
+                                                const cover_props = { key: it.id, info: it, url_name: "cover", playCount: true, width: 350, height: 200 }
                                                 return (
-                                                    <ThemeCover className="cover" key={it.id} url_name="picUrl" playCount={true} info={it} width={350} height={200}/>
+                                                    <ThemeCover className="cover" {...cover_props}/>
                                                 )
                                             })
                                         }
@@ -61,6 +65,17 @@ export default memo(function MvRecommend() {
                     </Carousel>
                 </div>
             </div>
+            <RecommendControl>
+                <button
+                    className="btn"
+                    onClick={() => mvRecommendsRef.current.prev()}
+                ><span className="iconfont">&#xe662;</span></button>
+                <button
+                    className="btn"
+                    onClick={() => mvRecommendsRef.current.next()}
+                ><span className="iconfont">&#xe662;</span></button>
+
+            </RecommendControl>
         </RecommendWrapper>
     )
 })

@@ -1,4 +1,5 @@
 export const LIGHT_MODE = {
+    logoUrl: require('@/assets/image/logo.png'),
     themeColor:'#1fcfa1', 
     bodyColor:'#f9f9f9', 
     sideColor:'#F6F6F6',
@@ -10,7 +11,8 @@ export const LIGHT_MODE = {
 
 }
 
-export const DARK_MODE =  {
+export const DARK_MODE = {
+    logoUrl: require('@/assets/image/logo_dark.png'),
     themeColor:'#1fcfa1', 
     bodyColor:'#1D1D1F', 
     sideColor:'#171718',

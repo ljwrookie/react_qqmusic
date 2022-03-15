@@ -22,6 +22,7 @@ export const HeaderLeft = styled.div`
     .prev_next {
         margin-left: 40px;
         span {
+            color:${grayFontColor};
             cursor: pointer;
             &:hover {
                 color: ${themeColor};

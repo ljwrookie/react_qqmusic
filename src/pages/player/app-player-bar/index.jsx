@@ -140,9 +140,9 @@ export default memo(function PlayBar() {
                     <ControlWrapper>
                         <span className="iconfont order">&#xe68d;</span>
                         <span className="iconfont prev">&#xe79e;</span>
-                        <span className="iconfont play_pause" onClick={playMusic}>
+                        
                             {playOrPause()}
-                        </span>
+                        
                         <span className="iconfont next">&#xe79f;</span>
                         <span className="iconfont volume">&#xea0e;</span>
                     </ControlWrapper>

@@ -20,7 +20,7 @@ export function getHotRecommends(limit) {
 // 接口地址 : /personalized/mv
 export function getMvRecommends(limit) {
   return request({
-    url: "/personalized/mv",
+    url: "/mv/first",
     params: {
       limit
     }

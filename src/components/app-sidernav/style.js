@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
 
-const {themeColor, normalColor, hoverColor, sideFontColor, grayFontColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+const { themeColor, logoUrl, hoverColor, sideFontColor, grayFontColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
 export const AppSiderNav = styled.div`
     .logo {
         display: block;
@@ -12,8 +12,7 @@ export const AppSiderNav = styled.div`
         margin-left: 45px;
         padding-top: 30px;
         padding-bottom: 30px;
-       
-        background: url('${require('@/assets/image/logo.png')}') no-repeat;
+        background: url(${logoUrl}) no-repeat;
         background-size: 90px 25px;
     }
 `;

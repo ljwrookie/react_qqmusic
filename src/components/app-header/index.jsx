@@ -2,7 +2,7 @@ import React, { memo, useRef } from 'react';
 import { Input } from 'antd';
 import { ConsoleSqlOutlined, SearchOutlined } from '@ant-design/icons';
 import { HeaderWrapper, HeaderLeft, HeaderRight } from './style';
-
+import Login from '../login'
 export default memo(function AppHeader() {
     
     const changeTheme = ()=>{
@@ -35,9 +35,10 @@ export default memo(function AppHeader() {
                 />
             </HeaderLeft>
             <HeaderRight>
-                <a href="/login" className="login">
+                {/* <a href="/login" className="login">
                     点击登录
-                </a>
+                </a> */}
+                <Login/>
                 <span className="iconfont toolbar">&#xe63a;</span>
                 <span className="iconfont toolbar" onClick={changeTheme}>&#xe650;</span>
                 <span className="iconfont toolbar">&#xe6a9;</span>
