@@ -1,23 +1,20 @@
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useRef } from 'react';
 import { Input } from 'antd';
 import { ConsoleSqlOutlined, SearchOutlined } from '@ant-design/icons';
 import { HeaderWrapper, HeaderLeft, HeaderRight } from './style';
 
 export default memo(function AppHeader() {
-    const [state, setState] = useState({mode: "LIGHT_MODE"})
+    
     const changeTheme = ()=>{
         let mode = localStorage.getItem("MODE");
-        console.log('1',mode)
-        if(mode === undefined || mode === 'DARK_MODE'){
+        
+        if(mode === undefined || mode === 'DARK_MODE')
             localStorage.setItem("MODE", "LIGHT_MODE");
-            setState({mode: "LIGHT_MODE"})
-        }
-        else{
-            localStorage.setItem("MODE", "DARK_MODE");
-            setState({mode: "DARK_MODE"})
-        }
-        mode = localStorage.getItem("MODE");
-        console.log(mode)
+        else localStorage.setItem("MODE", "DARK_MODE");
+            
+        window.location.reload();
+        
+        
     }
     const inputRef = useRef();
     return (

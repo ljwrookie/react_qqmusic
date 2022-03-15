@@ -9,7 +9,7 @@ import { PlayerBarWrapper } from './style';
 export default memo(function PlayBar() {
     return (
         <PlayerBarWrapper>
-            <Slider defaultValue={0} min={0} max={100} />
+            <Slider className='slider' defaultValue={0} min={0} max={100} />
             <div className="control">
                 <div className="left">
                     <Info />

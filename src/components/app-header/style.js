@@ -1,16 +1,8 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE } from '@/common/constants';
+import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 // 存储
-// localStorage.setItem("MODE", "LIGHT_MODE");
-// 检索
-let mode = localStorage.getItem("MODE");
-// console.log(mode)
-if(mode === undefined){
-    localStorage.setItem("MODE", "LIGHT_MODE");
-    mode = localStorage.getItem("MODE");
-}
 
-const {themeColor, bodyColor} = (mode==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+const {themeColor, bodyColor, searchBarColor, grayFontColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
 export const HeaderWrapper = styled.div`
     display: flex;
     justify-content: space-between;
@@ -42,13 +34,13 @@ export const HeaderLeft = styled.div`
         margin-left: 10px;
         padding-left: 20px;
         border-radius: 16px;
-        background-color: #e1e1e1;
+        background-color: ${searchBarColor};
         .anticon-search {
             color: #a9a9a9;
         }
         .ant-input {
-            background-color: #e1e1e1;
-            color: #181818;
+            background-color: ${searchBarColor};
+            color: #fff;
             padding-left: 10px;
             margin-top: 2px;
             font-size: 12px;
@@ -61,6 +53,7 @@ export const HeaderRight = styled.div`
     align-items: center;
     font-size: 14px;
     margin-right: 40px;
+    color: ${grayFontColor};
     .login {
         &:hover {
             text-decoration: none;
@@ -70,7 +63,7 @@ export const HeaderRight = styled.div`
     .toolbar {
         margin-left: 20px;
         font-size: 16px;
-        color: #7d7d7d;
+        
         cursor: pointer;
         &:hover {
             color: ${themeColor};

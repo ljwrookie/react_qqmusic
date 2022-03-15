@@ -2,18 +2,9 @@ import React, { memo } from 'react'
 import { NavLink } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { HeaderWrapper } from './style';
-import { LIGHT_MODE, DARK_MODE } from '../../common/constants';
-// 存储
-localStorage.setItem("MODE", "LIGHT_MODE");
-// 检索
-let mode = localStorage.getItem("MODE");
-// console.log(mode)
-if(mode === undefined){
-    localStorage.setItem("MODE", "LIGHT_MODE");
-    mode = localStorage.getItem("MODE");
-}
+import { LIGHT_MODE, DARK_MODE, getMode } from '../../common/constants';
 
-const {themeColor} = (mode==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+const {themeColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
 const ThemeHeaderRCM = memo(function (props) {
     const { index, title, keywords, moreLink, keywordClick } = props;
     return (

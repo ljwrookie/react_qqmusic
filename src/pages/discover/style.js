@@ -1,16 +1,8 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE } from '@/common/constants';
-// 存储
-localStorage.setItem("MODE", "LIGHT_MODE");
-// 检索
-let mode = localStorage.getItem("MODE");
-// console.log(mode)
-if(mode === undefined){
-    localStorage.setItem("MODE", "LIGHT_MODE");
-    mode = localStorage.getItem("MODE");
-}
+import { LIGHT_MODE, DARK_MODE,getMode } from '@/common/constants';
 
-const {themeColor, bodyColor} = (mode==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+
+const {themeColor, bodyColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
 export const TopNav = styled.div`
     color: #000000;
     .nav_title {

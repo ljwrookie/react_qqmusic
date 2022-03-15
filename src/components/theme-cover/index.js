@@ -33,7 +33,7 @@ export default memo(function ThemeCover(props) {
           </div>
         </div>
       </div>
-      <div className="cover-bottom text-nowrap">
+      <div className="cover-bottom">
         {info.name}
       </div>
     </ThemeCoverWrapper>
