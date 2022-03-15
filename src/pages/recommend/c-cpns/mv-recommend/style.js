@@ -1,14 +1,15 @@
+
 import styled from "styled-components";
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
 const { themeColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
 
-export const RecommendWrapper = styled.div `
+export const RecommendWrapper = styled.div`
     margin-top: 50px;
     position: relative;
 
     .content {
-        margin: 20px 0 20px;
+        margin: 20px 0;
         display: flex;
         /* width:1100px; */
         align-items: center;
@@ -18,11 +19,11 @@ export const RecommendWrapper = styled.div `
             .page {
                 display: flex !important;
                 justify-content: space-between;
-
             }
         }
     }
 `;
+
 export const RecommendControl = styled.div`
     /* overflow:auto; */
 
@@ -63,3 +64,4 @@ export const RecommendControl = styled.div`
         }
     }
 `;
+

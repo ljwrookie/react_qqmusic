@@ -10,7 +10,8 @@ if (mode === undefined) {
     mode = localStorage.getItem('MODE');
 }
 
-const { themeColor, normalColor, grayFontColor, bodyColor, searchBarColor } = mode === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { themeColor, normalColor, grayFontColor, bodyColor, searchBarColor } =
+    mode === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 export const PlayerBarWrapper = styled.div`
     position: fixed;
     left: 210px;
@@ -18,11 +19,11 @@ export const PlayerBarWrapper = styled.div`
     right: 0px;
     height: 80px;
     background-color: ${bodyColor};
-    z-index: 9999;
+    /* z-index: 9999; */
     .ant-slider {
         width: 100%;
         margin: 4px 0;
-        .ant-slider-rail{
+        .ant-slider-rail {
             background-color: ${searchBarColor};
         }
         .ant-slider-track {
@@ -106,7 +107,7 @@ export const PlayerInfo = styled.div`
             overflow: hidden;
             /* text-shadow: 0 1px 0 #171717; */
             line-height: 20px;
-            a{
+            a {
                 text-decoration: none;
             }
             .song_name {
@@ -145,7 +146,7 @@ export const ControlWrapper = styled.div`
     }
     .play_pause {
         position: relative;
-        top: 3px;
+        top: 5px;
         /* position: fixed; */
         /* margin-top: 50px; */
         font-size: 35px;

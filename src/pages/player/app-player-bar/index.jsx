@@ -92,15 +92,15 @@ export default memo(function PlayBar() {
 
     const playOrPause = () => {
         const play = (
-            <span className="iconfont play_pause"
-                onClick={playMusic}>
+            <span className="iconfont play_pause" onClick={playMusic}>
                 &#xe61b;
             </span>
         );
-        const pause = (<span className="iconfont play_pause"
-            onClick={playMusic}>
-            &#xea82;
-        </span>)
+        const pause = (
+            <span className="iconfont play_pause" onClick={playMusic}>
+                &#xea82;
+            </span>
+        );
         return isPlaying ? play : pause;
     };
     return (
@@ -140,7 +140,6 @@ export default memo(function PlayBar() {
                     <ControlWrapper>
                         <span className="iconfont order">&#xe68d;</span>
                         <span className="iconfont prev">&#xe79e;</span>
-                        
                             {playOrPause()}
                         
                         <span className="iconfont next">&#xe79f;</span>

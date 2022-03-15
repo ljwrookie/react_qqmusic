@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 // 存储
 
-const {themeColor, bodyColor, searchBarColor, grayFontColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+const { themeColor, bodyColor, searchBarColor, grayFontColor } =
+    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 export const HeaderWrapper = styled.div`
+    position: sticky;
     display: flex;
     justify-content: space-between;
-    position: -webkit-sticky;
-    position: sticky;
     top: 0;
     height: 75px;
-    background-color:${bodyColor};
-    z-index: 9999;
+    background-color: ${bodyColor};
+     z-index: 9; 
 `;
 
 export const HeaderLeft = styled.div`
@@ -64,7 +64,7 @@ export const HeaderRight = styled.div`
     .toolbar {
         margin-left: 20px;
         font-size: 16px;
-        
+
         cursor: pointer;
         &:hover {
             color: ${themeColor};

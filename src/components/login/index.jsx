@@ -110,19 +110,20 @@ export default memo( function Login() {
                             // style={{
                             //     float: 'right',
                             // }}
-                            style={{
-                  // marginRight: '200px',
-                              
-                            }}
+                            style={
+                                {
+                                    // marginRight: '200px',
+                                }
+                            }
                         >
                             <QRCode
-                  style={{
-                                  marginTop:'10px',
+                                style={{
+                                    marginTop: '10px',
                                     marginLeft: '150px',
                                     marginRight: '50px',
                                     marginBottom: '10px',
                                 }}
-                                value="https://music.163.com/login?codekey=ddce1a73-26f4-4a5e-930d-cc3e24c7c2d2"
+                                value="https://music.163.com/login?codekey=e3427bdb-5a66-4d9a-a03a-9e37f12a02f8"
                             />
                         </div>
                     )}
