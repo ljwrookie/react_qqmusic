@@ -1,5 +1,16 @@
 import styled from 'styled-components';
+import { LIGHT_MODE, DARK_MODE } from '@/common/constants';
+// 存储
+localStorage.setItem("MODE", "LIGHT_MODE");
+// 检索
+let mode = localStorage.getItem("MODE");
+// console.log(mode)
+if(mode === undefined){
+    localStorage.setItem("MODE", "LIGHT_MODE");
+    mode = localStorage.getItem("MODE");
+}
 
+const {themeColor, bodyColor} = (mode==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
 export const TopNav = styled.div`
     color: #000000;
     .nav_title {
@@ -11,7 +22,7 @@ export const TopNav = styled.div`
         display: flex;
         padding: 5px 0;
         font-size: 14px;
-        background-color: #fafafa;
+        background-color: ${bodyColor};
         .nav_item {
             margin-right: 50px;
             text-align: center;
@@ -21,7 +32,7 @@ export const TopNav = styled.div`
                 &:hover,
                 &.active {
                     text-decoration: none;
-                    color: #00cd98;
+                    color: ${themeColor};
                 }
             }
         }

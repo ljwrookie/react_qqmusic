@@ -1,5 +1,16 @@
 import styled from 'styled-components';
+import { LIGHT_MODE, DARK_MODE } from '@/common/constants';
+// 存储
+// localStorage.setItem("MODE", "LIGHT_MODE");
+// 检索
+let mode = localStorage.getItem("MODE");
+// console.log(mode)
+if(mode === undefined){
+    localStorage.setItem("MODE", "LIGHT_MODE");
+    mode = localStorage.getItem("MODE");
+}
 
+const {themeColor, bodyColor} = (mode==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
 export const PlayerBarWrapper = styled.div`
     position: fixed;
     left: 210px;
@@ -8,7 +19,7 @@ export const PlayerBarWrapper = styled.div`
      */
     right: 0px;
     height: 80px;
-    background-color: #fafafa;
+    background-color: ${bodyColor};
     z-index: 9999;
     .ant-slider {
         width: 100%;

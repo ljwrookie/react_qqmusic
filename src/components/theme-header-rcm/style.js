@@ -1,5 +1,16 @@
 import styled from 'styled-components';
+import { LIGHT_MODE, DARK_MODE } from '@/common/constants';
+// 存储
+// localStorage.setItem("MODE", "LIGHT_MODE");
+// 检索
+let mode = localStorage.getItem("MODE");
+// console.log(mode)
+if(mode === undefined){
+    localStorage.setItem("MODE", "LIGHT_MODE");
+    mode = localStorage.getItem("MODE");
+}
 
+const {themeColor} = (mode==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
 export const HeaderWrapper = styled.div`
     
     height: 33px;
@@ -25,11 +36,11 @@ export const HeaderWrapper = styled.div`
                     text-decoration: none;
                     margin:0 15px;
                     &:hover{
-                    color: #00cd98;
+                    color: ${themeColor};
                     }
                     &:active{
                         /* background-color:#3f3f3f; */
-                        color: #00cd98;
+                        color: ${themeColor};
                     }
                 }
             }
@@ -42,7 +53,7 @@ export const HeaderWrapper = styled.div`
         .link{
             text-decoration: none;
             &:hover {
-                color: #00cd98;
+                color: ${themeColor};
             }
         
         }

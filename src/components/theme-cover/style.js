@@ -1,5 +1,16 @@
 import styled from 'styled-components';
+import { LIGHT_MODE, DARK_MODE } from '@/common/constants';
+// 存储
+// localStorage.setItem("MODE", "LIGHT_MODE");
+// 检索
+let mode = localStorage.getItem("MODE");
+// console.log(mode)
+if(mode === undefined){
+    localStorage.setItem("MODE", "LIGHT_MODE");
+    mode = localStorage.getItem("MODE");
+}
 
+const {themeColor} = (mode==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
 export const ThemeCoverWrapper = styled.div`
     font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
     /* const size = $(props =>{props.width}) */
@@ -71,7 +82,7 @@ export const ThemeCoverWrapper = styled.div`
                 .play {
                     visibility: visible;
                     &:hover {
-                        color: #00cd98;
+                        color: ${themeColor};
                     }
                 }
             }
@@ -91,7 +102,7 @@ export const ThemeCoverWrapper = styled.div`
         color: #000;
         margin-top: 10px;
         &:hover {
-            color: #00cd98;
+            color: ${themeColor};
         }
     }
 `;

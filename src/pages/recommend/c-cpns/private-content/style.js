@@ -1,5 +1,16 @@
 import styled from "styled-components";
+import { LIGHT_MODE, DARK_MODE } from '@/common/constants';
+// 存储
+// localStorage.setItem("MODE", "LIGHT_MODE");
+// 检索
+let mode = localStorage.getItem("MODE");
+// console.log(mode)
+if(mode === undefined){
+    localStorage.setItem("MODE", "LIGHT_MODE");
+    mode = localStorage.getItem("MODE");
+}
 
+const {themeColor} = (mode==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
 export const RecommendWrapper = styled.div `
     margin-top: 50px;
     position: relative;
@@ -39,7 +50,7 @@ export const RecommendControl = styled.div `
             visibility: hidden;
         }
         &:hover span {
-            color: #00cd98;
+            color: ${themeColor};
             visibility: visible;
             /* font-weight: 100 !important; */
         }

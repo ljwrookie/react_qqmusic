@@ -1,9 +1,24 @@
-import React, { memo, useRef } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import { Input } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import { ConsoleSqlOutlined, SearchOutlined } from '@ant-design/icons';
 import { HeaderWrapper, HeaderLeft, HeaderRight } from './style';
 
 export default memo(function AppHeader() {
+    const [state, setState] = useState({mode: "LIGHT_MODE"})
+    const changeTheme = ()=>{
+        let mode = localStorage.getItem("MODE");
+        console.log('1',mode)
+        if(mode === undefined || mode === 'DARK_MODE'){
+            localStorage.setItem("MODE", "LIGHT_MODE");
+            setState({mode: "LIGHT_MODE"})
+        }
+        else{
+            localStorage.setItem("MODE", "DARK_MODE");
+            setState({mode: "DARK_MODE"})
+        }
+        mode = localStorage.getItem("MODE");
+        console.log(mode)
+    }
     const inputRef = useRef();
     return (
         <HeaderWrapper>
@@ -27,7 +42,7 @@ export default memo(function AppHeader() {
                     点击登录
                 </a>
                 <span className="iconfont toolbar">&#xe63a;</span>
-                <span className="iconfont toolbar">&#xe650;</span>
+                <span className="iconfont toolbar" onClick={changeTheme}>&#xe650;</span>
                 <span className="iconfont toolbar">&#xe6a9;</span>
             </HeaderRight>
         </HeaderWrapper>

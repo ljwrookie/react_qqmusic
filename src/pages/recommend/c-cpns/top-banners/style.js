@@ -1,3 +1,16 @@
+import { LIGHT_MODE, DARK_MODE } from '@/common/constants';
+// 存储
+// localStorage.setItem("MODE", "LIGHT_MODE");
+// 检索
+let mode = localStorage.getItem("MODE");
+// console.log(mode)
+if(mode === undefined){
+    localStorage.setItem("MODE", "LIGHT_MODE");
+    mode = localStorage.getItem("MODE");
+}
+
+const {themeColor} = (mode==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+
 const { default: styled } = require('styled-components');
 
 export const BannerWrapper = styled.div`
@@ -22,8 +35,8 @@ export const BannerWrapper = styled.div`
             display: flex;
             align-items: center;
             /* margin: 0 25px; */
-            width: 530px;
-            border-radius: 20px;
+            width: 540px;
+            border-radius: 15px;
         }
     }
     .slick-dots {
@@ -58,7 +71,7 @@ export const BannerControl = styled.div`
             
         }
         &:hover span {
-            color: #00cd98;
+            color: ${themeColor};
             visibility: visible;
             /* font-weight: 100 !important; */
         }
