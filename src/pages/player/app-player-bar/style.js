@@ -10,7 +10,7 @@ if (mode === undefined) {
     mode = localStorage.getItem('MODE');
 }
 
-const { themeColor, bodyColor } = mode === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { themeColor, normalColor, grayFontColor, bodyColor, searchBarColor } = mode === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 export const PlayerBarWrapper = styled.div`
     position: fixed;
     left: 210px;
@@ -22,6 +22,9 @@ export const PlayerBarWrapper = styled.div`
     .ant-slider {
         width: 100%;
         margin: 4px 0;
+        .ant-slider-rail{
+            background-color: ${searchBarColor};
+        }
         .ant-slider-track {
             background-color: ${themeColor};
         }
@@ -103,12 +106,15 @@ export const PlayerInfo = styled.div`
             overflow: hidden;
             /* text-shadow: 0 1px 0 #171717; */
             line-height: 20px;
+            a{
+                text-decoration: none;
+            }
             .song_name {
-                color: #000;
+                color: ${normalColor};
                 margin: 0 10px;
             }
             .singer_name {
-                color: #9b9b9b;
+                color: ${grayFontColor};
             }
         }
         /* .song_name {
@@ -119,8 +125,12 @@ export const PlayerInfo = styled.div`
             top: -40px;
             left: 30px;
             .iconfont {
+                color: ${grayFontColor};
                 font-size: 18px;
                 margin: 0 8px;
+                &:hover {
+                    color: ${themeColor};
+                }
             }
         }
     }
@@ -131,11 +141,11 @@ export const ControlWrapper = styled.div`
     .iconfont {
         font-size: 20px;
         padding: 0 10px;
-        color: #000;
+        color: ${normalColor};
     }
     .play_pause {
         position: relative;
-        top: 5px;
+        top: 3px;
         /* position: fixed; */
         /* margin-top: 50px; */
         font-size: 35px;

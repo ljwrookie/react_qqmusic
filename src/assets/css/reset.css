@@ -102,6 +102,8 @@ button {
     padding: 0 40px;
     margin: 0 auto;
     overflow: auto;
+    
+    overflow-x: hidden;
 }
 
 .main_center {
