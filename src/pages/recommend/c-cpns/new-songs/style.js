@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
-const {themeColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
-export const RecommendWrapper = styled.div `
+const { themeColor } = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+export const RecommendWrapper = styled.div`
     margin-top: 50px;
     position: relative;
 
     .content {
-        margin: 20px 0 0px;
+        margin: 20px 0;
         display: flex;
         /* width:1100px; */
         align-items: center;
@@ -17,51 +17,47 @@ export const RecommendWrapper = styled.div `
             .page {
                 display: flex !important;
                 justify-content: space-between;
-
             }
         }
     }
 
+    .all_name {
+        width: 200px;
+        /* margin-top:5px; */
+        /* margin:0; */
+        line-height: 20px;
+        .artist {
+            /* display:inline-block; */
+            text-decoration: none;
+            /* word-wrap:break-word; */
+            margin-right: 6px;
 
-  .all_name{
-    width:200px;
-    /* margin-top:5px; */
-    /* margin:0; */
-    line-height:20px;
-    .artist{
-      /* display:inline-block; */
-      text-decoration: none;
-      /* word-wrap:break-word; */
-      margin-right: 6px;
-      
-      &:not(:last-of-type){
-        &::after{
-          content: '  /';
-            color:#666666;
-          
+            &:not(:last-of-type) {
+                &::after {
+                    content: '  /';
+                    color: #666666;
+                }
+                /* margin-right: 5px; */
+            }
+            &:hover {
+                color: ${themeColor};
+            }
         }
-        /* margin-right: 5px; */
-      }
-      &:hover{
-        color:${themeColor} ;
-      }
     }
-  }
-  .time{
-    
-    color:#6F6F6F;
-    line-height:20px;
-  }
+    .time {
+        color: #6f6f6f;
+        line-height: 20px;
+    }
 `;
-export const RecommendControl = styled.div `
+export const RecommendControl = styled.div`
     /* overflow:auto; */
 
     position: absolute;
     left: 0;
     right: 0;
-    
+
     top: 40%;
-    
+
     .btn {
         position: absolute;
         background-color: transparent;
@@ -88,7 +84,7 @@ export const RecommendControl = styled.div `
             }
         }
         &:nth-child(2) {
-            right:0px;
+            right: 0px;
             transform: translateX(100%);
         }
     }

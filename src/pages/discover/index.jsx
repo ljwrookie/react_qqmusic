@@ -1,21 +1,20 @@
-import React, { memo } from 'react';
-import { TopNav } from './style';
+import React, { memo, useEffect } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { TopNav } from './style';
 import { discoverLinks } from '@/common/local-data';
 
 export default memo(function Discover() {
-
-    window.addEventListener('scroll', function (e) {
-        let nav = document.querySelector('.nav_list');
-
-
-        if (window.pageYOffset > nav.offsetTop) {
-            nav.style.position = 'fixed';
-            nav.style.top = '75px';
-        } else {
-            nav.style.position = 'static';
-        }
-    });
+    useEffect(() => {
+        window.addEventListener('scroll', function (e) {
+            const nav = document.querySelector('.nav_list');
+            if (window.pageYOffset >= nav.offsetTop) {
+                nav.style.position = 'fixed';
+                nav.style.top = '75px';
+            } else {
+                nav.style.position = 'static';
+            }
+        });
+    }, []);
 
     return (
         <>

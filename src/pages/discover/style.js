@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE,getMode } from '@/common/constants';
+import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
-
-const {themeColor, bodyColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+const { themeColor, bodyColor, normalColor } = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 export const TopNav = styled.div`
-    color: #000000;
+    color: ${normalColor};
     .nav_title {
         font-size: 32px;
         font-weight: 900;
@@ -19,7 +18,7 @@ export const TopNav = styled.div`
             margin-right: 50px;
             text-align: center;
             a {
-                color: #000;
+                color: ${normalColor};
                 display: inline-block;
                 &:hover,
                 &.active {

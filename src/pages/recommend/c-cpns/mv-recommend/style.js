@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const RecommendWrapper = styled.div `
+export const RecommendWrapper = styled.div`
     margin-top: 50px;
     position: relative;
 
     .content {
-        margin: 20px 0 20px;
+        margin: 20px 0;
         display: flex;
         /* width:1100px; */
         align-items: center;
@@ -15,7 +15,6 @@ export const RecommendWrapper = styled.div `
             .page {
                 display: flex !important;
                 justify-content: space-between;
-
             }
         }
     }
