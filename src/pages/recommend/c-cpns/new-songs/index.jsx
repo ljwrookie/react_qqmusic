@@ -62,6 +62,7 @@ export default memo(function NewSongs() {
         return index + item;
     });
     // 全部:0 华语:7 欧美:96 日本:8 韩国:16
+
     return (
         <RecommendWrapper>
             <ThemeHeaderRCM
@@ -76,44 +77,71 @@ export default memo(function NewSongs() {
                     onClick={e => carouselRef.current.prev()}></div> */}
                 <div className="album">
                     <Carousel ref={newSongsRef} dots={false}>
-                        {
-                            nums.map(item => {
-                                return (
-                                    <div key={item} className="page">
-                                        {
-                                            newSongs.slice(item * 5, (item + 1) * 5).map(it => {
-                                                const cover_props = { key: nanoid(), info: it, url_name: "album.picUrl", playCount: false, width: 200, height: 200 }
-                                                return (
-                                                    <div key={nanoid()}>                                                    
-                                                        <ThemeCover className="cover" {...cover_props} />
-                                                        <div className='all_name text-nowrap'>
-                                                        {
-                                                            it.artists.map((artist)=>{
+                        {nums.map((item) => {
+                            return (
+                                <div key={item} className="page">
+                                    {newSongs
+                                        .slice(item * 5, (item + 1) * 5)
+                                        .map((it) => {
+                                            const cover_props = {
+                                                key: nanoid(),
+                                                info: it,
+                                                url_name: 'album.picUrl',
+                                                playCount: false,
+                                                width: 200,
+                                                height: 200,
+                                            };
+                                            return (
+                                                <div key={nanoid()}>
+                                                    <ThemeCover
+                                                        className="cover"
+                                                        {...cover_props}
+                                                    />
+                                                    <div className="all_name text-nowrap">
+                                                        {it.artists.map(
+                                                            (artist) => {
                                                                 return (
-                                                                
-                                                                        <Link key={nanoid()} className='artist ' to='#'>{artist.name}</Link>
-                                                                    
-                                                                )
-                                                            })
-                                                        }  
-                                                        </div>
-                                                        <div className='time'>{moment(it.album.publishTime).format('YYYY-MM-DD')}</div>
+                                                                    <Link
+                                                                        key={nanoid()}
+                                                                        className="artist"
+                                                                        to="#"
+                                                                    >
+                                                                        {
+                                                                            artist.name
+                                                                        }
+                                                                    </Link>
+                                                                );
+                                                            }
+                                                        )}
                                                     </div>
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                )
-                            })
-                        }
+                                                    <div className="time">
+                                                        {moment(
+                                                            it.album
+                                                                .publishTime
+                                                        ).format(
+                                                            'YYYY-MM-DD'
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                </div>
+                            );
+                        })}
                     </Carousel>
                 </div>
             </div>
             <RecommendControl>
-                <button className="btn" onClick={() => newSongsRef.current.prev()}>
+                <button
+                    className="btn"
+                    onClick={() => newSongsRef.current.prev()}
+                >
                     <span className="iconfont">&#xe662;</span>
                 </button>
-                <button className="btn" onClick={() => newSongsRef.current.next()}>
+                <button
+                    className="btn"
+                    onClick={() => newSongsRef.current.next()}
+                >
                     <span className="iconfont">&#xe662;</span>
                 </button>
             </RecommendControl>

@@ -12,6 +12,8 @@ import Mv from '../pages/mv';
 import Radio from '../pages/radio';
 import Recommend from '../pages/recommend';
 import Recent from '../pages/recent';
+import Player from '../pages/player';
+import { element } from 'prop-types';
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArray": true}] */
 const GetRoutes = () => {
@@ -73,6 +75,10 @@ const GetRoutes = () => {
         {
             path: '/recent/*',
             element: <Recent />,
+        },
+        {
+            path: '/player',
+            element: <Player />,
         },
         {
             path: '/',

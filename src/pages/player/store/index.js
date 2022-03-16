@@ -1,2 +1,7 @@
 import reducer from './reducer';
-export { reducer };
+
+import {
+    getSongDetailAction,
+    getSongDetailArrayAction,
+} from './actionCreators';
+export { reducer, getSongDetailAction, getSongDetailArrayAction };

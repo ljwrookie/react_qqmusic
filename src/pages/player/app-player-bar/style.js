@@ -1,28 +1,14 @@
 import styled from 'styled-components';
-import {
-    LIGHT_MODE,
-    DARK_MODE,
-} from '@/common/constants';
-// 存储
-// localStorage.setItem("MODE", "LIGHT_MODE");
-// 检索
-let mode = localStorage.getItem('MODE');
-// console.log(mode)
-if (mode === undefined) {
-    localStorage.setItem('MODE', 'LIGHT_MODE');
-    mode = localStorage.getItem('MODE');
-}
+import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
 const {
     themeColor,
     normalColor,
-    grayFontColor,
     bodyColor,
     searchBarColor,
-} =
-    mode === 'LIGHT_MODE'
-        ? LIGHT_MODE
-        : DARK_MODE;
+    grayFontColor,
+} = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+
 export const PlayerBarWrapper = styled.div`
     position: fixed;
     left: 210px;
@@ -162,6 +148,34 @@ export const ControlWrapper = styled.div`
         /* margin-top: 50px; */
         font-size: 35px;
         color: ${themeColor};
+    }
+    .top-volume {
+        position: absolute;
+        top: -160px;
+        right: -14px;
+        clear: both;
+        width: 75px;
+        height: 150px;
+        overflow: hidden;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #ffffff;
+
+        /* ant design Slider style change */
+        .ant-slider-vertical {
+            padding: 0 15px;
+            .ant-slider-rail {
+                width: 5px;
+            }
+            .ant-slider-track {
+                width: 5px;
+            }
+            .ant-slider-handle {
+                left: 15px;
+                width: 16px;
+                height: 16px;
+            }
+        }
     }
 `;
 export const OperateWrapper = styled.div`
