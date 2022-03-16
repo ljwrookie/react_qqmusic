@@ -2,6 +2,17 @@
     opacity: 0;
     -webkit-transform: none;
     transform: none;
+    -webkit-animation: none;
+    animation: none;
+}
+
+.lyric_class .ant-message-notice-content {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100px;
+    background: transparent;
+    color: #1fcfa1;
 }
 .ant-btn-primary{
     color: rgb(255, 255, 255);

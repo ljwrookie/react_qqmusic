@@ -6,7 +6,7 @@ const { themeColor, normalColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : D
 const { default: styled } = require('styled-components');
 
 export const BannerWrapper = styled.div`
-    height: 260px;
+    height: 230px;
     /* display: flex; */
     position: relative;
     .content {
@@ -14,7 +14,6 @@ export const BannerWrapper = styled.div`
         display: flex !important;
         /* 设置主轴排序方式 */
         justify-content: space-between;
-        /* justify-content:space-around; */
         /* 设置侧轴排序方式 */
         /* align-items: center; */
         /* height: 186px; */
@@ -27,8 +26,13 @@ export const BannerWrapper = styled.div`
             display: flex;
             align-items: center;
             /* margin: 0 25px; */
+<<<<<<< Updated upstream
             width: 537px;
             border-radius: 15px;
+=======
+            width: 350px;
+            border-radius: 20px;
+>>>>>>> Stashed changes
         }
         
     }
@@ -61,7 +65,7 @@ export const BannerControl = styled.div`
     position: absolute;
     left: 0;
     right: 0;
-    top: 35%;
+    top: 25%;
     transform: translateY(-50%);
     .btn {
         position: absolute;
@@ -71,7 +75,6 @@ export const BannerControl = styled.div`
             font-size: 40px;
             /* font-weight: 100 !important; */
             visibility: hidden;
-            
         }
         &:hover span {
             color: ${themeColor};
@@ -79,18 +82,10 @@ export const BannerControl = styled.div`
             /* font-weight: 100 !important; */
         }
         &:nth-child(1) {
-            left: -50px;
-            span:nth-child(1) {
-                display: inline-block;
-                -moz-transform: scaleX(-1);
-                -webkit-transform: scaleX(-1);
-                -o-transform: scaleX(-1);
-                transform: scaleX(-1);
-            }
-            
+            left: -55px;
         }
         &:nth-child(2) {
-            right: -50px;
+            right: -55px;
         }
     }
 `;
