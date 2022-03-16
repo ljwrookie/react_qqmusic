@@ -11,62 +11,58 @@ import { BannerControl, BannerWrapper } from './style';
 export default memo(function TopBanners() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
-    const dispatch = useDispatch()
-    const { topBanners =[]} = useSelector(
-        state => ({
+    const dispatch = useDispatch();
+    const { topBanners } = useSelector(
+        (state) => ({
             // topBanners: state.get('recommend').get('topBanners')
             // 获取redux-reducer转换成Immutable对象的深层state
             topBanners: state.getIn(['recommend', 'topBanners']),
         }),
         shallowEqual
-    )
+    );
     // 其他Hook
-    const bannerRef = useRef()
+    const bannerRef = useRef();
     useEffect(() => {
         // 在组件渲染之后发送网络请求
-        dispatch(getTopBannersAction())
-    }, [dispatch])
+        dispatch(getTopBannersAction());
+    }, [dispatch]);
 
     // const bannerChange = useCallback((from, to) => {
     //     setCurrentIndex(to)
     // }, [])
-    const arr = new Array(Math.floor(topBanners.length / 2)).fill(0)
+    const arr = new Array(Math.floor(topBanners.length / 3)).fill(0);
     const nums = arr.map((item, index) => {
-        return index + item
-    })
+        return index + item;
+    });
 
     return (
-        <BannerWrapper >
-            {/* <span className="iconfont" style={{color:'#000',}}>&#xe660;</span> */}
+        <BannerWrapper>
             <Carousel effect="fade" autoplay ref={bannerRef}>
-                {
-                    nums.map((item) => {
-                        return (
-                            <div key={item} className="content">
-                                {
-                                    topBanners.slice(item * 2, (item + 1) * 2).map((banner) => {
-                                        return (
-                                            <img key={banner.imageUrl} src={banner.imageUrl} className='banner_img' alt='#' />
-                                        )
-                                    })
-                                }
-                            </div>
-                        )
-                    })
-                }
+                {nums.map((item) => {
+                    return (
+                        <div key={item} className="content">
+                            {topBanners.slice(item * 3, (item + 1) * 3).map((banner) => {
+                                return (
+                                    <img
+                                        key={banner.imageUrl}
+                                        src={banner.imageUrl}
+                                        className="banner_img"
+                                        alt="#"
+                                    />
+                                );
+                            })}
+                        </div>
+                    );
+                })}
             </Carousel>
             <BannerControl>
-                <button
-                    className="btn"
-                    onClick={() => bannerRef.current.prev()}
-                ><span className="iconfont">&#xe662;</span></button>
-                <button
-                    className="btn"
-                    onClick={() => bannerRef.current.next()}
-                ><span className="iconfont">&#xe662;</span></button>
-            
+                <button className="btn" onClick={() => bannerRef.current.prev()}>
+                    <span className="iconfont">&#xe603;</span>
+                </button>
+                <button className="btn" onClick={() => bannerRef.current.next()}>
+                    <span className="iconfont">&#xe61f;</span>
+                </button>
             </BannerControl>
-            
         </BannerWrapper>
-    )
+    );
 });

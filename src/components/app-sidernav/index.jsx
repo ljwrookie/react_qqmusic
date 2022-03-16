@@ -10,7 +10,7 @@ export default memo(function AppSider() {
                 QQ音乐
             </NavLink>
             <NavList>
-                <span className="list_title">在线音乐</span>
+                <span className="list_title text-indent">在线音乐</span>
                 {siderLinks &&
                     siderLinks.map((item, index) => {
                         return (

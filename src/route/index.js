@@ -43,8 +43,8 @@ const GetRoutes = () => {
                     element: <New />,
                 },
                 {
-                    path: '/discover',
-                    element: <Navigate to="songlist" />,
+                    path: '',
+                    element: <Navigate to="/discover/songlist" />,
                 },
             ],
         },

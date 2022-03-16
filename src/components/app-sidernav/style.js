@@ -8,7 +8,7 @@ export const AppSiderNav = styled.div`
         display: block;
         width: 105px;
         height: 30px;
-        margin-top: 40px;
+        margin-top: 30px;
         margin-left: 45px;
         padding-top: 30px;
         padding-bottom: 30px;
