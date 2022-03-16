@@ -14,7 +14,6 @@ const defaultState = Map({
     // upRanking: {},
     // newRanking: {},
     // originRanking: {},
-
     // settleSinger: []
 })
 
