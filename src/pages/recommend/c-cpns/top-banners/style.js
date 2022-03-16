@@ -26,13 +26,8 @@ export const BannerWrapper = styled.div`
             display: flex;
             align-items: center;
             /* margin: 0 25px; */
-<<<<<<< Updated upstream
             width: 537px;
             border-radius: 15px;
-=======
-            width: 350px;
-            border-radius: 20px;
->>>>>>> Stashed changes
         }
         
     }
@@ -59,14 +54,15 @@ export const BannerWrapper = styled.div`
     /* overflow:scroll;
     overflow-x:hidden */
 `;
-export const BannerControl = styled.div`
+export const RecommendControl = styled.div`
     /* overflow:auto; */
 
     position: absolute;
     left: 0;
     right: 0;
-    top: 25%;
-    transform: translateY(-50%);
+
+    top: 40%;
+
     .btn {
         position: absolute;
         background-color: transparent;
@@ -82,10 +78,19 @@ export const BannerControl = styled.div`
             /* font-weight: 100 !important; */
         }
         &:nth-child(1) {
-            left: -55px;
+            /* left: 50px; */
+            transform: translateX(-100%);
+            span:nth-child(1) {
+                display: inline-block;
+                -moz-transform: scaleX(-1);
+                -webkit-transform: scaleX(-1);
+                -o-transform: scaleX(-1);
+                transform: scaleX(-1);
+            }
         }
         &:nth-child(2) {
-            right: -55px;
+            right: 0px;
+            transform: translateX(100%);
         }
     }
 `;

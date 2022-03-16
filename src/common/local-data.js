@@ -66,3 +66,19 @@ export const discoverLinks = [
         link: '/discover/new',
     },
 ];
+
+export const mvLinks = [
+    {
+        title: '推荐',
+        link: '/mv/recommend',
+    },
+    {
+        title: '排行榜',
+        link: '/mv/ranking',
+    },
+    {
+        title: '视频库',
+        link: '/mv/list',
+    },
+];
+

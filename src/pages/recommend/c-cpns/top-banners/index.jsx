@@ -6,7 +6,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { getTopBannersAction } from '../../store/actionCreator';
 // 3. 导入的组件
 import { Carousel } from 'antd';
-import { BannerControl, BannerWrapper } from './style';
+import { RecommendControl, BannerWrapper } from './style';
 
 export default memo(function TopBanners() {
     // const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,7 +30,7 @@ export default memo(function TopBanners() {
     // const bannerChange = useCallback((from, to) => {
     //     setCurrentIndex(to)
     // }, [])
-    const arr = new Array(Math.floor(topBanners.length / 3)).fill(0);
+    const arr = new Array(Math.floor(topBanners.length / 2)).fill(0);
     const nums = arr.map((item, index) => {
         return index + item;
     });
@@ -41,28 +41,36 @@ export default memo(function TopBanners() {
                 {nums.map((item) => {
                     return (
                         <div key={item} className="content">
-                            {topBanners.slice(item * 3, (item + 1) * 3).map((banner) => {
-                                return (
-                                    <img
-                                        key={banner.imageUrl}
-                                        src={banner.imageUrl}
-                                        className="banner_img"
-                                        alt="#"
-                                    />
-                                );
-                            })}
+                            {topBanners
+                                .slice(item * 2, (item + 1) * 2)
+                                .map((banner) => {
+                                    return (
+                                        <img
+                                            key={banner.imageUrl}
+                                            src={banner.imageUrl}
+                                            className="banner_img"
+                                            alt="#"
+                                        />
+                                    );
+                                })}
                         </div>
                     );
                 })}
             </Carousel>
-            <BannerControl>
-                <button className="btn" onClick={() => bannerRef.current.prev()}>
-                    <span className="iconfont">&#xe603;</span>
+            <RecommendControl>
+                <button
+                    className="btn"
+                    onClick={() => bannerRef.current.prev()}
+                >
+                    <span className="iconfont">&#xe662;</span>
                 </button>
-                <button className="btn" onClick={() => bannerRef.current.next()}>
-                    <span className="iconfont">&#xe61f;</span>
+                <button
+                    className="btn"
+                    onClick={() => bannerRef.current.next()}
+                >
+                    <span className="iconfont">&#xe662;</span>
                 </button>
-            </BannerControl>
+            </RecommendControl>
         </BannerWrapper>
     );
 });

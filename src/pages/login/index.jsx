@@ -20,7 +20,7 @@ import {
 import { message, Tabs, Space } from 'antd';
 import { useState, memo, useEffect } from 'react';
 import { ThemeCoverWrapper } from './style';
-import * as action from './store/createActions.js'
+import * as action from './store/actionCreator.js'
 
 const waitTime = (time = 100) => {
     return new Promise((resolve) => {
@@ -33,14 +33,16 @@ export default memo( function Login() {
     
     const dispatch = useDispatch();
     const { login = [] } = useSelector(
-        state => ({
+        (state) => ({
             // topBanners: state.get('recommend').get('topBanners')
             // 获取redux-reducer转换成Immutable对象的深层state
             login: {
-                qrKey: state.getIn([
-                    'login','qrKey']),
-                
-            }
+                qrKey: state.getIn(['login', 'qrKey']),
+                // qrCheck: state.getIn(['login', 'qrCheck']),
+                // refreshLogin: state.getIn(['login', 'refreshLogin']),
+                // loginStatus: state.getIn(['login', 'loginStatus']),
+                // logout: state.getIn(['login', 'logout']),
+            },
         }),
         shallowEqual
     );
@@ -54,7 +56,7 @@ export default memo( function Login() {
     
     return (
         <ThemeCoverWrapper>
-            {console.log(login.qrKey)}
+            {/* {console.log(login.qrKey)} */}
             <ModalForm
                 submitter={false}
                 width="500px"

@@ -12,7 +12,7 @@ import {
 } from "./style";
 
 import ThemeHeaderRCM from '@/components/theme-header-rcm';
-import ThemeCover from '@/components/theme-cover'
+import VideoCover from '@/components/video-cover'
 
 
 export default memo(function MvRecommend() {
@@ -54,7 +54,7 @@ export default memo(function MvRecommend() {
                                             mvRecommends.slice(item * 3, (item + 1) * 3).map(it => {
                                                 const cover_props = { key: it.id, info: it, url_name: "cover", playCount: true, width: 350, height: 200 }
                                                 return (
-                                                    <ThemeCover className="cover" {...cover_props}/>
+                                                    <VideoCover className="cover" {...cover_props}/>
                                                 )
                                             })
                                         }
