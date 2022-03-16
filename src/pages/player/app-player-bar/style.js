@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE } from '@/common/constants';
+import {
+    LIGHT_MODE,
+    DARK_MODE,
+} from '@/common/constants';
 // 存储
 // localStorage.setItem("MODE", "LIGHT_MODE");
 // 检索
@@ -10,8 +13,16 @@ if (mode === undefined) {
     mode = localStorage.getItem('MODE');
 }
 
-const { themeColor, normalColor, grayFontColor, bodyColor, searchBarColor } =
-    mode === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const {
+    themeColor,
+    normalColor,
+    grayFontColor,
+    bodyColor,
+    searchBarColor,
+} =
+    mode === 'LIGHT_MODE'
+        ? LIGHT_MODE
+        : DARK_MODE;
 export const PlayerBarWrapper = styled.div`
     position: fixed;
     left: 210px;
@@ -66,7 +77,7 @@ export const PlayerBarWrapper = styled.div`
             height: 68px;
         }
     }
-    .iconfont {
+    span {
         cursor: pointer;
         &:hover {
             color: ${themeColor};
@@ -159,10 +170,13 @@ export const OperateWrapper = styled.div`
     right: 15px;
     font-size: 12px;
     color: #868686;
+    .desk_lyc {
+        margin: 0 8px;
+        font-size: 14px;
+    }
     .iconfont {
         position: relative;
         top: 3px;
         font-size: 20px;
-        margin-left: 8px;
     }
 `;
