@@ -28,7 +28,7 @@ export default memo(function ThemeCover(props) {
                     </div>
                 </div>
             </div>
-            <div className="cover-bottom">{info.name}</div>
+            <div className="cover-bottom text-nowrap ">{info.name}</div>
         </ThemeCoverWrapper>
     );
 });

@@ -8,24 +8,14 @@ import {
     UserOutlined,
     MobileOutlined,
     LockOutlined,
-    AlipayCircleOutlined,
-    TaobaoCircleOutlined,
-    WeiboCircleOutlined,
-    PlusOutlined,
+    QqOutlined,
+    WechatOutlined,
 } from '@ant-design/icons';
-import { message, Button, Tabs, Space } from 'antd';
+import { message, Tabs, Space } from 'antd';
 // import type { CSSProperties } from 'react';
 import { useState, memo } from 'react';
 import { ThemeCoverWrapper } from './style';
-let LoginType = 'phone' | 'account';
 
-// const iconStyles: CSSProperties = {
-//   marginLeft: '16px',
-//   color: 'rgba(0, 0, 0, 0.2)',
-//   fontSize: '24px',
-//   verticalAlign: 'middle',
-//   cursor: 'pointer',
-// };
 const waitTime = (time = 100) => {
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -38,6 +28,7 @@ export default memo( function Login() {
     return (
         <ThemeCoverWrapper>
             <ModalForm
+                submitter = {false}
                 width="500px"
                 // height="500px"
                 // title="登录"
@@ -59,12 +50,10 @@ export default memo( function Login() {
                     // title="QQ音乐"
                     // subTitle="QQ音乐"
                     actions={
-                        <Space>
+                        <Space style={{ marginTop: '20px'}}>
                             其他登录方式
-                            <AlipayCircleOutlined />
-                            {/* style={iconStyles} */}
-                            <TaobaoCircleOutlined />
-                            <WeiboCircleOutlined />
+                            <QqOutlined style={{fontSize: '22px', marginLeft: '15px'}}/>
+                            <WechatOutlined style={{fontSize: '22px',marginLeft: '15px'}}/>
                         </Space>
                     }
                 >
@@ -81,7 +70,7 @@ export default memo( function Login() {
                                     size: 'large',
                                     prefix: <UserOutlined className={'prefixIcon'} />,
                                 }}
-                                placeholder={'用户名: admin or user'}
+                                placeholder={'用户名: username'}
                                 rules={[
                                     {
                                         required: true,
@@ -95,7 +84,7 @@ export default memo( function Login() {
                                     size: 'large',
                                     prefix: <LockOutlined className={'prefixIcon'} />,
                                 }}
-                                placeholder={'密码: ant.design'}
+                                placeholder={' 密码:    ********'}
                                 rules={[
                                     {
                                         required: true,
@@ -118,10 +107,10 @@ export default memo( function Login() {
                         >
                             <QRCode
                                 style={{
-                                    marginTop: '10px',
+                                    marginTop: '20px',
                                     marginLeft: '150px',
                                     marginRight: '50px',
-                                    marginBottom: '10px',
+                                    marginBottom: '20px',
                                 }}
                                 value="https://music.163.com/login?codekey=e3427bdb-5a66-4d9a-a03a-9e37f12a02f8"
                             />
@@ -175,22 +164,19 @@ export default memo( function Login() {
                             />
                         </>
                     )}
-                    <div
-                        style={{
-                            marginBottom: 24,
-                        }}
-                    >
+                    
+                        {(loginType === 'phone' || loginType === 'account')&& (
+                        <>
+                        <div style={{ marginBottom: '24px'}}>
                         <ProFormCheckbox noStyle name="autoLogin">
                             自动登录
                         </ProFormCheckbox>
-                        <a
-                            style={{
-                                float: 'right',
-                            }}
-                        >
+                        <p style={{ float: 'right'}}>
                             忘记密码
-                        </a>
+                        </p>
                     </div>
+                    </>
+                    )}
                 </LoginForm>
             </ModalForm>
         </ThemeCoverWrapper>

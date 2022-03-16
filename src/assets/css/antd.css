@@ -3,3 +3,75 @@
     -webkit-transform: none;
     transform: none;
 }
+.ant-btn-primary{
+    color: rgb(255, 255, 255);
+    border-color: #1fcfa1;
+    background: #1fcfa1;
+}
+/* .ant-btn-primary:hover, .ant-btn-primary:focus {
+    color: rgb(255, 255, 255);
+    border-color: #9da1a0;
+    background: #8f9291;
+} */
+/* ::selection {
+    color: #1fcfa1;
+    background: #1fcfa1;
+} */
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #1fcfa1;
+    /* text-shadow: 0 0 0.25px currentcolor; */
+}
+.ant-tabs-tab:hover {
+    color: #1fcfa1;
+    /* text-shadow: 0 0 0.25px currentcolor; */
+}
+.ant-tabs-ink-bar {
+    position: absolute;
+    background: #1fcfa1;
+    pointer-events: none;
+}
+.ant-input-affix-wrapper.ant-input-affix-wrapper-lg:hover
+{
+    border: 1px #1fcfa1 solid;
+}
+.ant-input-affix-wrapper.ant-input-affix-wrapper-lg:focus
+{
+    border: 1px #1fcfa1 solid !important;
+}
+.ant-btn.ant-btn-default.ant-btn-lg:hover{
+    border: 1px #1fcfa1 solid;
+    color: #1fcfa1;
+}
+/* .ant-input-affix-wrapper.ant-input-affix-wrapper-lg:focus{
+    border: 1px #1fcfa1 solid !important;
+    border-radius: 2px;
+    z-index:200;
+} */
+.ant-input-affix-wrapper:focus.ant-input-affix-focused:focus{
+    border: 1px #1fcfa1 solid !important;
+    /* z-index: 99999; */
+}
+.ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #1fcfa1;
+    border-color: #1fcfa1;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner:hover {
+    background-color: #1fcfa1;
+    border-color: #1fcfa1;
+}
+.ant-checkbox-checked::after {
+    border: 1px solid #1fcfa1;
+}
+/* .ant-checkbox-checked.ant-checkbox-inner{
+    background-color: #1fcfa1 !important;
+    border-color: #1fcfa1 !important;
+} */
+.ant-checkbox-wrapper:hover.ant-checkbox-inner,.ant-checkbox:hover .ant-checkbox-inner,.ant-checkbox-input:focus + .ant-checkbox-inner {
+    border-color: #1fcfa1;
+}
+
+/* .ant-checkbox-wrapper.ant-checkbox-inner,.ant-checkbox:hover .ant-checkbox-inner,.ant-checkbox-input:focus + .ant-checkbox-inner {
+    border-color: #1fcfa1;
+} */
+

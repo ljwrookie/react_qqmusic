@@ -45,7 +45,7 @@ export const BannerWrapper = styled.div`
                 border-radius: 50%;
                 background-color: ${normalColor} !important;
                 &:hover{
-                    background-color: ${themeColor};
+                    background-color: ${themeColor} !important;
                 }
             }
         

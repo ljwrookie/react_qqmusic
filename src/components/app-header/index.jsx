@@ -2,7 +2,7 @@ import React, { memo, useRef } from 'react';
 import { Input } from 'antd';
 import { ConsoleSqlOutlined, SearchOutlined } from '@ant-design/icons';
 import { HeaderWrapper, HeaderLeft, HeaderRight } from './style';
-import Login from '../login'
+import Login from '../../pages/login'
 export default memo(function AppHeader() {
     
     const changeTheme = ()=>{
