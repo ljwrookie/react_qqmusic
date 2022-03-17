@@ -12,6 +12,7 @@ import {
     formatDate,
     getPlayUrl,
 } from '@/utils/format-utils.js';
+import { useAddPlaylist } from '@/hooks/change-music';
 import {
     getSongDetailAction,
     changePlaySequenceAction,
@@ -28,6 +29,8 @@ import {
     OperateWrapper,
 } from './style';
 
+// import { SONG_PLAYLIST_ID } from '@/common/constants';
+
 export default memo(function PlayBar() {
     // props/state
     const [currentTime, setCurrentTime] = useState(0); // 用于保存当前播放的时间
@@ -36,6 +39,7 @@ export default memo(function PlayBar() {
     const [isChanging, setIsChanging] = useState(false); // 是否正在滑动
     const [isPlaying, setIsPlaying] = useState(false); // 是否正在播放
     const [visible, setVisible] = useState(false);
+    const [isShowLyric, setIsShowLyric] = useState(false); //是否显示桌面歌词
     // redux hook
     const dispatch = useDispatch();
     const {
@@ -50,9 +54,9 @@ export default memo(function PlayBar() {
     } = useSelector(
         (state) => ({
             currentSong: state.getIn(['player', 'currentSong']),
+            playSequence: state.getIn(['player', 'playSequence']),
             firstLoad: state.getIn(['player', 'firstLoad']),
             lyricList: state.getIn(['player', 'lyricList']),
-
             playList: state.getIn(['player', 'playList']),
             currentLyricIndex: state.getIn([
                 'player',
@@ -70,6 +74,7 @@ export default memo(function PlayBar() {
     useEffect(() => {
         dispatch(getSongDetailAction(167876));
     }, [dispatch]);
+
     // 设置音频src
     useEffect(() => {
         audioRef.current.src = getPlayUrl(currentSong.id);
@@ -89,7 +94,6 @@ export default memo(function PlayBar() {
     const singerName = currentSong.ar && currentSong.ar[0].name; //作者名字
     const duration = currentSong.dt; //播放总时间
     const songId = currentSong && currentSong.id;
-
     // other function
     // 点击播放或暂停按钮后音乐
     const playMusic = useCallback(() => {
@@ -125,12 +129,16 @@ export default memo(function PlayBar() {
         if (currentLyricIndex !== i - 1) {
             dispatch(changeCurrentLyricIndexAction(i - 1));
             const content = lyricList[i - 1] && lyricList[i - 1].content;
-            message.open({
-                key:'lyric',
-                content,
-                duration:0,
-                className:'lyric_class'
-            });
+            if (isShowLyric) {
+                message.open({
+                    key: 'lyric',
+                    content: content ? content : 'QQ音乐，听我想听',
+                    duration: 0,
+                    className: 'lyric_class',
+                });
+            } else {
+                message.destroy('lyric');
+            }
         }
     }
     // 滑动滑块时触发
@@ -176,14 +184,14 @@ export default memo(function PlayBar() {
         audioRef.current.volume = value / 100;
     }
     // 更改播放顺序
-    const changeSequence = () => {
+    const changeSequence = useCallback(() => {
         let currentSequence = playSequence;
         currentSequence++;
         if (currentSequence > 2) {
             currentSequence = 0;
         }
         dispatch(changePlaySequenceAction(currentSequence));
-    };
+    });
     // 切换歌曲(点击播放下一首或上一首音乐)
     const changeSong = (tag) => {
         // 首先判断播放列表中是否存在音乐，再决定是否播放
@@ -219,38 +227,35 @@ export default memo(function PlayBar() {
             setIsPlaying(true + Math.random());
         }
     }
-
-    const Sequence = () => {
-        switch (playSequence) {
-            case 0:
-                return (
-                    <span
-                        className="iconfont order"
-                        onClick={(e) => changeSequence()}
-                    >
-                        &#xe68d;
-                    </span>
-                );
-            case 1:
-                return (
-                    <span
-                        className="iconfont order"
-                        onClick={(e) => changeSequence()}
-                    >
-                        &#xe68c;
-                    </span>
-                );
-            default:
-                return (
-                    <span
-                        className="iconfont order"
-                        onClick={(e) => changeSequence()}
-                    >
-                        &#xe66d;
-                    </span>
-                );
-        }
-    };
+    const Sequence = useCallback(() => {
+        if (playSequence === 0)
+            return (
+                <span
+                    className="iconfont order"
+                    onClick={(e) => changeSequence()}
+                >
+                    &#xe68d;
+                </span>
+            );
+        else if (playSequence === 1)
+            return (
+                <span
+                    className="iconfont order"
+                    onClick={(e) => changeSequence()}
+                >
+                    &#xe68c;
+                </span>
+            );
+        else
+            return (
+                <span
+                    className="iconfont order"
+                    onClick={(e) => changeSequence()}
+                >
+                    &#xe66d;
+                </span>
+            );
+    }, [playSequence, changeSequence]);
     // 点击item播放音乐
     const clickItem = (index, item) => {
         // 播放音乐 dispatch
@@ -289,6 +294,9 @@ export default memo(function PlayBar() {
             </span>
         );
         return isPlaying ? play : pause;
+    };
+    const changeShowDeskLyc = () => {
+        setIsShowLyric(!isShowLyric);
     };
     return (
         <PlayerBarWrapper>
@@ -381,14 +389,19 @@ export default memo(function PlayBar() {
                     </ControlWrapper>
                 </div>
                 <div className="right">
-                    <OperateWrapper>
+                    <OperateWrapper isShowDeskLyric={isShowLyric}>
                         <em className="now_time">
                             {formatDate(currentTime, 'mm:ss')}{' '}
                         </em>
                         <em className="total_time">
                             / {duration && formatDate(duration, 'mm:ss')}
                         </em>
-                        <span className="desk_lyc">词</span>
+                        <span
+                            className="desk_lyc"
+                            onClick={changeShowDeskLyc}
+                        >
+                            词
+                        </span>
                         <span className="iconfont" onClick={showDrawer}>
                             &#xe623;
                         </span>

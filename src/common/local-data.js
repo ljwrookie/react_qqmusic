@@ -82,3 +82,21 @@ export const mvLinks = [
     },
 ];
 
+export const searchLinks = [
+    {
+        title: '歌曲',
+        link: '/search/song',
+    },
+    {
+        title: '视频',
+        link: '/search/mv',
+    },
+    {
+        title: '专辑',
+        link: '/search/album',
+    },
+    {
+        title: '歌手',
+        link: '/search/singer',
+    },
+];
