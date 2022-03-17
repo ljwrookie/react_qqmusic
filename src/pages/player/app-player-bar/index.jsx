@@ -28,7 +28,10 @@ import {
     ControlWrapper,
     OperateWrapper,
 } from './style';
+import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
+const { themeColor, normalColor, bodyColor, grayFontColor } =
+    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 // import { SONG_PLAYLIST_ID } from '@/common/constants';
 
 export default memo(function PlayBar() {
@@ -67,7 +70,10 @@ export default memo(function PlayBar() {
         }),
         shallowEqual
     );
-
+    const divStyle = {
+        backgroundColor: bodyColor,
+        color: normalColor,
+    };
     // other hook
     const audioRef = useRef();
     // 默认歌曲
@@ -412,6 +418,9 @@ export default memo(function PlayBar() {
                             visible={visible}
                             width={320}
                             closable={false}
+                            drawerStyle={divStyle}
+                            headerStyle={divStyle}
+                            // getContainer={false}
                             // mask={false}
                         >
                             {playList &&
