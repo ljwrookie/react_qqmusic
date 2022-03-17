@@ -5,7 +5,7 @@ import request from './request'
 // order: 排序, 可选值为上升最快, 最热, 最新, 不填则为上升最快
 // limit: 取出数量, 默认为 30
 // offset: 偏移数量, 用于分页, 如 : (页数 - 1) * 50, 其中 50 为 limit 的值, 默认 为 0
-export function getAllMv(area, order, limit, offset) {
+export function getAllMv(area, order, limit=60, offset) {
     return request({
         url: '/mv/all',
         params: {
@@ -43,11 +43,11 @@ export function getExclusiveMv(limit) {
 // 可选参数: limit: 取出数量, 默认为 30
 // area: 地区, 可选值为内地, 港台, 欧美, 日本, 韩国, 不填则为全部
 // offset: 偏移数量, 用于分页, 如 : (页数 - 1) * 30, 其中 30 为 limit 的值, 默认 为 0
-export function getMvRanking(area, limit) {
+export function getMvRanking(area) {
     return request({
         url: '/top/mv',
         params: {
-            area, limit
+            area
         }
     })
 }

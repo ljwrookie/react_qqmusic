@@ -18,12 +18,16 @@ export const TopNav = styled.div`
             margin-right: 50px;
             text-align: center;
             a {
+                line-height:30px;
                 color: ${normalColor};
                 display: inline-block;
                 &:hover,
                 &.active {
                     text-decoration: none;
                     color: ${themeColor};
+                }
+                &.active {
+                    border-bottom: 3px ${themeColor} solid;
                 }
             }
         }

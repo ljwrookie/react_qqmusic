@@ -19,6 +19,12 @@ export const RecommendMvWrapper = styled.div`
             .page {
                 display: flex !important;
                 justify-content: space-between;
+                &:nth-of-type(n){
+                    margin-bottom:12px;
+                }
+                &:last-of-type{
+                    margin-bottom:0;
+                }
             }
         }
     }
@@ -31,7 +37,7 @@ export const MvControl = styled.div`
     left: 0;
     right: 0;
     
-    top: 5%;
+    top: 15px;
     
     .btn {
         position: absolute;
@@ -49,7 +55,7 @@ export const MvControl = styled.div`
      
         &:nth-child(1) {
             right:0px;
-            transform: translateX(10%);
+            transform: translateX(8%);
         }
     }
 `;
