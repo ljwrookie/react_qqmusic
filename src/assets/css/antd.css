@@ -5,7 +5,9 @@
     -webkit-animation: none;
     animation: none;
 }
-
+.ant-drawer .ant-drawer-title {
+    color: unset;
+}
 .lyric_class .ant-message-notice-content {
     position: fixed;
     left: 50%;
