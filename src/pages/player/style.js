@@ -1,9 +1,19 @@
 import styled from 'styled-components';
 
+import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+
+const {
+    themeColor,
+    normalColor,
+    bodyColor,
+    searchBarColor,
+    grayFontColor,
+} = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+
 export const PlayerWrapper = styled.div`
     width: 100%;
-    height: 500px;
-    margin-top: 100px;
+    height: 700px;
+    padding: 150px 0 100px;
     .left {
         float: left;
         display: flex;
@@ -11,6 +21,9 @@ export const PlayerWrapper = styled.div`
         align-items: center;
         width: 450px;
         height: 100%;
+        background: url(${(props) => props.bgImage}) center;
+        border-radius: 20px;
+        box-shadow: inset 0 0 6px #d4d4d4;
         .image img {
             border-radius: 30px;
         }
@@ -23,27 +36,34 @@ export const PlayerWrapper = styled.div`
         .song_name {
             position: absolute;
             left: 50%;
-            top: -70px;
+            top: -120px;
             transform: translateX(-50%);
+            color: ${normalColor};
             font-size: 30px;
             font-weight: 900;
         }
         .song_info {
+            position: absolute;
+            left: 50%;
+            top: -40px;
+            transform: translateX(-50%);
             display: flex;
-            margin-left: 200px;
+            /* margin-left: 200px; */
             width: 250px;
             justify-content: space-between;
+            color: ${normalColor};
         }
         /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
         .lyric {
+            margin-right: 20px;
             position: relative;
-            height: 85%;
+            height: 90%;
             overflow-x: auto;
             margin-top: 20px;
             ::-webkit-scrollbar {
                 width: 6px;
                 height: 6px;
-                background-color: #f5f5f5;
+                background-color: ${grayFontColor};
             }
 
             /*定义滚动条轨道 内阴影+圆角*/
@@ -56,7 +76,7 @@ export const PlayerWrapper = styled.div`
             ::-webkit-scrollbar-thumb {
                 border-radius: 3px;
                 -webkit-box-shadow: inset 0 0 6px #d4d4d4;
-                background-color: #e1e1e1;
+                background-color: ${normalColor};
             }
             .lyric_content {
                 position: absolute;
@@ -71,8 +91,9 @@ export const PlayerWrapper = styled.div`
                 /* left: 50%;
                 transform: translateX(-50%); */
                 p {
-                    line-height: 32px;
-                    font-size: 18px;
+                    line-height: 34px;
+                    color: ${normalColor};
+                    /* font-size: 14px; */
                 }
             }
         }

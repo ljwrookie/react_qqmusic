@@ -187,6 +187,8 @@ export const OperateWrapper = styled.div`
     .desk_lyc {
         margin: 0 8px;
         font-size: 14px;
+        color: ${(props) =>
+            props.isShowDeskLyric ? themeColor : grayFontColor};
     }
     .iconfont {
         position: relative;

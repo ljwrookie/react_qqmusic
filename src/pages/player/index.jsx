@@ -1,4 +1,5 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 import { PlayerWrapper } from './style';
@@ -7,8 +8,9 @@ import {
     getSongLyricAction,
     getSongInfoAction,
 } from './store/actionCreators';
-import { getSizeImage, getQueryObject } from '@/utils/format-utils';
+import { getSizeImage } from '@/utils/format-utils';
 export default memo(function Player() {
+    const [search, setSearch] = useSearchParams();
     const { songInfo, songLyric } = useSelector(
         (state) => ({
             songInfo: state.getIn(['player', 'songInfo']),
@@ -19,18 +21,21 @@ export default memo(function Player() {
     const { name, al, ar } = songInfo;
     const albumName = al && al.name;
     const picUrl = al && al.picUrl;
+    const id = search.get('id');
+    useEffect(() => {
+        setuId(id);
+    });
 
-    // const singer=
-    const { id } = getQueryObject();
-
+    const [uid, setuId] = useState(id);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getSongLyricAction(id));
-        dispatch(getSongInfoAction(id));
-    }, [dispatch, id]);
+        dispatch(getSongLyricAction(uid));
+        dispatch(getSongInfoAction(uid));
+    }, [dispatch, uid]);
+    const bgImage = picUrl + '?imageView&blur=40x40';
     return (
         <div>
-            <PlayerWrapper>
+            <PlayerWrapper bgImage={bgImage}>
                 <div className="left">
                     <div className="image">
                         <img
@@ -42,7 +47,9 @@ export default memo(function Player() {
                 <div className="right">
                     <div className="song_name">{name}</div>
                     <div className="song_info">
-                        <div className="song_album">专辑：{albumName}</div>
+                        <div className="song_album">
+                            专辑： {albumName}
+                        </div>
                         {/* <div className="song_author">歌手：{ar.name}</div> */}
                         {ar &&
                             ar.map((item, index) => {
@@ -52,7 +59,7 @@ export default memo(function Player() {
                                         key={index}
                                     >
                                         <span className="text">
-                                            歌手:{item.name}
+                                            歌手： {item.name}
                                         </span>
                                     </div>
                                 );
