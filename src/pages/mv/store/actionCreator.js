@@ -54,9 +54,9 @@ export const getExclusiveMvAction =(limit)=> {
         })
     }
 }
-export const getMvRankingAction =(area, limit)=> {
+export const getMvRankingAction =(area)=> {
     return (dispatch) => {
-        getMvRanking(area, limit).then((res) => {
+        getMvRanking(area).then((res) => {
             dispatch(changeMvRankingAction(res))
         })
     }
