@@ -33,9 +33,9 @@ export const changeMvRankingAction = (res) => {
     }
 }
 
-export const getAllMvAction =(area, order, limit, offset)=> {
+export const getAllMvAction =(area, type, order, limit)=> {
     return (dispatch) => {
-        getAllMv(area, order, limit, offset).then((res) => {
+        getAllMv(area, type,  order, limit).then((res) => {
             dispatch(changeAllMvAction(res))
         })
     }

@@ -5,7 +5,7 @@ import { MvRankingWrapper } from './style';
 import MvRankCover from '../../../../components/mv-rank-cover';
 import { getMvRankingAction } from '../../store/actionCreator';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
-const { themeColor, grayFontColor, normalColor} = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
+const { themeColor} = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
 
 
 export default memo(function Ranking() {
@@ -44,10 +44,10 @@ export default memo(function Ranking() {
                 <div className="rank-nav">
                     {
                         navList.map((item, index) => {
-                            return (<NavLink
+                            return (<NavLink key={index}
                                 style={{color: index=== state.index ? themeColor: '',
                                 borderBottom: index === state.index ? `3px ${themeColor} solid`: ''}}
-                                exact={false}
+                                
                                 to="#"
                                 className="link"
                                 onClick={() => keywordClick(item,index)}
@@ -70,7 +70,7 @@ export default memo(function Ranking() {
                                 height: 80,
                             };
                             return (
-                                <MvRankCover {...cover_props}/>
+                                <MvRankCover key={index } {...cover_props}/>
                             )
                         })
                     }    

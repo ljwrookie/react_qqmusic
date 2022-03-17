@@ -3,6 +3,7 @@ import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
 const { themeColor, grayFontColor, normalColor} = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
 export const MvRankingWrapper = styled.ul`
+    /* width:1100px; */
     margin-top: 30px;
     .rank-title{
         .rank-title-left{
@@ -38,6 +39,7 @@ export const MvRankingWrapper = styled.ul`
         }
     }
     .rank-content{
+    
         margin-top: 30px;
         .rank-nav{
             a{
@@ -58,6 +60,7 @@ export const MvRankingWrapper = styled.ul`
             }
         }
         .rank-list{
+            width:100%;
 
         }
     }

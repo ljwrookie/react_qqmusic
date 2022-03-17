@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
-const { themeColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
+const { themeColor, normalColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
 
 export const RecommendMvWrapper = styled.div`
     margin-top: 50px;
@@ -45,6 +45,7 @@ export const MvControl = styled.div`
         cursor: pointer;
         span {
             font-size: 14px;
+            color:${normalColor}
             /* font-weight: 100 !important; */
             
         }

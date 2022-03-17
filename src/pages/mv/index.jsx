@@ -7,7 +7,7 @@ export default memo(function Mv() {
     useEffect(() => {
         window.addEventListener('scroll', function (e) {
             const nav = document.querySelector('.nav_list');
-            console.log(window.pageYOffset, nav.offsetTop)
+            // console.log(window.pageYOffset, nav.offsetTop)
             if (window.pageYOffset >= nav.offsetTop) {
                 nav.style.position = 'fixed';
                 nav.style.top = '75px';

@@ -13,6 +13,7 @@ export const ThemeCoverWrapper = styled.div`
     margin-top: 20px;
     /* height:30px; */
     .cover-top {
+        cursor: pointer; 
         position: relative;
         transition: all 0.3s;
 
@@ -89,6 +90,7 @@ export const ThemeCoverWrapper = styled.div`
     }
 
     .cover-bottom {
+        cursor: pointer; 
         font-size: 14px;
         color: ${normalColor};
         margin-top: 10px;

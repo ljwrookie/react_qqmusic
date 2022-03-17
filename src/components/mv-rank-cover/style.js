@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
-const { themeColor, grayFontColor, normalColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
+const { themeColor, bodyColor, grayFontColor, normalColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
 export const RankListCoverWrapper = styled.div`
     display: flex;
     align-items: center; /*  子元素相对父元素垂直居中 */
@@ -15,23 +15,36 @@ export const RankListCoverWrapper = styled.div`
     margin-top: 30px;
     height:80px;
     .mv-index{
+        position:relative;
         display: flex;
         height:20px;
         margin-right: 50px;
         /* float:left; */
         span{
             display: flex;
-            width:20px;
-            color: #fff;
-            font-weight:900;
+            width:18px;
+            color: ${(props => props.indexFontColor)};
+            /* font-weight:700; */
             /* height:20px; */
             /* line-height:20px; */
             justify-content: center; /* 相对父元素水平居中 */
-            align-items: center; /*  子元素相对父元素垂直居中 */
-            background-color: ${themeColor};
+            align-items: center;  
+            background-color:  ${(props => props.indexColor)};
         }
+        .index-mask{
+            position:absolute;
+            width: 0;
+            height: 0;
+            left:-1px;
+            top: 17px;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 5px solid ${bodyColor};
+        }
+        
     }
     .mv-cover {
+        cursor: pointer; 
         margin-right: 30px;
         position: relative;
         transition: all 0.3s;
@@ -51,7 +64,9 @@ export const RankListCoverWrapper = styled.div`
             width: 100%;
             height: 100%;
         }
+        
         .cover {
+            overflow:hidden;
             border-radius: 5px;
             position: absolute;
             top: 0;
@@ -63,16 +78,14 @@ export const RankListCoverWrapper = styled.div`
             align-items: center; /*  子元素相对父元素垂直居中 */
             color: #fff;
             .play {
-                position: absolute;
-                font-size: 55px;
+                position: relative;
+                font-size: 60px;
 
                 visibility: hidden;
             }
 
             &:hover {
-                .info {
-                    visibility: hidden;
-                }
+                
                 .play {
                     visibility: visible;
                     &:hover {
@@ -93,6 +106,7 @@ export const RankListCoverWrapper = styled.div`
         font-size: 14px;
         color: ${normalColor};
         .mv-name{
+            cursor: pointer; 
             &:hover{
                 color: ${themeColor};
             }
@@ -108,7 +122,7 @@ export const RankListCoverWrapper = styled.div`
             color:${normalColor};
             /* word-wrap:break-word; */
             margin-right: 6px;
-      
+
             &:not(:last-of-type) {
                 &::after {
                     content: '  /';
