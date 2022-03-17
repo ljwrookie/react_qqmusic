@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 // 存储
 
-const { themeColor, bodyColor, searchBarColor, grayFontColor } =
+const { themeColor, normalColor, bodyColor, searchBarColor, grayFontColor } =
     getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 export const HeaderWrapper = styled.div`
     position: sticky;
@@ -41,7 +41,7 @@ export const HeaderLeft = styled.div`
         }
         .ant-input {
             background-color: ${searchBarColor};
-            color: #fff;
+            color: ${normalColor};
             padding-left: 10px;
             margin-top: 2px;
             font-size: 12px;

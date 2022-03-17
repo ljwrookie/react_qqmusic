@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
-const { themeColor, hoverColor, sideColor, grayFontColor, bodyColor, normalColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
+const { themeColor, hoverColor, sideColor,  bodyColor, normalColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
 
 export const MvListWrapper = styled.ul`
     .firstList{
@@ -50,6 +50,13 @@ export const MvListWrapper = styled.ul`
 
         }
     }
-
+    .content {
+        margin: 20px 0; 
+        .page{
+            display:flex !important;
+            justify-content: space-between; 
+            margin-bottom:12px;
+        }
+    }
 
 `;

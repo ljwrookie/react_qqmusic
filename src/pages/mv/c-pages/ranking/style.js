@@ -14,8 +14,8 @@ export const MvRankingWrapper = styled.ul`
             margin-right: 25px;
             /* background:url(${require('@/assets/image/mvRanking.png')})  */
             .image {
-                width: 200px;
-                border-radius: 15px;
+                width: 170px;
+                border-radius: 10px;
             }
         }
         .rank-title-mask{
@@ -30,6 +30,7 @@ export const MvRankingWrapper = styled.ul`
                 font-weight: 900;
             }
             .rank-time{
+                margin-top:10px;
                 font-size: 12px;
                 color: ${grayFontColor};
                 &:hover{

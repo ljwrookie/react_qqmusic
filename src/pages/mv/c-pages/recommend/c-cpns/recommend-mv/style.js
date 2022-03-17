@@ -10,11 +10,7 @@ export const RecommendMvWrapper = styled.div`
 
     .content {
         margin: 20px 0;
-        display: flex;
-        /* width:1100px; */
-        align-items: center;
-        .album {
-            width: 100%;
+    
 
             .page {
                 display: flex !important;
@@ -25,7 +21,7 @@ export const RecommendMvWrapper = styled.div`
                 &:last-of-type{
                     margin-bottom:0;
                 }
-            }
+            /* } */
         }
     }
 `;

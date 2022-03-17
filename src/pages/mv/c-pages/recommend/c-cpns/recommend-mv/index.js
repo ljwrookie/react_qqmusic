@@ -2,7 +2,7 @@ import React, { useEffect, memo, useRef } from 'react';
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 // import { useHistory } from 'react-router-dom';
 import { Carousel } from 'antd';
-
+import { nanoid } from 'nanoid';
 import {
     getAllMvAction
 } from "../../../../store/actionCreator";
@@ -43,19 +43,12 @@ export default memo(function RecommendMv() {
         <RecommendMvWrapper>
             <ThemeHeaderRCM title='个性推荐' moreLink="#" moreDisplay='false'></ThemeHeaderRCM>
             <div className="content">
-                {/* <div className="arrow arrow-left"
-                    onClick={e => carouselRef.current.prev()}></div> */}
-                <div className="album">
-                    <Carousel ref={recommendMvRef} dots={false} style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        flexWrap: 'wrap',
-                        // height: '500px'
-                    }}>
+        
+                    <Carousel ref={recommendMvRef} dots={false}>
                         {
                             index_list.map((item_list) => {
                                 return (
-                                    <div >
+                                    <div key={nanoid()}>
                                         {index_page.map((item_page) => {
                                             return (
                                                 <div key={item_page+item_list*list_num} className="page">
@@ -72,7 +65,7 @@ export default memo(function RecommendMv() {
                                                                 width: 350,
                                                                 height: 200,
                                                             };
-                                                            return (<VideoCover {...cover_props} />);
+                                                            return (<VideoCover key={it.id} {...cover_props} />);
                                                         })
                                                     }
                                                 </div>
@@ -84,7 +77,6 @@ export default memo(function RecommendMv() {
                             })
                         }
                     </Carousel>
-                </div>
             </div>
             <MvControl>
 
