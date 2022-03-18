@@ -45,7 +45,8 @@ export default memo(function Ranking() {
                         navList.map((item, index) => {
                             return (<NavLink key={nanoid()}
                                 style={{color: index=== state.index ? themeColor: '',
-                                borderBottom: index === state.index ? `3px ${themeColor} solid`: ''}}
+                                    borderBottom: index === state.index ? `3px ${themeColor} solid`: ''
+                                }}
                                 
                                 to="#"
                                 className="link"
@@ -69,7 +70,7 @@ export default memo(function Ranking() {
                                 height: 80,
                             };
                             return (
-                                <MvRankCover key={nanoid() } {...cover_props}/>
+                                <MvRankCover className='rank-cover' key={nanoid() } {...cover_props}/>
                             )
                         })
                     }    

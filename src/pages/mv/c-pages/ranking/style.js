@@ -44,25 +44,33 @@ export const MvRankingWrapper = styled.ul`
         margin-top: 30px;
         .rank-nav{
             a{
+                position:relative;
                 display: inline-block;
                 text-decoration:none;
                 margin-right: 54px;
                 line-height:30px;
                 font-size:14px;
                 color: ${normalColor};
+                border-radius:2px;
                 &:hover{
                     color:${themeColor}
                 }
-                /* &.active{
-                    color: ${themeColor};
-                    border-bottom: 3px ${themeColor} solid;
+                /* &::after {
+                    position:absolute;
+                    content:'';
+                    width:25px;
+                    height:3px;
+                    border-radius:2px;
+                    top:100%;
+                    left: 50%;
+                    transform:translateX(-50%);
+                    background-color:${themeColor};
                 } */
-                
+
             }
         }
         .rank-list{
             width:100%;
-
         }
     }
 `;
