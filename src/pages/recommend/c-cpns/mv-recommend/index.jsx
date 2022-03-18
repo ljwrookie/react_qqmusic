@@ -1,43 +1,38 @@
 import React, { useEffect, memo, useRef } from 'react';
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import { Carousel } from 'antd';
 
-import {
-    getMvRecommendAction
-} from "../../store/actionCreator";
+import { getMvRecommendAction } from '../../store/actionCreator';
 
-import {
-    RecommendWrapper, RecommendControl
-} from "./style";
+import { RecommendWrapper, RecommendControl } from './style';
 
 import ThemeHeaderRCM from '@/components/theme-header-rcm';
-import VideoCover from '@/components/video-cover'
-
+import VideoCover from '@/components/video-cover';
 
 export default memo(function MvRecommend() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
-    const dispatch = useDispatch()
-    const mvRecommendsRef = useRef()
-    const {mvRecommends = []} = useSelector(
-        state => ({
-            mvRecommends: state.getIn(["recommend", "mvRecommends"])
-    }), shallowEqual);
-
+    const dispatch = useDispatch();
+    const mvRecommendsRef = useRef();
+    const { mvRecommends = [] } = useSelector(
+        (state) => ({
+            mvRecommends: state.getIn(['recommend', 'mvRecommends']),
+        }),
+        shallowEqual
+    );
 
     useEffect(() => {
-        dispatch(getMvRecommendAction())
+        dispatch(getMvRecommendAction());
     }, [dispatch]);
-    const arr = new Array(Math.floor(mvRecommends.length / 3)).fill(0)
+    const arr = new Array(Math.floor(mvRecommends.length / 3)).fill(0);
     const nums = arr.map((item, index) => {
-        
-        return index + item
-    })
+        return index + item;
+    });
 
     return (
         <RecommendWrapper>
-            <ThemeHeaderRCM title="推荐MV" moreLink="#"/>
+            <ThemeHeaderRCM title="推荐MV" moreLink="#" />
             <div className="content">
                 {/* <div className="arrow arrow-left"
                     onClick={e => carouselRef.current.prev()}></div> */}
@@ -45,21 +40,36 @@ export default memo(function MvRecommend() {
                     <Carousel ref={mvRecommendsRef} dots={false}>
                         {
                             // const cover_props= {key:it.id, info:it ,url_name:"picUrl", playCount:true, width:200, height:200}
-                            nums.map(item => {
+                            nums.map((item) => {
                                 return (
                                     <div key={item} className="page">
                                         {
                                             // const cover_props= {key:it.id, info:it ,url_name:"picUrl", playCount:true, width:200, height:200}
-                                            
-                                            mvRecommends.slice(item * 3, (item + 1) * 3).map(it => {
-                                                const cover_props = { key: it.id, info: it, url_name: "cover", playCount: true, width: 350, height: 200 }
-                                                return (
-                                                    <VideoCover className="cover" {...cover_props}/>
+
+                                            mvRecommends
+                                                .slice(
+                                                    item * 3,
+                                                    (item + 1) * 3
                                                 )
-                                            })
+                                                .map((it) => {
+                                                    const cover_props = {
+                                                        key: it.id,
+                                                        info: it,
+                                                        url_name: 'cover',
+                                                        playCount: true,
+                                                        width: 350,
+                                                        height: 200,
+                                                    };
+                                                    return (
+                                                        <VideoCover
+                                                            className="cover"
+                                                            {...cover_props}
+                                                        />
+                                                    );
+                                                })
                                         }
                                     </div>
-                                )
+                                );
                             })
                         }
                     </Carousel>
@@ -69,13 +79,16 @@ export default memo(function MvRecommend() {
                 <button
                     className="btn"
                     onClick={() => mvRecommendsRef.current.prev()}
-                ><span className="iconfont">&#xe662;</span></button>
+                >
+                    <span className="iconfont">&#xe662;</span>
+                </button>
                 <button
                     className="btn"
                     onClick={() => mvRecommendsRef.current.next()}
-                ><span className="iconfont">&#xe662;</span></button>
-
+                >
+                    <span className="iconfont">&#xe662;</span>
+                </button>
             </RecommendControl>
         </RecommendWrapper>
-    )
-})
+    );
+});

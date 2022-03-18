@@ -12,7 +12,6 @@ import {
     formatDate,
     getPlayUrl,
 } from '@/utils/format-utils.js';
-import { useAddPlaylist } from '@/hooks/change-music';
 import {
     getSongDetailAction,
     changePlaySequenceAction,
@@ -30,7 +29,7 @@ import {
 } from './style';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
-const { themeColor, normalColor, bodyColor, grayFontColor } =
+const { normalColor, bodyColor } =
     getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 // import { SONG_PLAYLIST_ID } from '@/common/constants';
 
@@ -197,7 +196,7 @@ export default memo(function PlayBar() {
             currentSequence = 0;
         }
         dispatch(changePlaySequenceAction(currentSequence));
-    });
+    }, [playSequence, dispatch]);
     // 切换歌曲(点击播放下一首或上一首音乐)
     const changeSong = (tag) => {
         // 首先判断播放列表中是否存在音乐，再决定是否播放
@@ -208,16 +207,6 @@ export default memo(function PlayBar() {
         // 需要需要派发action,所以具体逻辑在actionCreator中完成
         dispatch(changeCurrentIndexAndSongAction(tag));
         setIsPlaying(true + Math.random()); // 更改播放状态图标
-    };
-    // 播放音乐
-    const forcePlayMusic = () => {
-        setIsPlaying(true + Math.random());
-    };
-    // 切换下一首歌曲,不播放音乐
-    const nextMusic = (tag) => {
-        // 需要需要派发action,所以具体逻辑在actionCreator中完成
-        dispatch(changeCurrentIndexAndSongAction(tag));
-        setIsPlaying(false);
     };
 
     // 当前歌曲播放结束后
@@ -268,26 +257,7 @@ export default memo(function PlayBar() {
         dispatch(getSongDetailAction(item.id));
         playMusic();
     };
-    const volume = () => {
-        if (audioRef.current.volume && audioRef.current.volume === 0) {
-            return (
-                <span
-                    className="iconfont volume"
-                    onClick={() => setIsShowBar(!isShowBar)}
-                >
-                    &#xea0b;
-                </span>
-            );
-        }
-        return (
-            <span
-                className="iconfont volume"
-                onClick={() => setIsShowBar(!isShowBar)}
-            >
-                &#xea0e;
-            </span>
-        );
-    };
+
     const playOrPause = () => {
         const play = (
             <span className="iconfont play_pause" onClick={playMusic}>

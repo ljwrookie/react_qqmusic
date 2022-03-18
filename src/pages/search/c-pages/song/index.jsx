@@ -2,10 +2,10 @@ import React, { memo, useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { SongWrapper } from './style';
-import SongListItem from '@/components/song-list';
+import SongListItem from '@/components/song-item';
 import { getSongListAction } from '../../store/actionCreators';
 export default memo(function SearchSong() {
-    const [keyword, setKeyword] = useSearchParams();
+    const [keyword] = useSearchParams();
     const keywords = keyword.get('keywords');
     const { songs } = useSelector(
         (state) => ({

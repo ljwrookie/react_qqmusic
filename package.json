@@ -24,13 +24,11 @@
         "react-redux": "^7.2.6",
         "react-router-dom": "^6.2.2",
         "react-scripts": "5.0.0",
-        "react-sticky": "^6.0.3",
         "redux": "^4.1.2",
         "redux-immutable": "^4.0.0",
         "redux-thunk": "^2.4.1",
         "styled-components": "^5.3.3",
-        "web-vitals": "^2.1.4",
-        "yarn": "^1.22.17"
+        "web-vitals": "^2.1.4"
     },
     "scripts": {
         "start": "craco start",
