@@ -3,7 +3,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { MvListWrapper } from './style';
 import { getAllMvAction } from '../../store/actionCreator';
-import VideoCover from '../../../../components/video-cover';
+import VideoCover from '@/components/video-cover';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 const { themeColor } = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 export default memo(function Ranking() {
@@ -15,7 +15,7 @@ export default memo(function Ranking() {
         area: '全部',
         type: '全部',
     });
-    const { allMv=[] } = useSelector(
+    const { allMv = [] } = useSelector(
         (state) => ({
             allMv: state.getIn(['mv', 'allMv']),
         }),
@@ -34,15 +34,14 @@ export default memo(function Ranking() {
         return index + item;
     });
     const changeArea = (item) => {
-        setState({...state, area: item})
-    }
+        setState({ ...state, area: item });
+    };
     const changeType = (item) => {
-        
         setState({ ...state, type: item });
-    }
+    };
     const changeOrder = (item) => {
-        setState({...state, order: item})
-    }
+        setState({ ...state, order: item });
+    };
     return (
         <MvListWrapper>
             <div className="firstList">
@@ -84,7 +83,15 @@ export default memo(function Ranking() {
             <div className="list-title">
                 <div className="title-left">全部MV</div>
                 <div className="title-right">
-                    <span onClick={()=>changeOrder('最新')} style={{color: state.order === '最新' ? themeColor: ''}}>最新</span>
+                    <span
+                        onClick={() => changeOrder('最新')}
+                        style={{
+                            color:
+                                state.order === '最新' ? themeColor : '',
+                        }}
+                    >
+                        最新
+                    </span>
                     <span onClick={() => changeOrder('最热')}>最热</span>
                 </div>
             </div>

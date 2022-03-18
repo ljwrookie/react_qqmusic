@@ -1,15 +1,9 @@
 import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
-import { normalizeUnits } from 'moment';
 // 存储
 
-const {
-    themeColor,
-    bodyColor,
-    searchBarColor,
-    grayFontColor,
-    normalColor,
-} = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { themeColor, searchBarColor, grayFontColor, normalColor } =
+    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 
 export const SongItem = styled.div`
     display: flex;
