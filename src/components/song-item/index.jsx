@@ -1,4 +1,4 @@
-import React, { memo} from 'react';
+import React, { memo } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useAddPlaylist } from '@/hooks/change-music';
 import {
@@ -9,14 +9,15 @@ import { formatDate } from '@/utils/format-utils';
 import { SongItem } from './style';
 import { message } from 'antd';
 export default memo(function SongListItem(props) {
-    const { info } = props;
-    // const { al, name, dt, ar } = info;
-    const songName = info && info.name;
-    const alias = info && info.alia[0];
-    const singer = info && info.ar[0].name;
-    const albumName = info && info.al.name;
-    const duration = info && formatDate(info.dt, 'mm:ss');
-    const id = info && info.id;
+    // const props = {
+    //     id: item.id,
+    //     name: item.name,
+    //     dt: item.duration,
+    //     album: item.album.name,
+    //     artist: item.artists[0].name,
+    // };
+    const { id, name, dt, album, artist, alias } = props;
+    const duration = formatDate(dt, 'mm:ss');
     const dispatch = useDispatch();
     const { playlist } = useSelector(
         (state) => ({
@@ -48,8 +49,7 @@ export default memo(function SongListItem(props) {
             <div className="song_name">
                 <div className="first_line">
                     <div className="name text-nowrap">
-                        <span className="iconfont">&#xe86f;</span>{' '}
-                        {songName}
+                        <span className="iconfont">&#xe86f;</span> {name}
                     </div>
                     <div className="operator">
                         <span
@@ -69,10 +69,10 @@ export default memo(function SongListItem(props) {
                         <span className="iconfont">&#xe639;</span>
                     </div>
                 </div>
-                <div className="alias">{alias}</div>
+                <div className="alias text-nowrap">{alias}</div>
             </div>
-            <div className="singer">{singer}</div>
-            <div className="album text-nowrap">{albumName}</div>
+            <div className="singer">{artist}</div>
+            <div className="album text-nowrap">{album}</div>
             <div className="total_time">{duration}</div>
         </SongItem>
     );

@@ -41,7 +41,14 @@ export const SongItem = styled.div`
         width: 300px;
     }
     .alias {
-        padding-left: 20px;
+        padding-left: 40px;
+        width: 400px;
         color: ${grayFontColor};
+    }
+    .name,
+    .singer {
+        &:hover {
+            color: ${themeColor};
+        }
     }
 `;

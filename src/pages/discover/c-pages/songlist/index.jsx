@@ -3,29 +3,27 @@ import { Myul } from './style';
 
 export default memo(function SongList() {
     return (
-        <div>
-            <Myul>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-                <li>songlist</li>
-            </Myul>
-        </div>
+        <Myul>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+            <li>songlist</li>
+        </Myul>
     );
 });

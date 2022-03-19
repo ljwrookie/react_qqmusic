@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
-const { bodyColor, sideColor } = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { bodyColor, sideColor } =
+    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 export const AppWrapper = styled.div`
     .app_main {
         /* display: flex; */
@@ -16,6 +17,7 @@ export const AppWrapper = styled.div`
     .app_right {
         margin-left: 210px;
         padding-bottom: 80px;
+        min-height: 1000px;
         background: ${bodyColor};
         /* overflow: auto; */
     }

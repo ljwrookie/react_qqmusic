@@ -39,7 +39,15 @@ export default memo(function SearchSong() {
             </div>
             {songs &&
                 songs.map((item) => {
-                    return <SongListItem key={item.id} info={item} />;
+                    const props = {
+                        id: item.id,
+                        name: item.name,
+                        dt: item.dt,
+                        album: item.al.name,
+                        artist: item.ar[0].name,
+                        alias: item.alia,
+                    };
+                    return <SongListItem key={item.id} {...props} />;
                 })}
         </SongWrapper>
     );

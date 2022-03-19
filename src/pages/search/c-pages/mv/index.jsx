@@ -40,7 +40,7 @@ export default memo(function SearchMv() {
                                     const cover_props = {
                                         key: it.vid,
                                         info: it,
-                                        url_name: 'coverUrl',
+                                        url_name: 'cover',
                                         playCount: true,
                                         width: 350,
                                         height: 200,

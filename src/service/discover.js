@@ -6,3 +6,20 @@ export function getSongList(cat, limit, before) {
         params: {},
     });
 }
+export function getNewSong(type) {
+    return request({
+        url: '/top/song',
+        params: {
+            type,
+        },
+    });
+}
+
+export function getNewAlbum(area) {
+    return request({
+        url: '/top/album',
+        params: {
+            area,
+        },
+    });
+}

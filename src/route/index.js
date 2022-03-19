@@ -1,7 +1,6 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 import Discover from '../pages/discover';
 import SongList from '../pages/discover/c-pages/songlist';
-import DjRadio from '../pages/discover/c-pages/djradio';
 import Ranking from '../pages/discover/c-pages/ranking';
 import Singer from '../pages/discover/c-pages/singer';
 import New from '../pages/discover/c-pages/new';
@@ -22,6 +21,8 @@ import SearchSong from '../pages/search/c-pages/song';
 import SearchMv from '../pages/search/c-pages/mv';
 import SearchAlbum from '../pages/search/c-pages/album';
 import SearchSinger from '../pages/search/c-pages/singer';
+import DiscoverNewSong from '../pages/discover/c-pages/new/c-pages/songs';
+import DiscoverNewAlbum from '../pages/discover/c-pages/new/c-pages/albums';
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArray": true}] */
 const GetRoutes = () => {
@@ -35,10 +36,6 @@ const GetRoutes = () => {
                     element: <SongList />,
                 },
                 {
-                    path: 'djradio',
-                    element: <DjRadio />,
-                },
-                {
                     path: 'ranking',
                     element: <Ranking />,
                 },
@@ -49,10 +46,24 @@ const GetRoutes = () => {
                 {
                     path: 'new',
                     element: <New />,
+                    children: [
+                        {
+                            path: 'songs',
+                            element: <DiscoverNewSong />,
+                        },
+                        {
+                            path: 'album',
+                            element: <DiscoverNewAlbum />,
+                        },
+                        {
+                            path: '',
+                            element: <Navigate to="/discover/new/songs" />,
+                        },
+                    ],
                 },
                 {
                     path: '',
-                    element: <Navigate to="/discover/songlist" />,
+                    element: <Navigate to="/discover/new" />,
                 },
             ],
         },

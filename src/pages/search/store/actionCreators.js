@@ -9,7 +9,7 @@ const changeSongListAction = (res) => ({
 
 const changeMvListAction = (res) => ({
     type: actionTypes.CHANGE_MV_LIST,
-    mvList: res.result.videos,
+    mvList: res.result.mvs,
 });
 const changeAlbumListAction = (res) => ({
     type: actionTypes.CHANGE_ALBUM_LIST,
@@ -29,7 +29,7 @@ export const getSongListAction = (keywords, limit = 30, offset = 0) => {
 };
 export const getMvListAction = (keywords, limit = 30, offset = 0) => {
     return (dispatch) => {
-        getSearchList(keywords, 1014, limit, offset).then((res) => {
+        getSearchList(keywords, 1004, limit, offset).then((res) => {
             dispatch(changeMvListAction(res));
         });
     };
