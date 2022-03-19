@@ -85,12 +85,18 @@ export default memo(function NewSongs() {
                                         .map((it) => {
                                             const cover_props = {
                                                 key: nanoid(),
-                                                info: it,
-                                                url_name: 'album.picUrl',
-                                                playCount: false,
+                                                name: it.name,
+                                                // singer: it.artists[0].name,
+                                                img_url: it.album.picUrl,
                                                 width: 200,
                                                 height: 200,
                                             };
+                                            //                 key={item.id}
+                                            // name={item.name}
+                                            // singer={item.artist.name}
+                                            // img_url={item.picUrl}
+                                            // width={200}
+                                            // height={200}
                                             return (
                                                 <div key={nanoid()}>
                                                     <ThemeCover

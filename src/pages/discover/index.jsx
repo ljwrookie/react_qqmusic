@@ -17,20 +17,22 @@ export default memo(function Discover() {
     }, []);
 
     return (
-        <>
+        <div>
             <TopNav>
                 <div className="nav_title">音乐馆</div>
                 <ul className="nav_list">
                     {discoverLinks.map((item) => {
                         return (
                             <li className="nav_item" key={item.title}>
-                                <NavLink to={item.link}>{item.title}</NavLink>
+                                <NavLink to={item.link}>
+                                    {item.title}
+                                </NavLink>
                             </li>
                         );
                     })}
                 </ul>
             </TopNav>
             <Outlet />
-        </>
+        </div>
     );
 });
