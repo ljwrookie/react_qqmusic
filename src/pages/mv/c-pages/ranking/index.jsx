@@ -61,24 +61,14 @@ export default memo(function Ranking() {
                 <div className="rank-nav">
                     {navList.map((item, index) => {
                         return (
-                            <NavLink
+                            <span
                                 key={nanoid()}
-                                style={{
-                                    color:
-                                        index === state.index
-                                            ? themeColor
-                                            : '',
-                                    borderBottom:
-                                        index === state.index
-                                            ? `3px ${themeColor} solid`
-                                            : '',
-                                }}
-                                to="#"
-                                className="link"
+                                className={ index === state.index ? 'active' : 'link'
+                                }
                                 onClick={() => keywordClick(item, index)}
                             >
                                 {item}
-                            </NavLink>
+                            </span>
                         );
                     })}
                 </div>

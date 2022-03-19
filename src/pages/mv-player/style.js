@@ -50,7 +50,7 @@ export const MvPlayerWrapper = styled.div`
             .resolution {
                 /* visibility: hidden; */
                 top: 395px;
-                right: 154px;
+                right: 153px;
                 position: absolute;
                 &.iconfont {
                     display: block;
@@ -58,7 +58,7 @@ export const MvPlayerWrapper = styled.div`
                     height: 20px;
                     cursor: pointer;
                     color: #fff;
-                    font-size: 18px;
+                    font-size: 15px;
                     visibility: hidden;
                 }
             }
@@ -244,5 +244,25 @@ export const MvPlayerWrapper = styled.div`
         display: flex;
         justify-content: center;
         color: ${themeColor};
+        .ant-pagination-item-active {
+            border-color: ${themeColor};
+            a{
+                color:${themeColor}
+            }
+        }
+        .ant-pagination-item:hover {
+            border-color: ${themeColor};
+            a{
+                color:${themeColor}
+            }
+        }
+        .ant-pagination-item-link:hover{
+            border-color: ${themeColor};
+        }
+        .ant-pagination-options .ant-select.ant-pagination-options-size-changer.ant-select-single.ant-select-show-arrow:hover{
+            border-color: ${themeColor};
+
+        }
+
     }
 `;

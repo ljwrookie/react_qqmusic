@@ -19,13 +19,25 @@ export const TopNav = styled.div`
             margin-right: 50px;
             text-align: center;
             a {
+                position:relative;
+                line-height:30px;
                 color: ${normalColor};
                 display: inline-block;
                 &:hover,
                 &.active {
                     text-decoration: none;
                     color: ${themeColor};
-                    border-bottom: ${themeColor} solid;
+                }
+                &.active::after {
+                    position:absolute;
+                    content:'';
+                    width:25px;
+                    height:3px;
+                    border-radius:2px;
+                    top:100%;
+                    left: 50%; 
+                    transform:translateX(-50%);
+                    background-color:${themeColor};
                 }
             }
         }

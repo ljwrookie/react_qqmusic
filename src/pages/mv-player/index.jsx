@@ -122,7 +122,6 @@ export default memo(function MvPlayer() {
                             src={mvUrl}
                             controls="controls"
                             autoplay="autoplay"
-                            
                         >
                             your browser does not support the video tag
                         </video>
@@ -131,8 +130,8 @@ export default memo(function MvPlayer() {
                             overlay={menu}
                             placement="top"
                         >
-                            <span id="hql" className="iconfont hql">
-                                &#xe610;
+                            <span  className="iconfont">
+                                &#xe636;
                             </span>
                         </Dropdown>
                     </div>
@@ -166,9 +165,7 @@ export default memo(function MvPlayer() {
                             <span>{mvDetail.name}</span>
                         </div>
                         <div className="mv-other-info">
-                            <span>
-                                发布 {mvDetail.publishTime} 
-                            </span>
+                            <span>发布 {mvDetail.publishTime}</span>
                             <span>
                                 播放 {getCount(mvDetail.playCount)}次
                             </span>

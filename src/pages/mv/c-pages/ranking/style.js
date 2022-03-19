@@ -43,10 +43,9 @@ export const MvRankingWrapper = styled.ul`
     
         margin-top: 30px;
         .rank-nav{
-            a{
+            span{
                 position:relative;
                 display: inline-block;
-                text-decoration:none;
                 margin-right: 54px;
                 line-height:30px;
                 font-size:14px;
@@ -55,7 +54,11 @@ export const MvRankingWrapper = styled.ul`
                 &:hover{
                     color:${themeColor}
                 }
-                /* &::after {
+            }
+            .active{
+                color: ${themeColor};
+            }
+            .active::after {
                     position:absolute;
                     content:'';
                     width:25px;
@@ -65,9 +68,7 @@ export const MvRankingWrapper = styled.ul`
                     left: 50%;
                     transform:translateX(-50%);
                     background-color:${themeColor};
-                } */
-
-            }
+                }
         }
         .rank-list{
             width:100%;

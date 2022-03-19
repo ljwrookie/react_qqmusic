@@ -12,15 +12,28 @@ const {
 export const SwitchArea = styled.div`
     color: ${grayFontColor};
     span {
+        position:relative;
+        display: inline-block;
         margin-right: 50px;
-        font-size: 12px;
+        font-size: 14px;
+        line-height:30px;
         &:hover {
             color: ${themeColor};
         }
     }
-    .active {
+    .active{
         color: ${themeColor};
-        border-bottom: solid 2px ${themeColor};
+    }
+    .active::after {
+        position:absolute;
+        content:'';
+        width:25px;
+        height:3px;
+        border-radius:2px;
+        top:100%;
+        left: 50%;
+        transform:translateX(-50%);
+        background-color:${themeColor};
     }
 `;
 export const PlayList = styled.div`

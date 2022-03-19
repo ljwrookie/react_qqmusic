@@ -79,7 +79,7 @@ export const RankListCoverWrapper = styled.div`
             color: #fff;
             .play {
                 position: relative;
-                font-size: 60px;
+                font-size: 40px;
 
                 visibility: hidden;
             }
