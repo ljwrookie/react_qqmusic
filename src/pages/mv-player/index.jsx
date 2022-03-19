@@ -15,7 +15,6 @@ import {
     Pagination,
     Menu,
     Dropdown,
-    Button,
 } from 'antd';
 import moment from 'moment';
 
@@ -55,13 +54,13 @@ export default memo(function MvPlayer() {
         dispatch(getSimMvAction(id));
         dispatch(getArtistDetailAction(mvDetail.artistId));
     }, [dispatch, id, mvDetail.artistId]);
-    
+    //分页功能
     useEffect(() => {
         dispatch(
             getMvCommentsAction(id, page.pageNumber, page.pageIndex - 1)
         );
     }, [page, dispatch, id])
-    
+    //切换分辨率功能
     useEffect(() => {
         dispatch(getMvUrlAction(id, resolution, resolution.value));
     }, [resolution, dispatch, id]);
@@ -71,6 +70,8 @@ export default memo(function MvPlayer() {
     const resolutionChange = (index) => {
         setResolution(index);
     }
+
+    //切换分辨率
     const menu = (
         <Menu>
             <Menu.Item>
@@ -117,7 +118,12 @@ export default memo(function MvPlayer() {
                 <div className="mv-player-left">
                     <div className="mv-title">视频详情</div>
                     <div className="video">
-                        <video src={mvUrl} controls="controls">
+                        <video
+                            src={mvUrl}
+                            controls="controls"
+                            autoplay="autoplay"
+                            
+                        >
                             your browser does not support the video tag
                         </video>
                         <Dropdown
@@ -161,7 +167,7 @@ export default memo(function MvPlayer() {
                         </div>
                         <div className="mv-other-info">
                             <span>
-                                发布 {getCount(mvDetail.publishTime)}{' '}
+                                发布 {mvDetail.publishTime} 
                             </span>
                             <span>
                                 播放 {getCount(mvDetail.playCount)}次
@@ -200,7 +206,7 @@ export default memo(function MvPlayer() {
                                 <span className="iconfont">&#xe7df;</span>
                             </div>
                             <div className="comment-icon-right">
-                                <button className="btn ">评论</button>
+                                <button className="btn">评论</button>
                             </div>
                         </div>
                         <div className="hot-comments">

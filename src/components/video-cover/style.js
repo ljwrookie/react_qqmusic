@@ -49,7 +49,7 @@ export const VideoCoverWrapper = styled.div`
                 position: absolute;
                 font-size: 60px;
 
-                visibility: hidden;
+                display: none;
             }
             .info {
                 display: inline-block;
@@ -72,10 +72,10 @@ export const VideoCoverWrapper = styled.div`
 
             &:hover {
                 .info {
-                    visibility: hidden;
+                    display: none;
                 }
                 .play {
-                    visibility: visible;
+                    display: block;
                     &:hover {
                         color: ${themeColor};
                     }
