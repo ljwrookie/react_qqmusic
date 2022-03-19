@@ -1,0 +1,5 @@
+export  const CHANGE_MV_DETAIL = 'mvplayer/CHANGE_MV_DETAIL'
+export const CHANGE_MV_URL = 'mvplayer/CHANGE_MV_URL'
+export const CHANGE_SIM_MV = 'mvplayer/CHANGE_SIM_MV'
+export const CHANGE_MV_COMMENTS = 'CHANGE_MV_COMMENTS'
+export const CHANGE_MV_DETAIL_INFO = 'CHANGE_MV_DETAIL_INFO'

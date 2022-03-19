@@ -30,19 +30,19 @@ export default memo(function MvRankCover(props) {
                 <span>{index}</span>
                 <div className="index-mask"></div>
             </div>
-            <div className="mv-cover">
-                <img
-                    className="image"
-                    src={getSizeImage(img_url, width, height)}
-                    alt={info.name}
-                />
-                <div className="mask">
-                    
+            <Link to={`/mvplayer?mvid=${info.id}`}>
+                <div className="mv-cover">
+                    <img
+                        className="image"
+                        src={getSizeImage(img_url, width, height)}
+                        alt={info.name}
+                    />
+                    <div className="mask"></div>
+                    <div className="cover">
+                        <i className="iconfont play">&#xea82;</i>
+                    </div>
                 </div>
-                <div className="cover">
-                    <i className="iconfont play">&#xea82;</i>
-                </div>
-            </div>
+            </Link>
 
             <div className="mv-info">
                 <p className="mv-name">{info.name}</p>

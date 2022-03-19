@@ -7,7 +7,7 @@ import {getPrivateContentAction} from "../../store/actionCreator";
 import {RecommendWrapper, RecommendControl} from "./style";
 
 import ThemeHeaderRCM from '@/components/theme-header-rcm';
-import ThemeCover from '@/components/theme-cover'
+import VideoCover from '@/components/video-cover';
 export default memo(function PrivateContent() {
      // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
@@ -44,10 +44,13 @@ export default memo(function PrivateContent() {
                                     <div key={item} className="page">
                                         {
                                             privateContent.slice(item * 3, (item + 1) * 3).map(it => {
-                                                const cover_props = { key: it.id, info: it, url_name: "sPicUrl", playCount: false, width: 350, height: 200 }
+                                                const cover_props = { key: it.id, info: it, url_name: "sPicUrl", playCount: false, width: 350, height: 200 , noArtistName: 'true'}
                                                 return (
-                                                    <ThemeCover className="cover" {...cover_props}/>
-                                                )
+                                                    <VideoCover
+                                                        {...cover_props}
+                                                    />
+                                                    // <div>sdf </div>
+                                                );
                                             })
                                         }
                                     </div>

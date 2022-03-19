@@ -1,0 +1,3 @@
+export const CHANGE_ARTIST_DESC = 'artist/CHANGE_ARTIST_DESC'
+export const CHANGE_ARTIST_DETAIL = 'artist/CHANGE_ARTIST_DETAIL'
+export const CHANGE_SIM_ARTIST = 'artist/CHANGE_SIM_ARTIST'

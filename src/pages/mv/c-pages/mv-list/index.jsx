@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
+
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { MvListWrapper } from './style';
@@ -114,7 +115,11 @@ export default memo(function Ranking() {
                                         width: 350,
                                         height: 200,
                                     };
-                                    return <VideoCover {...cover_props} />;
+                                    return (
+                                    
+                                            <VideoCover {...cover_props} />
+                                    
+                                    );
                                 })}
                         </div>
                     );

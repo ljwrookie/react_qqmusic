@@ -2,9 +2,12 @@ import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
 const {themeColor, grayFontColor, normalColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
-export const VideoCoverWrapper = styled.div`
-    .video-link{
-            text-decoration:none;
+export const SimMvCoverWrapper = styled.div`
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    a{
+        text-decoration:none;
     }
     font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
     /* const size = $(props =>{props.width}) */
@@ -12,10 +15,9 @@ export const VideoCoverWrapper = styled.div`
     /* display: flex !important;
   /* display: inline-block; */
     /* align-items: center;   */
-    width: ${(props) => props.width}px;
     margin-top: 20px;
     /* height:30px; */
-    .cover-top {
+    .cover-left {
         cursor: pointer; 
         position: relative;
         transition: all 0.3s;
@@ -23,11 +25,11 @@ export const VideoCoverWrapper = styled.div`
         .image {
             width: ${(props) => props.width}px;
             height: ${(props) => props.height}px;
-            border-radius: 15px;
+            border-radius: 5px;
         }
         .mask {
             position: absolute;
-            border-radius: 15px;
+            border-radius: 5px;
 
             top: 0;
             left: 0;
@@ -35,7 +37,7 @@ export const VideoCoverWrapper = styled.div`
             height: 100%;
         }
         .cover {
-            border-radius: 15px;
+            border-radius: 5px;
             position: absolute;
             top: 0;
             left: 0;
@@ -47,33 +49,40 @@ export const VideoCoverWrapper = styled.div`
             color: #fff;
             .play {
                 position: absolute;
-                font-size: 60px;
+                font-size: 40px;
 
                 visibility: hidden;
             }
             .info {
                 display: inline-block;
-                padding: 1px 5px;
                 position: absolute;
-                font-size: 14px;
-                bottom: 10px;
+                font-size: 12px;
+                top: 5px;
                 right: 10px;
 
-                background-color: #3f3f3f;
-                opacity: 0.8;
-                border-radius: 15px;
+                /* background-color: #3f3f3f; */
+                /* opacity: 0.8; */
+                /* border-radius: 15px; */
 
-                .listen {
+                .watch {
                     margin-right: 5px;
                     display: inline-block;
                     font-size: 15px;
                 }
             }
+            .time {
+                position: absolute;
+                bottom: 5px;
+                right:10px;
+                display: inline-block;
+                font-size: 12px;
+            }
 
             &:hover {
-                .info {
-                    visibility: hidden;
+                .info, .time {
+                    display: none;
                 }
+
                 .play {
                     visibility: visible;
                     &:hover {
@@ -83,8 +92,6 @@ export const VideoCoverWrapper = styled.div`
             }
         }
         &:hover {
-            transform: translateY(-20px);
-
             .mask {
                 background-color: #000;
                 opacity: 0.4;
@@ -92,41 +99,26 @@ export const VideoCoverWrapper = styled.div`
         }
     }
 
-    .cover-bottom {
+    .cover-right {
+        width: 300px;
         text-decoration:none;
-
         cursor: pointer; 
         font-size: 14px;
-        color: ${normalColor};
         margin-top: 10px;
-        &:hover {
+        .mv-name{
+            color: ${normalColor};
+            margin: 10px;
+            &:hover{
             color: ${themeColor};
         }
-    }
-     .all_name{
-    width:200px;
-    /* margin-top:5px; */
-    /* margin:0; */
-    line-height:20px;
-    .artist{
-      /* display:inline-block; */
-      text-decoration: none;
-      color:${grayFontColor};
-      /* word-wrap:break-word; */
-      margin-right: 6px;
-      
-    
-      
-            &:not(:last-of-type) {
-                &::after {
-                    content: '  /';
-                    color: ${grayFontColor};
-                }
-                /* margin-right: 5px; */
-            }
-            &:hover {
-                color: ${themeColor};
-            }
-          }
         }
+        .artist-name{
+            margin:  10px;
+            color: ${grayFontColor};
+            &:hover{
+            color: ${themeColor};
+            }
+        }
+    
+    }
 `;

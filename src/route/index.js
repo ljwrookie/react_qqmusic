@@ -16,6 +16,7 @@ import Radio from '../pages/radio';
 import Recommend from '../pages/recommend';
 import Recent from '../pages/recent';
 import Player from '../pages/player';
+import MvPlayer from '../pages/mv-player';
 import Search from '../pages/search';
 import SearchSong from '../pages/search/c-pages/song';
 import SearchMv from '../pages/search/c-pages/mv';
@@ -104,6 +105,12 @@ const GetRoutes = () => {
         {
             path: '/player',
             element: <Player />,
+            lazy: true,
+            auth: true,
+        },
+        {
+            path: '/mvplayer',
+            element: <MvPlayer />,
             lazy: true,
             auth: true,
         },
