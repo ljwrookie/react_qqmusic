@@ -1,6 +1,5 @@
 # react_qqmusic
 
-<<<<<<< HEAD
 [TOC]
 
 ### 一、项目介绍
@@ -65,27 +64,6 @@ yarn start
 
 
 - ##### 歌曲详情页面
-=======
-基于 React 全家桶的 qq 音乐项目实战。技术栈：基于 react + redux + react-router + styled-components + axios + ant design + react-redux + redux-thunk immutable + redux-immutable + react-transition-group 等。UI 界面参考了 PC 桌面版的音乐、flex 布局。
-开发中...
-
-使用方法
-
-1. git clone https://github.com/ljwrookie/react_qqmusic.git
-
-2. yarn install 
-
-3. yarn start
-
-默认打开localhost:3000地址
-
-目前已完成
-<h2>
-推荐页面
-  
-![image](https://user-images.githubusercontent.com/39091613/158989756-c93da797-c934-4efc-9fba-01b62e78228f.png)
-
->>>>>>> 51ce624eea11d246c67e11a097d425b25b78cb6d
 
 音乐馆部分界面
   
@@ -99,7 +77,6 @@ yarn start
  
 ![image](https://user-images.githubusercontent.com/39091613/158990005-f45c64b4-79ac-4a7b-8637-30f8871b734f.png)
 
-<<<<<<< HEAD
 ------
 
 
@@ -135,46 +112,15 @@ yarn start
 - ##### 搜索功能全部实现
 
 ![image](https://user-images.githubusercontent.com/39091613/159130226-504ac9ac-547b-4f5f-b029-79d2b2ae6df4.png)
-=======
-视频相关页面
-  
-![image](https://user-images.githubusercontent.com/39091613/158989894-e623ea4b-f2b6-46d6-b391-33a3dccfc723.png)
-  
-![image](https://user-images.githubusercontent.com/39091613/159130165-f48a5063-24de-4fe0-be7f-6a3a73289ebc.png)
-
-  
- 视频播放功能
-  
-![image](https://user-images.githubusercontent.com/39091613/159129764-8c5c4ac8-2d98-4941-97e3-f014b1211fae.png)
-  
- 视频评论区
-  
-![image](https://user-images.githubusercontent.com/39091613/159129781-8e885a64-6015-47e8-8e62-9848bc366412.png)
-  
-![image](https://user-images.githubusercontent.com/39091613/159129799-95f2b80f-5eb8-4477-b966-a1e18ac19053.png)
-  
-  搜索功能全部实现
-  
-  ![image](https://user-images.githubusercontent.com/39091613/159130226-504ac9ac-547b-4f5f-b029-79d2b2ae6df4.png)
->>>>>>> 51ce624eea11d246c67e11a097d425b25b78cb6d
 
   ![image](https://user-images.githubusercontent.com/39091613/159130247-32e9ec63-e49d-4ce3-8cdb-cdf9df7b80e2.png)
 
   ![image](https://user-images.githubusercontent.com/39091613/159130253-edf50ba6-6ee6-4e43-89e9-7950ce1582b2.png)
 
-<<<<<<< HEAD
 ------
 
  
 
 - ##### 一键换肤功能
-=======
-  一键换肤功能
-  
-  ![image](https://user-images.githubusercontent.com/39091613/159130289-01beee5b-9fe2-448b-9555-269a410eef3d.png)
-
-
-
->>>>>>> 51ce624eea11d246c67e11a097d425b25b78cb6d
 
 ![image](https://user-images.githubusercontent.com/39091613/159130289-01beee5b-9fe2-448b-9555-269a410eef3d.png)
