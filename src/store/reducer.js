@@ -7,7 +7,7 @@ import { reducer as mvReducer } from '../pages/mv/store';
 import { reducer as searchReducer } from '../pages/search/store';
 import { reducer as mvPlayReducer } from '../pages/mv-player/store';
 import { reducer as artistReducer } from '../pages/artist/store';
-import { reducer as discoverNewReducer } from '../pages/discover/c-pages/new/store';
+import { reducer as discoverReducer } from '../pages/discover/store';
 // 多个reducer合并
 const cReducer = combineReducers({
     recommend: recommendReducer,
@@ -17,7 +17,7 @@ const cReducer = combineReducers({
     search: searchReducer,
     mvPlayer: mvPlayReducer,
     artist: artistReducer,
-    discoverNew: discoverNewReducer,
+    discover: discoverReducer,
 });
 
 export default cReducer;

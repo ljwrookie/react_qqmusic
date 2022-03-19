@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useCallback, useState } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { getNewAlbumAction } from '../../store/actionCreators';
+import { getNewAlbumAction } from '@/pages/discover/store/actionCreators';
 import ThemeCover from '@/components/theme-cover';
 import { SwitchArea, CardWrapper } from './style';
 export default memo(function DiscoverNewAlbum() {
@@ -16,7 +16,7 @@ export default memo(function DiscoverNewAlbum() {
     const catkeys = Object.keys(catLink);
     const { newAlbumList } = useSelector(
         (state) => ({
-            newAlbumList: state.getIn(['discoverNew', 'newAlbumList']),
+            newAlbumList: state.getIn(['discover', 'newAlbumList']),
         }),
         shallowEqual
     );
