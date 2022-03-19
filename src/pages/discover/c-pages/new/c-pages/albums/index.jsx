@@ -1,40 +1,56 @@
 import React, { memo, useEffect, useCallback, useState } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { getNewAlbumAction } from '../../store/actionCreators';
+import { getNewAlbumAction } from '@/pages/discover/store/actionCreators';
 import ThemeCover from '@/components/theme-cover';
-import { SwitchArea } from './style';
+import { SwitchArea, CardWrapper } from './style';
 export default memo(function DiscoverNewAlbum() {
     const [area, setArea] = useState('全部');
-    const catLink = ['全部', '华语', '欧美', '韩国', '日本'];
+    const [currentCode, setCurrentCode] = useState('ALL');
+    const catLink = {
+        全部: 'ALL',
+        华语: 'ZH',
+        欧美: 'EA',
+        韩国: 'KR',
+        日本: 'JP',
+    };
+    const catkeys = Object.keys(catLink);
     const { newAlbumList } = useSelector(
         (state) => ({
-            newAlbumList: state.getIn(['discoverNew', 'newAlbumList']),
+            newAlbumList: state.getIn(['discover', 'newAlbumList']),
         }),
         shallowEqual
     );
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getNewAlbumAction(area));
-    }, [dispatch, area]);
-    useEffect(() => {
-        console.log(newAlbumList);
-    });
+        dispatch(getNewAlbumAction(currentCode));
+    }, [dispatch, currentCode]);
+    const changeArea = (e) => {
+        // e.target.className = e.target.className + ' active';
+        // console.log(e.target.value);
+        // console.log(e.target.innerText);
+        setArea(e.target.innerText);
+        setCurrentCode(catLink[e.target.innerText]);
+    };
     return (
         <div>
             <SwitchArea>
-                {catLink.map((item) => {
+                {catkeys.map((item) => {
                     return (
-                        <span key={item} className="area">
+                        <span
+                            key={item}
+                            className={area === item ? 'active' : 'area'}
+                            onClick={changeArea}
+                        >
                             {item}
                         </span>
                     );
                 })}
             </SwitchArea>
-            <div>
+            <CardWrapper>
                 {newAlbumList &&
                     newAlbumList.map((item) => {
-                        console.log(item);
                         return (
+                            // <div className="card">
                             <ThemeCover
                                 key={item.id}
                                 name={item.name}
@@ -43,9 +59,10 @@ export default memo(function DiscoverNewAlbum() {
                                 width={200}
                                 height={200}
                             />
+                            // </div>
                         );
                     })}
-            </div>
+            </CardWrapper>
         </div>
     );
 });

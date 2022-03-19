@@ -7,7 +7,9 @@ export default memo(function Discover() {
     useEffect(() => {
         window.addEventListener('scroll', function (e) {
             const nav = document.querySelector('.nav_list');
-            if (window.pageYOffset >= nav.offsetTop) {
+            if (window == null || nav == null) {
+                return;
+            } else if (window.pageYOffset >= nav.offsetTop) {
                 nav.style.position = 'fixed';
                 nav.style.top = '75px';
             } else {

@@ -23,3 +23,11 @@ export const SwitchArea = styled.div`
         border-bottom: solid 2px ${themeColor};
     }
 `;
+export const CardWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: flex-start;
+`;

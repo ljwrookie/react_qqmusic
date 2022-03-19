@@ -11,7 +11,7 @@ function reducer(state = defaultState, action) {
         case actionTypes.CHANGE_NEW_SONG:
             return state.set('newSongList', action.res.data);
         case actionTypes.CHANGE_NEW_ALBUM:
-            return state.set('newAlbumList', action.res.weekData);
+            return state.set('newAlbumList', action.res.albums);
         default:
             return state;
     }

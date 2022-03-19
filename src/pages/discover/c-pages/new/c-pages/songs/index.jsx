@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useCallback, useState } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { getNewSongAction } from '../../store/actionCreators';
+import { getNewSongAction } from '@/pages/discover/store/actionCreators';
 import SongListItem from '@/components/song-item';
 import { SwitchArea, PlayList } from './style';
 export default memo(function DiscoverNewSong() {
@@ -8,7 +8,7 @@ export default memo(function DiscoverNewSong() {
     const [current, setCurrent] = useState('全部');
     const { newSongList } = useSelector(
         (state) => ({
-            newSongList: state.getIn(['discoverNew', 'newSongList']),
+            newSongList: state.getIn(['discover', 'newSongList']),
         }),
         shallowEqual
     );

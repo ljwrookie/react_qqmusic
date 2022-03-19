@@ -43,6 +43,7 @@ export const MvPlayerWrapper = styled.div`
         video {
             margin-top:10px;
             width: 100%;
+            height: 408px;
             border-radius:5px;
         }
         .video {

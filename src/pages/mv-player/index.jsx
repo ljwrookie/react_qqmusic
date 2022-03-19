@@ -17,6 +17,7 @@ import {
     Dropdown,
 } from 'antd';
 import moment from 'moment';
+import { nanoid } from 'nanoid';
 
 
 export default memo(function MvPlayer() {
@@ -74,7 +75,7 @@ export default memo(function MvPlayer() {
     //切换分辨率
     const menu = (
         <Menu>
-            <Menu.Item>
+            <Menu.Item key={ nanoid()}>
                 <span
                     onClick={() => {
                         resolutionChange(1080);
@@ -83,7 +84,7 @@ export default memo(function MvPlayer() {
                     蓝光
                 </span>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key={nanoid()}>
                 <span
                     onClick={() => {
                         resolutionChange(720);
@@ -92,7 +93,7 @@ export default memo(function MvPlayer() {
                     超清
                 </span>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key={nanoid()}>
                 <span
                     onClick={() => {
                         resolutionChange(480);
@@ -101,7 +102,7 @@ export default memo(function MvPlayer() {
                     高清
                 </span>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key={nanoid()}>
                 <span
                     onClick={() => {
                         resolutionChange(240);
@@ -121,7 +122,7 @@ export default memo(function MvPlayer() {
                         <video
                             src={mvUrl}
                             controls="controls"
-                            autoplay="autoplay"
+                            autoPlay="autoplay"
                         >
                             your browser does not support the video tag
                         </video>
@@ -214,7 +215,7 @@ export default memo(function MvPlayer() {
                             {mvComments.hotComments &&
                                 mvComments.hotComments.map((item) => {
                                     return (
-                                        <div className="comment-item">
+                                        <div key ={nanoid()} className="comment-item">
                                             <Comment
                                                 className="comment-concent"
                                                 // actions={actions}
@@ -276,7 +277,7 @@ export default memo(function MvPlayer() {
                             {mvComments.comments &&
                                 mvComments.comments.map((item) => {
                                     return (
-                                        <div className="comment-item">
+                                        <div key={ nanoid()}className="comment-item">
                                             <Comment
                                                 className="comment-concent"
                                                 // actions={actions}
@@ -301,11 +302,7 @@ export default memo(function MvPlayer() {
                                                     <p>{item.content}</p>
                                                 }
                                                 datetime={
-                                                    <Tooltip
-                                                        title={moment().format(
-                                                            'YYYY-MM-DD HH:mm:ss'
-                                                        )}
-                                                    >
+                                    
                                                         <span>
                                                             {moment(
                                                                 item.time
@@ -313,7 +310,7 @@ export default memo(function MvPlayer() {
                                                                 'YYYY-MM-DD HH:mm:ss'
                                                             )}
                                                         </span>
-                                                    </Tooltip>
+                                        
                                                 }
                                             />
                                             <div className="icon">

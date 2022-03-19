@@ -88,7 +88,6 @@ export default memo(function PlayBar() {
         // 如果不是首次加载: 播放音乐
         if (!firstLoad) setIsPlaying(true + Math.random());
     }, [currentSong, firstLoad]);
-
     // 切换歌曲时播放音乐
     useEffect(() => {
         isPlaying && audioRef.current.play();
@@ -109,43 +108,56 @@ export default memo(function PlayBar() {
     }, [isPlaying]);
 
     // 歌曲播放触发
-    function timeUpdate(e) {
-        // 没有在滑动滑块时触发(默认时没有滑动)
-        let currentTime = e.target.currentTime;
-        if (!isChanging) {
-            setCurrentTime(currentTime * 1000);
-            setProgress(((currentTime * 1000) / duration) * 100);
-        }
-
-        // 当前音乐处于播放状态(用于搜索音乐,点击item播放音乐时使用)
-        if (currentTime > 0.1 && currentTime < 0.5) setIsPlaying(true);
-
-        // 获取当前播放歌词
-        let i = 0; //用于获取歌词的索引
-        // 2.遍历歌词数组
-        for (; i < lyricList.length; i++) {
-            const item = lyricList[i];
-            if (currentTime * 1000 < item.totalTime) {
-                // 4.跳出循环
-                break;
-            }
-        }
-        // 对dispatch进行优化,如果index没有改变,就不进行dispatch
-        if (currentLyricIndex !== i - 1) {
-            dispatch(changeCurrentLyricIndexAction(i - 1));
-            const content = lyricList[i - 1] && lyricList[i - 1].content;
+    const timeUpdate = useCallback(
+        (e) => {
             if (isShowLyric) {
-                message.open({
-                    key: 'lyric',
-                    content: content ? content : 'QQ音乐，听我想听',
-                    duration: 0,
-                    className: 'lyric_class',
-                });
+                // 没有在滑动滑块时触发(默认时没有滑动)
+                let currentTime = e.target.currentTime;
+                if (!isChanging) {
+                    setCurrentTime(currentTime * 1000);
+                    setProgress(((currentTime * 1000) / duration) * 100);
+                }
+
+                // 当前音乐处于播放状态(用于搜索音乐,点击item播放音乐时使用)
+                if (currentTime > 0.1 && currentTime < 0.5)
+                    setIsPlaying(true);
+
+                // 获取当前播放歌词
+                let i = 0; //用于获取歌词的索引
+                // 2.遍历歌词数组
+                for (; i < lyricList.length; i++) {
+                    const item = lyricList[i];
+                    if (currentTime * 1000 < item.totalTime) {
+                        // 4.跳出循环
+                        break;
+                    }
+                }
+                // 对dispatch进行优化,如果index没有改变,就不进行dispatch
+                if (currentLyricIndex !== i - 1) {
+                    dispatch(changeCurrentLyricIndexAction(i - 1));
+                    const content =
+                        lyricList[i - 1] && lyricList[i - 1].content;
+
+                    message.open({
+                        key: 'lyric',
+                        content: content ? content : 'QQ音乐，听我想听',
+                        duration: 0,
+                        className: 'lyric_class',
+                    });
+                }
             } else {
                 message.destroy('lyric');
             }
-        }
-    }
+        },
+        [
+            isShowLyric,
+            currentLyricIndex,
+            dispatch,
+            duration,
+            isChanging,
+            lyricList,
+        ]
+    );
     // 滑动滑块时触发
     const sliderChange = useCallback(
         (value) => {

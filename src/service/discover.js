@@ -17,7 +17,7 @@ export function getNewSong(type) {
 
 export function getNewAlbum(area) {
     return request({
-        url: '/top/album',
+        url: '/album/new',
         params: {
             area,
         },

@@ -4,7 +4,7 @@ import { getNewSong, getNewAlbum } from '@/service/discover';
 
 const changeNewSongAction = (res) => ({
     type: actionTypes.CHANGE_NEW_SONG,
-    res
+    res,
 });
 
 const changeNewAlbumAction = (res) => ({
@@ -19,7 +19,7 @@ export const getNewSongAction = (type = 0) => {
         });
     };
 };
-export const getNewAlbumAction = (area = '全部') => {
+export const getNewAlbumAction = (area = 'ALL') => {
     return (dispatch) => {
         getNewAlbum(area).then((res) => {
             dispatch(changeNewAlbumAction(res));
