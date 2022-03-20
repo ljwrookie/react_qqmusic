@@ -38,7 +38,7 @@ export function getPlaylistSubscriber(id, limit, offset) {
         params: {
             id,
             limit,
-            offset
-        }
-    })
+            offset,
+        },
+    });
 }

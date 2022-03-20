@@ -28,9 +28,9 @@ export default memo(function SongListItem(props) {
     // other function
     const playMusic = (e, item) => {
         // 如果不跳转,那么组织超链接的默认行为
-        e.preventDefault();
-        // 阻止合成事件的冒泡
-        e.stopPropagation();
+        // e.preventDefault();
+        // // 阻止合成事件的冒泡
+        // e.stopPropagation();
         // 阻止与原生事件的冒泡
         e.nativeEvent.stopImmediatePropagation();
         // 派发action 歌曲详情
@@ -49,7 +49,7 @@ export default memo(function SongListItem(props) {
             <div className="song_name">
                 <div className="first_line">
                     <div className="name text-nowrap">
-                        <span className="iconfont">&#xe86f;</span> {name}
+                        <span className="iconfont">&#xe761;</span> {name}
                     </div>
                     <div className="operator">
                         <span

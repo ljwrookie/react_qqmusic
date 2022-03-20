@@ -21,13 +21,23 @@ export default memo(function AppHeader() {
     const searchKeyword = (e) => {
         navigate(`/search/song?keywords=${e.target.value}`);
     };
+    const pre = () => {
+        navigate(-1, { replace: true });
+    }
+    const next = () => {
+        navigate(1, { replace: true });
+    }
     return (
         <HeaderWrapper>
             <HeaderLeft>
                 <div className="prev_next">
-                    <span className="iconfont">&#xe603;</span>
+                    <span onClick={pre} className="iconfont">
+                        &#xe603;
+                    </span>
                     <em>&nbsp;&nbsp;&nbsp;&nbsp;</em>
-                    <span className="iconfont">&#xe61f;</span>
+                    <span onClick={next} className="iconfont">
+                        &#xe61f;
+                    </span>
                 </div>
                 <Input
                     ref={inputRef}

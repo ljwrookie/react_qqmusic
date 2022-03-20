@@ -27,7 +27,7 @@ import SearchAlbum from '../pages/search/c-pages/album';
 import SearchSinger from '../pages/search/c-pages/singer';
 import DiscoverNewSong from '../pages/discover/c-pages/new/c-pages/songs';
 import DiscoverNewAlbum from '../pages/discover/c-pages/new/c-pages/albums';
-import { element } from 'prop-types';
+// import { element } from 'prop-types';
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArray": true}] */
 const GetRoutes = () => {

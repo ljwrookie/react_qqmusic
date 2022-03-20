@@ -5,7 +5,7 @@ import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 import { getMvDetailAction, getMvDetailInfoAction, getMvUrlAction, getSimMvAction, getMvCommentsAction } from './store/actionCreator';
 import SimMvCover from '../../components/sim-mv-cover'
 
-import { getCount } from '../../utils/format-utils'; 
+import { getCount, getSizeImage } from '../../utils/format-utils'; 
 import { MvPlayerWrapper } from './style';
 import { getArtistDetailAction } from '../artist/store/actionCreator';
 import {
@@ -32,8 +32,8 @@ export default memo(function MvPlayer() {
     ), shallowEqual)
 
     const [page, setPage] = useState({
-        pageIndex: 0,
-        pageNumber: 20,
+        offset: 0,
+        limit: 20,
     })
     const [resolution, setResolution] = useState(
         1080
@@ -57,7 +57,7 @@ export default memo(function MvPlayer() {
     //分页功能
     useEffect(() => {
         dispatch(
-            getMvCommentsAction(id, page.pageNumber, page.pageIndex )
+            getMvCommentsAction(id, page.limit, page.offset )
         );
     }, [page, dispatch, id])
     //切换分辨率功能
@@ -65,7 +65,7 @@ export default memo(function MvPlayer() {
         dispatch(getMvUrlAction(id, resolution, resolution.value));
     }, [resolution, dispatch, id]);
     const pageChange = (index, number) => {
-        setPage({ pageIndex: index*number, pageNumber: number });
+        setPage({ offset: (index-1)*number, limit: number });
     }
     const resolutionChange = (index) => {
         setResolution(index);
@@ -130,9 +130,7 @@ export default memo(function MvPlayer() {
                             overlay={menu}
                             placement="top"
                         >
-                            <span  className="iconfont">
-                                &#xe636;
-                            </span>
+                            <span className="iconfont">&#xe636;</span>
                         </Dropdown>
                     </div>
                     <div className="mv-info">
@@ -206,7 +204,13 @@ export default memo(function MvPlayer() {
                                 <button className="btn">评论</button>
                             </div>
                         </div>
-                        <div className="hot-comments">
+                        <div
+                            className="hot-comments"
+                            style={{
+                                display:
+                                    page.offset !== 0 ? 'none' : 'block',
+                            }}
+                        >
                             <div className="title">
                                 <span>精彩评论</span>
                             </div>
@@ -214,7 +218,10 @@ export default memo(function MvPlayer() {
                             {mvComments.hotComments &&
                                 mvComments.hotComments.map((item) => {
                                     return (
-                                        <div key ={nanoid()} className="comment-item">
+                                        <div
+                                            key={nanoid()}
+                                            className="comment-item"
+                                        >
                                             <Comment
                                                 className="comment-concent"
                                                 // actions={actions}
@@ -228,11 +235,16 @@ export default memo(function MvPlayer() {
                                                 }
                                                 avatar={
                                                     <Avatar
-                                                        src={
+                                                        src={getSizeImage(
                                                             item.user
-                                                                .avatarUrl
+                                                                .avatarUrl,
+                                                            40,
+                                                            40
+                                                        )}
+                                                        alt={
+                                                            item.user
+                                                                .nickname
                                                         }
-                                                        alt="Han Solo"
                                                     />
                                                 }
                                                 content={
@@ -264,7 +276,13 @@ export default memo(function MvPlayer() {
                                     );
                                 })}
                         </div>
-                        <div className="comment-center">
+                        <div
+                            className="comment-center"
+                            style={{
+                                display:
+                                    page.offset !== 0 ? 'none' : 'flex',
+                            }}
+                        >
                             <button className="btn btn-center">
                                 更多精彩评论 &gt;
                             </button>
@@ -276,7 +294,10 @@ export default memo(function MvPlayer() {
                             {mvComments.comments &&
                                 mvComments.comments.map((item) => {
                                     return (
-                                        <div key={ nanoid()}className="comment-item">
+                                        <div
+                                            key={nanoid()}
+                                            className="comment-item"
+                                        >
                                             <Comment
                                                 className="comment-concent"
                                                 // actions={actions}
@@ -290,26 +311,29 @@ export default memo(function MvPlayer() {
                                                 }
                                                 avatar={
                                                     <Avatar
-                                                        src={
+                                                        src={getSizeImage(
                                                             item.user
-                                                                .avatarUrl
+                                                                .avatarUrl,
+                                                            40,
+                                                            40
+                                                        )}
+                                                        alt={
+                                                            item.user
+                                                                .nickname
                                                         }
-                                                        alt="Han Solo"
                                                     />
                                                 }
                                                 content={
                                                     <p>{item.content}</p>
                                                 }
                                                 datetime={
-                                    
-                                                        <span>
-                                                            {moment(
-                                                                item.time
-                                                            ).format(
-                                                                'YYYY-MM-DD HH:mm:ss'
-                                                            )}
-                                                        </span>
-                                        
+                                                    <span>
+                                                        {moment(
+                                                            item.time
+                                                        ).format(
+                                                            'YYYY-MM-DD HH:mm:ss'
+                                                        )}
+                                                    </span>
                                                 }
                                             />
                                             <div className="icon">
@@ -329,6 +353,16 @@ export default memo(function MvPlayer() {
                                 })}
                         </div>
                     </div>
+                    <div className="pagination">
+                        <Pagination
+                            onChange={(page, pageSize) =>
+                                pageChange(page, pageSize)
+                            }
+                            defaultCurrent={1}
+                            defaultPageSize={20}
+                            total={mvDetailInfo.commentCount}
+                        />
+                    </div>
                 </div>
                 <div className="mv-player-right">
                     <div className="mv-title">相关推荐</div>
@@ -345,16 +379,16 @@ export default memo(function MvPlayer() {
                     })}
                 </div>
             </div>
-            <div className="pagination">
+            {/* <div className="pagination">
                 <Pagination
                     onChange={(page, pageSize) =>
                         pageChange(page, pageSize)
                     }
                     defaultCurrent={1}
                     defaultPageSize={20}
-                    total={Math.floor(mvDetailInfo.commentCount)}
+                    total={mvDetailInfo.commentCount}
                 />
-            </div>
+            </div> */}
         </MvPlayerWrapper>
     );
 });

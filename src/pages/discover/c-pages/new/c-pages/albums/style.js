@@ -3,24 +3,36 @@ import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
 const {
     themeColor,
-    bodyColor,
-    normalColor,
     grayFontColor,
-    searchBarColor,
 } = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 
 export const SwitchArea = styled.div`
     color: ${grayFontColor};
     span {
+        display: inline-block;
+        position:relative;
         margin-right: 50px;
+        cursor: pointer;
         font-size: 12px;
+        line-height:30px;
+        margin-bottom: 10px;
         &:hover {
             color: ${themeColor};
         }
     }
     .active {
         color: ${themeColor};
-        border-bottom: solid 2px ${themeColor};
+    }
+    .active::after {
+        position:absolute;
+        content:'';
+        width:25px;
+        height:3px;
+        border-radius:2px;
+        top:100%;
+        left: 50%;
+        transform:translateX(-50%);
+        background-color:${themeColor};
     }
 `;
 export const CardWrapper = styled.div`
@@ -29,5 +41,4 @@ export const CardWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    align-content: flex-start;
 `;

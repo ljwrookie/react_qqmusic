@@ -55,12 +55,12 @@ export const getPlaylistCommentAction = (id, limit, offset) => {
         })
     }
 }
-
 export const getPlaylistSubscriberAction = (id, limit, offset) => {
     return (dispatch) => {
         getPlaylistSubscriber(id, limit, offset).then((res) => {
-            dispatch(changePlaylistSubscriberAction(res))
-        })
-    }
-}
+            dispatch(changePlaylistSubscriberAction(res));
+        });
+    };
+};
+
 

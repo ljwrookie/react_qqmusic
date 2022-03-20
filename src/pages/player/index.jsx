@@ -2,11 +2,15 @@ import React, { memo, useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 
 import { useDispatch, shallowEqual, useSelector } from 'react-redux';
-import { PlayerWrapper, BottomWrapper , PlayerCommentWrapper } from './style';
+import {
+    PlayerWrapper,
+    BottomWrapper,
+    PlayerCommentWrapper,
+} from './style';
 import { Comment, Avatar, Pagination } from 'antd';
 import moment from 'moment';
 import { nanoid } from 'nanoid';
-import { getCount } from '../../utils/format-utils'; 
+import { getCount, getSizeImage } from '../../utils/format-utils';
 import {
     getSongLyricAction,
     getSongInfoAction,
@@ -15,7 +19,6 @@ import {
     getSimilarSongAction,
     getSimilarAlbumAction,
 } from './store/actionCreators';
-import { getSizeImage } from '@/utils/format-utils';
 export default memo(function Player() {
     const [search, setSearch] = useSearchParams();
     const {
@@ -44,7 +47,7 @@ export default memo(function Player() {
     const id = search.get('id');
     useEffect(() => {
         setuId(id);
-    });
+    }, [id]);
 
     const [uid, setuId] = useState(id);
     const dispatch = useDispatch();
@@ -52,22 +55,23 @@ export default memo(function Player() {
         dispatch(getSongLyricAction(uid));
         dispatch(getSongInfoAction(uid));
     }, [dispatch, uid]);
-    const [comment, setComment] = useState({
+    const [page, setPage] = useState({
         limit: 20,
         offset: 0,
-    })
+    });
     useEffect(() => {
-        dispatch(getHotCommentAction(id))
-        dispatch(getSimilarAlbumAction(id))
-        dispatch(getSimilarSongAction(id))
-    }, [dispatch, id])
+        dispatch(getHotCommentAction(id));
+        dispatch(getSimilarAlbumAction(id));
+        dispatch(getSimilarSongAction(id));
+    }, [dispatch, id]);
     useEffect(() => {
-        dispatch((getNewCommentAction(id, comment.limit, comment.offset)))
+        dispatch(getNewCommentAction(id, page.limit, page.offset));
         // console.log(comment.limit, comment.offset)
-    }, [dispatch, id, comment])
+    }, [dispatch, id, page]);
 
     const commentChange = (index, number) => {
-        setComment({ offset: (index-1)*number , limit: number });
+        
+        setPage({ offset: (index - 1) * number, limit: number });
     };
 
     const bgImage = picUrl + '?imageView&blur=40x40';
@@ -130,7 +134,10 @@ export default memo(function Player() {
                         {similarAlbum.map((item) => {
                             console.log(item);
                             return (
-                                <Link key={ item.id } to={`/playlist?id=${item.id}`}>
+                                <Link
+                                    key={item.id}
+                                    to={`/playlist/detail?id=${item.id}`}
+                                >
                                     <div className="playlist">
                                         <img
                                             src={item.coverImgUrl}
@@ -147,16 +154,18 @@ export default memo(function Player() {
                     </div>
                     <div className="simi-songs">
                         {similarSong.map((item) => {
-                            console.log(item);
                             return (
-                                <Link key={ item.id } to={`/player?id=${item.id}`}>
-                                <div className="song">
-                                    <img
-                                        src={item.album.picUrl}
-                                        alt={item.name}
-                                    ></img>
-                                    <span>{item.name}</span>
-                                </div>
+                                <Link
+                                    key={item.id}
+                                    to={`/player?id=${item.id}`}
+                                >
+                                    <div className="song">
+                                        <img
+                                            src={item.album.picUrl}
+                                            alt={item.name}
+                                        ></img>
+                                        <span>{item.name}</span>
+                                    </div>
                                 </Link>
                             );
                         })}
@@ -182,7 +191,13 @@ export default memo(function Player() {
                                 <button className="btn">评论</button>
                             </div>
                         </div>
-                        <div className="hot-comments">
+                        <div
+                            className="hot-comments"
+                            style={{
+                                display:
+                                    page.offset !== 0 ? 'none' : 'block',
+                            }}
+                        >
                             <div className="title">
                                 <span>精彩评论</span>
                             </div>
@@ -207,11 +222,16 @@ export default memo(function Player() {
                                                 }
                                                 avatar={
                                                     <Avatar
-                                                        src={
+                                                        src={getSizeImage(
                                                             item.user
-                                                                .avatarUrl
+                                                                .avatarUrl,
+                                                            40,
+                                                            40
+                                                        )}
+                                                        alt={
+                                                            item.user
+                                                                .nickname
                                                         }
-                                                        alt="Han Solo"
                                                     />
                                                 }
                                                 content={
@@ -243,13 +263,19 @@ export default memo(function Player() {
                                     );
                                 })}
                         </div>
-                        <div className="comment-center">
+                        <div
+                            className="comment-center"
+                            style={{
+                                display:
+                                    page.offset !== 0 ? 'none' : 'flex',
+                            }}
+                        >
                             <button className="btn btn-center">
                                 更多精彩评论 &gt;
                             </button>
                         </div>
                         <div className="all-comments">
-                            <div className="title">
+                            <div className="title" id="new-comment">
                                 <span>最新评论</span>
                             </div>
                             {newComments &&
@@ -311,12 +337,12 @@ export default memo(function Player() {
                     </div>
                     <div className="pagination">
                         <Pagination
-                            onChange={(page, pageSize) =>
-                                commentChange(page, pageSize)
-                            }
+                            onChange={(page, pageSize) => {
+                                commentChange(page, pageSize);
+                            }}
                             defaultCurrent={1}
                             defaultPageSize={20}
-                            total={Math.floor(commentTotal)}
+                            total={commentTotal}
                         />
                     </div>
                 </PlayerCommentWrapper>

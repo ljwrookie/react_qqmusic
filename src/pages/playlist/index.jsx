@@ -1,13 +1,15 @@
 import React, { memo } from 'react';
 import { NavLink, Outlet, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import {
     getPlaylistDetailAction,
     getPlaylistAllSongsAction,
 } from './store/actionCreator';
+import {getSizeImage} from '@/utils/format-utils'
 import { PlaylistWrapper } from './style';
-const Playlist = memo(() => {
+import { nanoid } from 'nanoid';
+export default  memo(function Playlist(){
     const [playlistId, setPlaylistId] = useSearchParams();
     const id = playlistId.get('id');
     const dispatch = useDispatch();
@@ -25,46 +27,89 @@ const Playlist = memo(() => {
         dispatch(getPlaylistDetailAction(id));
         dispatch(getPlaylistAllSongsAction(id));
     }, [dispatch, id]);
+
     const nickname =
-        playlistDetail.creator && playlistDetail.creator.nickname;
+        playlistDetail &&
+        playlistDetail.creator &&
+        playlistDetail.creator.nickname;
+    const avatarUrl =
+        playlistDetail &&
+        playlistDetail.creator &&
+        playlistDetail.creator.avatarUrl;
+    const tags =
+        playlistDetail &&
+        playlistDetail.tags
     return (
         <PlaylistWrapper>
             <div className="top-detail">
                 <div className="top-left">
                     <img
-                        src={playlistDetail.coverImgUrl}
+                        src={getSizeImage(
+                            playlistDetail.coverImgUrl,
+                            160,
+                            160
+                        )}
                         alt={playlistDetail.name}
                     />
                 </div>
                 <div className="top-right">
-                    <div className="playlist-name">playlistName</div>
-                    <div>
+                    <div className="playlist-name">
+                        {playlistDetail.name}
+                    </div>
+                    <div className="creator">
+                        <img
+                            src={getSizeImage(avatarUrl, 25, 25)}
+                            alt={nickname}
+                        ></img>
                         <span>{nickname}</span>
-                        <div>{playlistDetail.tags}</div>
+
+                        {tags &&
+                            tags.map((item) => {
+                                return (
+                                    <span key={nanoid()}>
+                                        {'#' + item}
+                                    </span>
+                                );
+                            })}
                     </div>
 
-                    <div>{playlistDetail.description}</div>
-                    <div>
-                        <button>播放全部</button>
-                        <button>收藏</button>
-                        <button>...</button>
+                    <div className="description text-nowrap">
+                        {playlistDetail.description}
+                    </div>
+                    <div className="btns">
+                        <button className="btn play">
+                            <span className="iconfont">
+                                &#xea6d; 播放全部
+                            </span>
+                        </button>
+                        <button className="btn love">
+                            <span className="iconfont">&#xe761;</span> 收藏
+                        </button>
+                        <button className="btn more">
+                            <span className="iconfont">&#xe63b;</span>
+                        </button>
                     </div>
                 </div>
             </div>
-            <div className="playlist-nav">
-                <NavLink to={`/playlist/detail?id=${id}`}>
-                    歌曲{playlistDetail.trackCount}
-                </NavLink>
-                <NavLink to={`/playlist/comment?id=${id}`}>
-                    评论{playlistDetail.commentCount}
-                </NavLink>
-                <NavLink to={`/playlist/subscriber?id=${id}`}>
-                    收藏者{playlistDetail.subscribedCount4}
-                </NavLink>
-            </div>
-            <Outlet />
+            <ul className="playlist-nav">
+                <li className="nav-item">
+                    <NavLink to={`/playlist/detail?id=${id}`}>
+                        歌曲{playlistDetail.trackCount}
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to={`/playlist/comment?id=${id}`}>
+                        评论{playlistDetail.commentCount}
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to={`/playlist/subscriber?id=${id}&total=${playlistDetail.subscribedCount}`}>
+                        收藏{playlistDetail.subscribedCount}
+                    </NavLink>
+                </li>
+            </ul>
+            <Outlet/>
         </PlaylistWrapper>
     );
 });
 
-export default Playlist;

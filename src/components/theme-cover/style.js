@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
-const {themeColor, normalColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+const { themeColor, normalColor, grayFontColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
 export const ThemeCoverWrapper = styled.div`
     font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
     /* const size = $(props =>{props.width}) */
@@ -11,9 +11,10 @@ export const ThemeCoverWrapper = styled.div`
     /* align-items: center;   */
     width: ${(props) => props.width}px;
     margin-top: 20px;
+
     /* height:30px; */
     .cover-top {
-        cursor: pointer; 
+        cursor: pointer;
         position: relative;
         transition: all 0.3s;
 
@@ -90,7 +91,7 @@ export const ThemeCoverWrapper = styled.div`
     }
 
     .cover-bottom {
-        cursor: pointer; 
+        cursor: pointer;
         font-size: 14px;
         color: ${normalColor};
         margin-top: 10px;
@@ -98,4 +99,12 @@ export const ThemeCoverWrapper = styled.div`
             color: ${themeColor};
         }
     }
+    .singer_name {
+        color: ${grayFontColor};
+        cursor: pointer;
+        &:hover {
+            color: ${themeColor};
+        }
+    }
+    
 `;

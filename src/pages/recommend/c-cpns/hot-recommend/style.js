@@ -3,7 +3,10 @@ import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
 
 const {themeColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
-export const RecommendWrapper = styled.div `
+export const RecommendWrapper = styled.div`
+    a {
+        text-decoration: none;
+    }
     margin-top: 50px;
     position: relative;
 
@@ -18,7 +21,6 @@ export const RecommendWrapper = styled.div `
             .page {
                 display: flex !important;
                 justify-content: space-between;
-
             }
         }
     }

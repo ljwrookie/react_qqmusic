@@ -20,7 +20,6 @@ export default memo(function NewSongs() {
         index: 0,
     });
 
-    // const navigate = useNavigate();
     const newSongsRef = useRef();
     const { newSongs = [] } = useSelector(
         (state) => ({
@@ -79,7 +78,6 @@ export default memo(function NewSongs() {
                     <Carousel ref={newSongsRef} dots={false}>
                         {nums.map((item) => {
                             return (
-                                
                                 <div key={item} className="page">
                                     {newSongs
                                         .slice(item * 5, (item + 1) * 5)
@@ -92,12 +90,6 @@ export default memo(function NewSongs() {
                                                 width: 200,
                                                 height: 200,
                                             };
-                                            //                 key={item.id}
-                                            // name={item.name}
-                                            // singer={item.artist.name}
-                                            // img_url={item.picUrl}
-                                            // width={200}
-                                            // height={200}
                                             return (
                                                 <div key={it.id}>
                                                     <Link
@@ -115,7 +107,10 @@ export default memo(function NewSongs() {
                                                                     <Link
                                                                         key={nanoid()}
                                                                         className="artist"
-                                                                        to="#"
+                                                                        to={
+                                                                            '/search/song?keywords=' +
+                                                                            artist.name
+                                                                        }
                                                                     >
                                                                         {
                                                                             artist.name
