@@ -15,6 +15,11 @@ import Radio from '../pages/radio';
 import Recommend from '../pages/recommend';
 import Recent from '../pages/recent';
 import Player from '../pages/player';
+
+import Playlist from '../pages/playlist'
+import PlaylistDetail from '../pages/playlist/c-pages/all-songs'
+import PlaylistComment from '../pages/playlist/c-pages/comment'
+import PlaylistSubscriber from '../pages/playlist/c-pages/subscriber'
 import MvPlayer from '../pages/mv-player';
 import Search from '../pages/search';
 import SearchSong from '../pages/search/c-pages/song';
@@ -23,6 +28,7 @@ import SearchAlbum from '../pages/search/c-pages/album';
 import SearchSinger from '../pages/search/c-pages/singer';
 import DiscoverNewSong from '../pages/discover/c-pages/new/c-pages/songs';
 import DiscoverNewAlbum from '../pages/discover/c-pages/new/c-pages/albums';
+import { element } from 'prop-types';
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArray": true}] */
 const GetRoutes = () => {
@@ -120,11 +126,36 @@ const GetRoutes = () => {
             auth: true,
         },
         {
+            path: '/playlist',
+            element: <Playlist />,
+            lazy: true,
+            auth: true,
+            children: [
+                {
+                    path: 'detail',
+                    element:<PlaylistDetail/>,
+                },
+                {
+                    path: 'comment',
+                    element:<PlaylistComment/>,
+                },
+                {
+                    path: 'subscriber',
+                    element: <PlaylistSubscriber/>,
+                },
+                {
+                    path: '',
+                    element: <Navigate to="/playlist/detail" />,
+                },
+            ]
+        },
+        {
             path: '/mvplayer',
             element: <MvPlayer />,
             lazy: true,
             auth: true,
         },
+        
         {
             path: '/search',
             element: <Search />,

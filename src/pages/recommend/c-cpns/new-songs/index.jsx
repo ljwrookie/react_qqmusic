@@ -79,6 +79,7 @@ export default memo(function NewSongs() {
                     <Carousel ref={newSongsRef} dots={false}>
                         {nums.map((item) => {
                             return (
+                                
                                 <div key={item} className="page">
                                     {newSongs
                                         .slice(item * 5, (item + 1) * 5)
@@ -98,11 +99,15 @@ export default memo(function NewSongs() {
                                             // width={200}
                                             // height={200}
                                             return (
-                                                <div key={nanoid()}>
-                                                    <ThemeCover
-                                                        className="cover"
-                                                        {...cover_props}
-                                                    />
+                                                <div key={it.id}>
+                                                    <Link
+                                                        to={`/player?id=${it.id}`}
+                                                    >
+                                                        <ThemeCover
+                                                            className="cover"
+                                                            {...cover_props}
+                                                        />
+                                                    </Link>
                                                     <div className="all_name text-nowrap">
                                                         {it.artists.map(
                                                             (artist) => {

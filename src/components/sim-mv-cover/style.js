@@ -4,18 +4,12 @@ import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 const {themeColor, grayFontColor, normalColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
 export const SimMvCoverWrapper = styled.div`
     display: flex;
-    /* justify-content: space-between; */
+     font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;    /* justify-content: space-between; */
     align-items: center;
+    margin-top: 20px;
     a{
         text-decoration:none;
     }
-    font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
-    /* const size = $(props =>{props.width}) */
-
-    /* display: flex !important;
-  /* display: inline-block; */
-    /* align-items: center;   */
-    margin-top: 20px;
     /* height:30px; */
     .cover-left {
         cursor: pointer; 
@@ -104,16 +98,24 @@ export const SimMvCoverWrapper = styled.div`
         text-decoration:none;
         cursor: pointer; 
         font-size: 14px;
-        margin-top: 10px;
+        /* margin-top: 5px; */
+        
         .mv-name{
+            text-overflow: -o-ellipsis-lastline;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;/*重点，不能用block等其他*/
+            -webkit-line-clamp: 2;/*重点IE和火狐不支持*/
+            -webkit-box-orient: vertical;/*重点*/
             color: ${normalColor};
-            margin: 10px;
+            margin: 5px 0px 5px 10px;
+            
             &:hover{
             color: ${themeColor};
         }
         }
         .artist-name{
-            margin:  10px;
+            margin-left:  10px;
             color: ${grayFontColor};
             &:hover{
             color: ${themeColor};

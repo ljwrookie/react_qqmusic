@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, memo } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import { Carousel } from 'antd';
@@ -50,7 +51,7 @@ export default memo(function HotRecommend() {
                                         .map((it) => {
                                             // key={it.id} info={it}  url_name="picUrl" playCount={true} width={200} height={200}
                                             const cover_props = {
-                                                key: it.id,
+                                                
                                                 img_url: it.picUrl,
                                                 name: it.name,
                                                 playCount: it.playCount,
@@ -64,10 +65,12 @@ export default memo(function HotRecommend() {
                                             // width={200}
                                             // height={200}
                                             return (
-                                                <ThemeCover
-                                                    className="cover"
-                                                    {...cover_props}
-                                                />
+                                                <Link key={it.id} to={`/playlist/detail?id=${it.id}`}>
+                                                    <ThemeCover
+                                                        className="cover"
+                                                        {...cover_props}
+                                                    />
+                                                </Link>
                                             );
                                         })}
                                 </div>

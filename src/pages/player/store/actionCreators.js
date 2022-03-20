@@ -312,15 +312,22 @@ export const getSongLyricAction = (id) => {
 };
 
 // 获取歌曲热门评论
-export const getHotCommentAction = (id, limit, offset) => {
+export const getHotCommentAction = (id) => {
     return (dispatch) => {
-        getSongComment(id, limit, offset).then((res) => {
+        getSongComment(id).then((res) => {
             const hotComments = res && res.hotComments;
-            const comments = res && res.comments;
             const total = res && res.total;
             dispatch(changeSongHotCommentAction(hotComments));
-            dispatch(changeSongNewCommentAction(comments));
             dispatch(changeSongTotal(total));
+        });
+    };
+};
+// 获取歌曲新评论
+export const getNewCommentAction = (id, limit, offset) => {
+    return (dispatch) => {
+        getSongComment(id, limit, offset).then((res) => {
+            const comments = res && res.comments;
+            dispatch(changeSongNewCommentAction(comments));
         });
     };
 };

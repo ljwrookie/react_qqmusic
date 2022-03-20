@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
-const { themeColor, normalColor } = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { themeColor } = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 
 export const RecmdMain = styled.div`
     color: pink;
@@ -12,7 +12,7 @@ export const RecmdMain = styled.div`
         line-height: 40px;
         padding: 0 10px;
         background-color: ${themeColor};
-        color: ${normalColor};
+        color: #fff;
         border-radius: 10px;
     }
 `;

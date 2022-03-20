@@ -10,7 +10,6 @@ import { MvPlayerWrapper } from './style';
 import { getArtistDetailAction } from '../artist/store/actionCreator';
 import {
     Comment,
-    Tooltip,
     Avatar,
     Pagination,
     Menu,
@@ -33,7 +32,7 @@ export default memo(function MvPlayer() {
     ), shallowEqual)
 
     const [page, setPage] = useState({
-        pageIndex: 1,
+        pageIndex: 0,
         pageNumber: 20,
     })
     const [resolution, setResolution] = useState(
@@ -51,14 +50,14 @@ export default memo(function MvPlayer() {
     useEffect(() => {
         dispatch(getMvDetailAction(id));
         dispatch(getMvDetailInfoAction(id));
-        dispatch(getMvUrlAction(id));
+        // dispatch(getMvUrlAction(id));
         dispatch(getSimMvAction(id));
         dispatch(getArtistDetailAction(mvDetail.artistId));
     }, [dispatch, id, mvDetail.artistId]);
     //分页功能
     useEffect(() => {
         dispatch(
-            getMvCommentsAction(id, page.pageNumber, page.pageIndex - 1)
+            getMvCommentsAction(id, page.pageNumber, page.pageIndex )
         );
     }, [page, dispatch, id])
     //切换分辨率功能
@@ -66,7 +65,7 @@ export default memo(function MvPlayer() {
         dispatch(getMvUrlAction(id, resolution, resolution.value));
     }, [resolution, dispatch, id]);
     const pageChange = (index, number) => {
-        setPage({ pageIndex: index, pageNumber: number });
+        setPage({ pageIndex: index*number, pageNumber: number });
     }
     const resolutionChange = (index) => {
         setResolution(index);
