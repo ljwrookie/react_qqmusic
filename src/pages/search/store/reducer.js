@@ -17,7 +17,7 @@ function reducer(state = defaultState, action) {
         case actionTypes.CHANGE_ALBUM_LIST:
             return state.set('albumList', action.albumList);
         case actionTypes.CHANGE_SINGER_LIST:
-            return state.set('singerList', action.singerList);
+            return state.set('singerList', action.res.result.artists);
         default:
             return state;
     }

@@ -1,11 +1,6 @@
 import request from './request';
 
-export function getSongList(cat, limit, before) {
-    return request({
-        url: 'top/playlist',
-        params: {},
-    });
-}
+//获取新歌
 export function getNewSong(type) {
     return request({
         url: '/top/song',
@@ -14,12 +9,31 @@ export function getNewSong(type) {
         },
     });
 }
-
+//新碟上架
 export function getNewAlbum(area) {
     return request({
         url: '/album/new',
         params: {
             area,
+        },
+    });
+}
+//获得歌手分类
+export function getSingerList(
+    type = -1,
+    area = -1,
+    initial = -1,
+    limit = 30,
+    offset
+) {
+    return request({
+        url: '/artist/list',
+        params: {
+            type,
+            area,
+            initial,
+            limit,
+            offset,
         },
     });
 }

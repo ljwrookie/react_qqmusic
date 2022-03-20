@@ -8,22 +8,22 @@ const { themeColor, searchBarColor, grayFontColor, normalColor } =
 export const SingerItemWrapper = styled.div`
     position: relative;
     display: inline-block;
-    width: 160px;
-    height: 210px;
+    width: 190px;
+    height: 240px;
     margin: 10px 10px;
     img {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        width: 160px;
-        height: 160px;
-        border-radius: 80px;
+        width: 190px;
+        height: 190px;
+        border-radius: 50%;
         cursor: pointer;
     }
     .name {
         position: absolute;
         left: 50%;
-        bottom: 12%;
+        bottom: 8%;
         transform: translateX(-50%);
         color: ${normalColor};
         font-size: 14px;

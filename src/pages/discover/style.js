@@ -14,13 +14,15 @@ export const TopNav = styled.div`
         display: flex;
         padding: 5px 0;
         font-size: 14px;
+        width: 100%;
         background-color: ${bodyColor};
+        z-index: 1;
         .nav_item {
             margin-right: 50px;
             text-align: center;
             a {
-                position:relative;
-                line-height:30px;
+                position: relative;
+                line-height: 30px;
                 color: ${normalColor};
                 display: inline-block;
                 &:hover,
@@ -29,15 +31,15 @@ export const TopNav = styled.div`
                     color: ${themeColor};
                 }
                 &.active::after {
-                    position:absolute;
-                    content:'';
-                    width:25px;
-                    height:3px;
-                    border-radius:2px;
-                    top:100%;
-                    left: 50%; 
-                    transform:translateX(-50%);
-                    background-color:${themeColor};
+                    position: absolute;
+                    content: '';
+                    width: 25px;
+                    height: 3px;
+                    border-radius: 2px;
+                    top: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: ${themeColor};
                 }
             }
         }

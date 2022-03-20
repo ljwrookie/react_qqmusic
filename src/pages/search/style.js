@@ -14,6 +14,8 @@ export const TopNav = styled.div`
         display: flex;
         padding: 5px 0;
         font-size: 14px;
+        width: 100%;
+        z-index: 1;
         background-color: ${bodyColor};
         .nav_item {
             margin-right: 50px;
