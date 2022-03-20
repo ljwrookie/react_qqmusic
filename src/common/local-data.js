@@ -50,10 +50,6 @@ export const discoverLinks = [
         link: '/discover/new',
     },
     {
-        title: '歌单',
-        link: '/discover/songlist',
-    },
-    {
         title: '排行榜',
         link: '/discover/ranking',
     },

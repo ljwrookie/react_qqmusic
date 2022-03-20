@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { AlbumItemWrapper } from './style';
+import { getSizeImage } from '../../utils/format-utils';
 export default memo(function AlbumListItem(props) {
     const { info } = props;
     const picUrl = info.picUrl;
@@ -11,7 +12,7 @@ export default memo(function AlbumListItem(props) {
         .replace(/\//g, '-');
     return (
         <AlbumItemWrapper>
-            <img alt="封面" src={picUrl + '?param=60*60'} />
+            <img alt="封面" src={getSizeImage(picUrl, 60, 60)} />
             <div className="album_name text-nowrap">{name}</div>
             <div className="artist">{artist}</div>
             <div className="publish_time">{publishTime}</div>

@@ -1,11 +1,14 @@
 import React, { memo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getSizeImage } from '@/utils/format-utils.js';
 import { SingerItemWrapper } from './style';
 export default memo(function SingerListItem(props) {
     const { info } = props;
+    const navigate = useNavigate();
     const clickItem = (keywords) => {
         return () => {
-            window.location.href = `/search/song?keywords=${keywords}`;
+            navigate(`/search/song?keywords=${keywords}`);
+            // window.location.href = `/search/song?keywords=${keywords}`;
         };
     };
     return (

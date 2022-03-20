@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useCallback, useState } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-// import { getSingerListAction } from '../../store/actionCreators';
+import { useNavigate } from 'react-router-dom';
 import { getSingerListAction } from '../../store/actionCreators';
 import SingerListItem from '@/components/singer-item';
 import {
@@ -9,7 +9,6 @@ import {
     singInitial,
 } from '@/common/local-data';
 import { DiscoverSingerWrapper, NoPicName } from './style';
-import { Navigate } from 'react-router-dom';
 export default memo(function Singer() {
     const [area, setArea] = useState('全部');
     const [areaCode, setAreaCode] = useState(-1);
@@ -25,7 +24,7 @@ export default memo(function Singer() {
     );
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getSingerListAction(typeCode, areaCode, initCode));
+        dispatch(getSingerListAction(typeCode, areaCode, initCode, 100));
     }, [dispatch, areaCode, typeCode, initCode]);
     const areaList = Object.keys(singerAreaList);
     const typeList = Object.keys(singerTypeList);
@@ -50,9 +49,11 @@ export default memo(function Singer() {
         }
         setInitCode(value);
     };
+    const navigate = useNavigate();
     const clickItem = (keywords) => {
         return () => {
-            window.location.href = `/search/song?keywords=${keywords}`;
+            // window.location.href = `/search/song?keywords=${keywords}`;
+            navigate(`/search/song?keywords=${keywords}`);
         };
     };
     return (
@@ -106,7 +107,7 @@ export default memo(function Singer() {
             </DiscoverSingerWrapper>
             {allSingerList &&
                 allSingerList.splice(0, 10).map((item) => {
-                    return <SingerListItem info={item} />;
+                    return <SingerListItem info={item} key={item.id} />;
                 })}
             <NoPicName>
                 {allSingerList &&
