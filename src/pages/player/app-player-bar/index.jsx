@@ -110,43 +110,41 @@ export default memo(function PlayBar() {
     // 歌曲播放触发
     const timeUpdate = useCallback(
         (e) => {
-            if (isShowLyric) {
-                // 没有在滑动滑块时触发(默认时没有滑动)
-                let currentTime = e.target.currentTime;
-                if (!isChanging) {
-                    setCurrentTime(currentTime * 1000);
-                    setProgress(((currentTime * 1000) / duration) * 100);
+            // 没有在滑动滑块时触发(默认时没有滑动)
+            let currentTime = e.target.currentTime;
+            if (!isChanging) {
+                setCurrentTime(currentTime * 1000);
+                setProgress(((currentTime * 1000) / duration) * 100);
+            }
+
+            // 当前音乐处于播放状态(用于搜索音乐,点击item播放音乐时使用)
+            if (currentTime > 0.1 && currentTime < 0.5) setIsPlaying(true);
+
+            // 获取当前播放歌词
+            let i = 0; //用于获取歌词的索引
+            // 2.遍历歌词数组
+            for (; i < lyricList.length; i++) {
+                const item = lyricList[i];
+                if (currentTime * 1000 < item.totalTime) {
+                    // 4.跳出循环
+                    break;
                 }
-
-                // 当前音乐处于播放状态(用于搜索音乐,点击item播放音乐时使用)
-                if (currentTime > 0.1 && currentTime < 0.5)
-                    setIsPlaying(true);
-
-                // 获取当前播放歌词
-                let i = 0; //用于获取歌词的索引
-                // 2.遍历歌词数组
-                for (; i < lyricList.length; i++) {
-                    const item = lyricList[i];
-                    if (currentTime * 1000 < item.totalTime) {
-                        // 4.跳出循环
-                        break;
-                    }
-                }
-                // 对dispatch进行优化,如果index没有改变,就不进行dispatch
-                if (currentLyricIndex !== i - 1) {
-                    dispatch(changeCurrentLyricIndexAction(i - 1));
-                    const content =
-                        lyricList[i - 1] && lyricList[i - 1].content;
-
+            }
+            // 对dispatch进行优化,如果index没有改变,就不进行dispatch
+            if (currentLyricIndex !== i - 1) {
+                dispatch(changeCurrentLyricIndexAction(i - 1));
+                const content =
+                    lyricList[i - 1] && lyricList[i - 1].content;
+                if (isShowLyric) {
                     message.open({
                         key: 'lyric',
                         content: content ? content : 'QQ音乐，听我想听',
                         duration: 0,
                         className: 'lyric_class',
                     });
+                } else {
+                    message.destroy('lyric');
                 }
-            } else {
-                message.destroy('lyric');
             }
         },
         [

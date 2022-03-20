@@ -1,6 +1,5 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 import Discover from '../pages/discover';
-import SongList from '../pages/discover/c-pages/songlist';
 import Ranking from '../pages/discover/c-pages/ranking';
 import Singer from '../pages/discover/c-pages/singer';
 import New from '../pages/discover/c-pages/new';
@@ -37,10 +36,6 @@ const GetRoutes = () => {
             path: '/discover',
             element: <Discover />,
             children: [
-                {
-                    path: 'songlist',
-                    element: <SongList />,
-                },
                 {
                     path: 'ranking',
                     element: <Ranking />,

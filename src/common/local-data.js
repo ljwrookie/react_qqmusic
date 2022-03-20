@@ -50,10 +50,6 @@ export const discoverLinks = [
         link: '/discover/new',
     },
     {
-        title: '歌单',
-        link: '/discover/songlist',
-    },
-    {
         title: '排行榜',
         link: '/discover/ranking',
     },
@@ -96,3 +92,28 @@ export const searchLinks = [
         link: '/search/singer',
     },
 ];
+export const singerAreaList = {
+    全部: -1,
+    华语: 7,
+    欧美: 96,
+    日本: 8,
+    韩国: 16,
+    其他: 0,
+};
+export const singerTypeList = {
+    全部: -1,
+    男: 1,
+    女: 2,
+    组合: 3,
+};
+function range(first, last) {
+    var r = [],
+        i = first.charCodeAt(0);
+
+    while (i <= last.charCodeAt(0)) {
+        r.push(String.fromCharCode(i++));
+    }
+
+    return r;
+}
+export const singInitial = range('A', 'Z');

@@ -17,7 +17,8 @@ const changeAlbumListAction = (res) => ({
 });
 const changeSingerListAction = (res) => ({
     type: actionTypes.CHANGE_SINGER_LIST,
-    singerList: res.result.artists,
+    // singerList: res.result.artists,
+    res,
 });
 
 export const getSongListAction = (keywords, limit = 30, offset = 0) => {

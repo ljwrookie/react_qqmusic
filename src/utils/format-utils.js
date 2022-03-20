@@ -1,5 +1,5 @@
 export function getSizeImage(imgUrl, width, height) {
-    return `${imgUrl}?param=${width}x${height}`;
+    return `${imgUrl}?param=${width}y${height}`;
 }
 
 export function getCount(count) {

@@ -7,9 +7,9 @@ import { SearchSingerWrapper } from './style';
 export default memo(function SearchSinger() {
     const [keyword] = useSearchParams();
     const keywords = keyword.get('keywords');
-    const { artists } = useSelector(
+    const { singerList } = useSelector(
         (state) => ({
-            artists: state.getIn(['search', 'singerList']),
+            singerList: state.getIn(['search', 'singerList']),
         }),
         shallowEqual
     );
@@ -19,8 +19,8 @@ export default memo(function SearchSinger() {
     }, [dispatch, keywords]);
     return (
         <SearchSingerWrapper>
-            {artists &&
-                artists.map((item) => {
+            {singerList &&
+                singerList.map((item) => {
                     return <SingerListItem info={item} key={item.id} />;
                 })}
         </SearchSingerWrapper>

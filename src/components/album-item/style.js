@@ -16,6 +16,7 @@ export const AlbumItemWrapper = styled.div`
     img {
         width: 60px;
         border-radius: 6px;
+        margin-left: 8px;
         cursor: pointer;
     }
     .album_name {

@@ -17,6 +17,7 @@ export default memo(function SearchSong() {
     useEffect(() => {
         dispatch(getSongListAction(keywords));
     }, [dispatch, keywords]);
+
     return (
         <SongWrapper>
             <div className="batch_operation">
@@ -47,7 +48,14 @@ export default memo(function SearchSong() {
                         artist: item.ar[0].name,
                         alias: item.alia,
                     };
-                    return <SongListItem key={item.id} {...props} />;
+                    return (
+                        <SongListItem
+                            className="song_list"
+                            key={item.id}
+                            {...props}
+                            lazyload="true"
+                        />
+                    );
                 })}
         </SongWrapper>
     );
