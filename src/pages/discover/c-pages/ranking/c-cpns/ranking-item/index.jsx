@@ -18,7 +18,8 @@ export default memo(function RankingItem(props) {
     useEffect(() => {
         dispatch(getPlaylistAllSongsAction(id));
     }, [dispatch, id]);
-    const songList = playlistAllSongs.splice(0, 3);
+    const str = JSON.stringify(playlistAllSongs.splice(0, 3));
+    const songList = JSON.parse(str);
     const info = {
         img_url,
         playCount,

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import moment from 'moment';
 import { Carousel } from 'antd';
-import { getNewSongsAction } from '../../store/actionCreator';
+import { getNewSongsAction } from '../../store/actionCreators';
 
 import { RecommendWrapper, RecommendControl } from './style';
 

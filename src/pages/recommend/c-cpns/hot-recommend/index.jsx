@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import { Carousel } from 'antd';
-import { getHotRecommendAction } from '../../store/actionCreator';
+import { getHotRecommendAction } from '../../store/actionCreators';
 
 import { RecommendWrapper, RecommendControl } from './style';
 

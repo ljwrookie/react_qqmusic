@@ -3,7 +3,7 @@ import React, { memo, useEffect, useRef } from 'react';
 
 // 2. 功能性东西
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { getTopBannersAction } from '../../store/actionCreator';
+import { getTopBannersAction } from '../../store/actionCreators';
 // 3. 导入的组件
 import { Carousel } from 'antd';
 import { RecommendControl, BannerWrapper } from './style';

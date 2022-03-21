@@ -1,13 +1,8 @@
 import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
-const {
-    themeColor,
-    bodyColor,
-    normalColor,
-    grayFontColor,
-    searchBarColor,
-} = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { themeColor, bodyColor, normalColor, grayFontColor, sideColor } =
+    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 
 export const RankingItemWrapper = styled.div`
     display: flex;
@@ -16,7 +11,7 @@ export const RankingItemWrapper = styled.div`
     align-items: center;
     margin: 10px 0;
     border-radius: 15px;
-    background-color: ${searchBarColor};
+    background-color: ${sideColor};
     margin-top: 20px;
     &:hover {
         transform: translateY(-20px);

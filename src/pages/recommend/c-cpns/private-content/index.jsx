@@ -2,7 +2,7 @@ import React, { useEffect, memo, useRef } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import { Carousel } from 'antd';
-import { getPrivateContentAction } from '../../store/actionCreator';
+import { getPrivateContentAction } from '../../store/actionCreators';
 
 import { RecommendWrapper, RecommendControl } from './style';
 
