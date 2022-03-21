@@ -141,7 +141,8 @@ export default memo(function MvPlayer() {
                                         className="artist-img"
                                         src={
                                             artistDetail.artist &&
-                                            artistDetail.artist.cover
+                                            getSizeImage(artistDetail.artist
+                                                .cover,50,50)
                                         }
                                         alt={mvDetail.artistName}
                                     ></img>
