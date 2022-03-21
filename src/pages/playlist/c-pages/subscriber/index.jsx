@@ -8,9 +8,10 @@ import { Pagination } from 'antd';
 import {  getSizeImage } from '@/utils/format-utils';
 import { getPlaylistSubscriberAction } from '../../store/actionCreator';
 import { getPlaylistSubscriber } from '../../../../service/playlist';
+import { nanoid } from 'nanoid';
 
 export default memo(function PlaylistSubscriber() {
-  
+    const loginStatus = -1
     const dispatch = useDispatch();
     const { playlistSubscriber } = useSelector((state) => {
         return {
@@ -23,7 +24,7 @@ export default memo(function PlaylistSubscriber() {
     const [playlistId, setPlaylistId] = useSearchParams();
 
     const [page, setPage] = useState({
-        limit: 20,
+        limit: 30,
         offset: 0,
     });
     const pageChange = (index, number) => {
@@ -33,10 +34,7 @@ export default memo(function PlaylistSubscriber() {
     const total = playlistId.get('total');
   
   useEffect(() => {
-      getPlaylistSubscriber(id,20,0).then((res) => {
-        console.log(res)
-      })
-        dispatch(getPlaylistSubscriberAction(id, page.limit, page.offset));
+    dispatch(getPlaylistSubscriberAction(id, page.limit, page.offset));
     }, [dispatch, id, page]);
     return (
         <SubScriberWrapper>
@@ -44,7 +42,7 @@ export default memo(function PlaylistSubscriber() {
                 {
                   playlistSubscriber && playlistSubscriber.map((item) => {
                         return (
-                            <div key={item.id}  className="person">
+                            <div key={nanoid()}  className="person">
                                 <img
                                     src={getSizeImage(
                                         item.avatarUrl,
@@ -59,12 +57,12 @@ export default memo(function PlaylistSubscriber() {
                     })}
             </div>
             <div className="pagination">
-                <Pagination
+                <Pagination style={{display : loginStatus=== -1 ? 'none': 'flex'}}
                     onChange={(page, pageSize) => {
                         pageChange(page, pageSize);
                     }}
                     defaultCurrent={1}
-                    defaultPageSize={20}
+                    defaultPageSize={30}
                     total={total}
                 />
             </div>

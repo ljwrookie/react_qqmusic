@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import { BackTop } from 'antd';
 
 import { RecmdMain } from './style';
 import TopBanners from './c-cpns/top-banners';
@@ -16,9 +15,7 @@ export default memo(function Recommend() {
             <PrivateContent />
             <NewSongs />
             <MvRecommend />
-            <BackTop>
-                <div className="back_top">UP</div>
-            </BackTop>
+            
         </RecmdMain>
     );
 });

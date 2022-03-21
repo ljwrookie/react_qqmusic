@@ -18,6 +18,9 @@ export const RecommendWrapper = styled.div`
             .page {
                 display: flex !important;
                 justify-content: space-between;
+                .song-name{
+                    text-decoration:none;
+                }
             }
         }
     }

@@ -92,7 +92,7 @@ export default memo(function NewSongs() {
                                             };
                                             return (
                                                 <div key={it.id}>
-                                                    <Link
+                                                    <Link className='song-name'
                                                         to={`/player?id=${it.id}`}
                                                     >
                                                         <ThemeCover

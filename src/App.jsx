@@ -4,13 +4,13 @@ import { Provider } from 'react-redux';
 import GetRoutes from './route';
 // import '@/assets/css/appmain.css';
 import store from './store';
-import { AppWrapper } from './appStyle';
+import { AppWrapper, BackTopWrapper } from './appStyle';
 import { BrowserRouter } from 'react-router-dom';
 import AppHeader from './components/app-header';
 import AppPlayerBar from './pages/player/app-player-bar';
 // import PlayerBar from './components/playerbar';
 import AppSidernav from './components/app-sidernav';
-
+import { BackTop } from 'antd';
 export default memo(function App() {
     //使用router路由表
 
@@ -31,6 +31,11 @@ export default memo(function App() {
                         </div>
                     </div>
                 </AppWrapper>
+                <BackTopWrapper>
+                    <BackTop>
+                        <div className="back_top">UP</div>
+                    </BackTop>
+                </BackTopWrapper>
             </BrowserRouter>
         </Provider>
     );

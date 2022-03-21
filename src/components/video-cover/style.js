@@ -1,22 +1,20 @@
 import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
-const {themeColor, grayFontColor, normalColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+const { themeColor, grayFontColor, normalColor } =
+    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 export const VideoCoverWrapper = styled.div`
-    .video-link{
-            text-decoration:none;
+    .video-link {
+        text-decoration: none;
     }
     font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
     /* const size = $(props =>{props.width}) */
 
-    /* display: flex !important;
-  /* display: inline-block; */
-    /* align-items: center;   */
     width: ${(props) => props.width}px;
     margin-top: 20px;
     /* height:30px; */
     .cover-top {
-        cursor: pointer; 
+        cursor: pointer;
         position: relative;
         transition: all 0.3s;
 
@@ -93,9 +91,9 @@ export const VideoCoverWrapper = styled.div`
     }
 
     .cover-bottom {
-        text-decoration:none;
+        /* text-decoration:none; */
 
-        cursor: pointer; 
+        cursor: pointer;
         font-size: 14px;
         color: ${normalColor};
         margin-top: 10px;
@@ -103,20 +101,18 @@ export const VideoCoverWrapper = styled.div`
             color: ${themeColor};
         }
     }
-     .all_name{
-    width:200px;
-    /* margin-top:5px; */
-    /* margin:0; */
-    line-height:20px;
-    .artist{
-      /* display:inline-block; */
-      text-decoration: none;
-      color:${grayFontColor};
-      /* word-wrap:break-word; */
-      margin-right: 6px;
-      
-    
-      
+    .all_name {
+        width: 200px;
+        /* margin-top:5px; */
+        /* margin:0; */
+        line-height: 20px;
+        .artist {
+            /* display:inline-block; */
+            text-decoration: none;
+            color: ${grayFontColor};
+            /* word-wrap:break-word; */
+            margin-right: 6px;
+
             &:not(:last-of-type) {
                 &::after {
                     content: '  /';
@@ -127,6 +123,6 @@ export const VideoCoverWrapper = styled.div`
             &:hover {
                 color: ${themeColor};
             }
-          }
         }
+    }
 `;

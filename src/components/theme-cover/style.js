@@ -5,10 +5,6 @@ const { themeColor, normalColor, grayFontColor } = (getMode() === 'LIGHT_MODE' ?
 export const ThemeCoverWrapper = styled.div`
     font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
     /* const size = $(props =>{props.width}) */
-
-    /* display: flex !important;
-  /* display: inline-block; */
-    /* align-items: center;   */
     width: ${(props) => props.width}px;
     margin-top: 20px;
 
@@ -95,6 +91,7 @@ export const ThemeCoverWrapper = styled.div`
         font-size: 14px;
         color: ${normalColor};
         margin-top: 10px;
+
         &:hover {
             color: ${themeColor};
         }
@@ -106,5 +103,4 @@ export const ThemeCoverWrapper = styled.div`
             color: ${themeColor};
         }
     }
-    
 `;

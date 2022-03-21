@@ -3,8 +3,6 @@ import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
 const {themeColor, normalColor, grayFontColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
 export const HeaderWrapper = styled.div`
-    
-    /* height: 20px; */
 
     display: flex;
     justify-content: space-between;
