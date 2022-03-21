@@ -5,10 +5,10 @@ import { getSizeImage, getCount } from '@/utils/format-utils';
 import { ThemeCoverWrapper } from './style';
 
 export default memo(function ThemeCover(props) {
-    const { name, singer, img_url, playCount, width, height } = props; // const {url_name} =
+    const { name, singer, img_url, playCount, width, height,hover } = props; // const {url_name} =
     // console.log(urlList)
     return (
-        <ThemeCoverWrapper width={width} height={height}>
+        <ThemeCoverWrapper width={width} height={height} hover={hover}>
             <div className="cover-top">
                 <img
                     className="image"

@@ -4,6 +4,7 @@ import {
     getNewSong,
     getNewAlbum,
     getSingerList,
+    getTopList,
 } from '@/service/discover';
 
 const changeNewSongAction = (res) => ({
@@ -21,6 +22,10 @@ const changeSingerListAction = (res) => ({
     res,
 });
 
+const changeTopListAction = (res) => ({
+    type: actionTypes.CHANGE_TOP_LIST,
+    res,
+});
 export const getNewSongAction = (type = 0) => {
     return (dispatch) => {
         getNewSong(type).then((res) => {
@@ -45,6 +50,13 @@ export const getSingerListAction = (
     return (dispatch) => {
         getSingerList(type, area, initial, limit, offset).then((res) => {
             dispatch(changeSingerListAction(res));
+        });
+    };
+};
+export const getTopListAction = () => {
+    return (dispatch) => {
+        getTopList().then((res) => {
+            dispatch(changeTopListAction(res));
         });
     };
 };

@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 
-const { themeColor, normalColor, grayFontColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
+const { themeColor, normalColor, grayFontColor } =
+    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 export const ThemeCoverWrapper = styled.div`
     font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
     /* const size = $(props =>{props.width}) */
     width: ${(props) => props.width}px;
-    margin-top: 20px;
+    margin-top: ${(props) => {
+        return props.hover === false ? '0px' : '20px';
+    }};
 
     /* height:30px; */
     .cover-top {
@@ -77,7 +80,11 @@ export const ThemeCoverWrapper = styled.div`
             }
         }
         &:hover {
-            transform: translateY(-20px);
+            transform: ${(props) => {
+                return props.hover === false
+                    ? 'none'
+                    : 'translateY(-20px)';
+            }};
 
             .mask {
                 background-color: #000;

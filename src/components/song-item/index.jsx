@@ -28,9 +28,9 @@ export default memo(function SongListItem(props) {
     // other function
     const playMusic = (e, item) => {
         // 如果不跳转,那么组织超链接的默认行为
-        // e.preventDefault();
-        // // 阻止合成事件的冒泡
-        // e.stopPropagation();
+        e.preventDefault();
+        // 阻止合成事件的冒泡
+        e.stopPropagation();
         // 阻止与原生事件的冒泡
         e.nativeEvent.stopImmediatePropagation();
         // 派发action 歌曲详情

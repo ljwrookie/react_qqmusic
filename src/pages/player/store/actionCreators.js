@@ -124,7 +124,10 @@ export const changeCurrentIndexAndSongAction = (tag) => {
         // 播放列表
         const playList = getState().getIn(['player', 'playList']);
         // 当前播放的索引/下标
-        let currentSongIndex = getState().getIn(['player', 'currentSongIndex']);
+        let currentSongIndex = getState().getIn([
+            'player',
+            'currentSongIndex',
+        ]);
 
         // 根据播放顺序选择下一首音乐
         switch (playSequence) {
@@ -142,8 +145,10 @@ export const changeCurrentIndexAndSongAction = (tag) => {
                 // 更改当前播放音乐的下标
                 currentSongIndex += tag;
                 // 判断当前音乐的下标是否超出播放列表长度
-                if (currentSongIndex >= playList.length) currentSongIndex = 0;
-                if (currentSongIndex < 0) currentSongIndex = playList.length - 1;
+                if (currentSongIndex >= playList.length)
+                    currentSongIndex = 0;
+                if (currentSongIndex < 0)
+                    currentSongIndex = playList.length - 1;
         }
 
         // 获取需要播放的音乐
@@ -239,7 +244,9 @@ export const getSongDetailArrayAction = (listId, index) => {
                         // (3)更改当前播放歌曲
                         let currentIndexSong = playList[songIndex] || song;
                         // console.log(currentIndexSong)
-                        dispatch(changeCurrentSongAction(currentIndexSong));
+                        dispatch(
+                            changeCurrentSongAction(currentIndexSong)
+                        );
                         // (4)请求歌曲的歌词
                         dispatch(getLyricAction(idx));
                         // (5)更新歌曲数量

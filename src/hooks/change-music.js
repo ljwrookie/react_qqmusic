@@ -10,13 +10,13 @@ import { ExclamationOutlined } from '@ant-design/icons';
  */
 export function useAddPlaylist(playlist, message) {
     const dispatch = useDispatch();
-    return (e, id) => {
-        // 阻止超链接跳转
-        e.preventDefault && e.preventDefault();
-        // 阻止合成事件的冒泡
-        e.stopPropagation();
-        // 阻止与原生事件的冒泡
-        e.nativeEvent.stopImmediatePropagation();
+    return (id) => {
+        // // 阻止超链接跳转
+        // e.preventDefault && e.preventDefault();
+        // // 阻止合成事件的冒泡
+        // e.stopPropagation();
+        // // 阻止与原生事件的冒泡
+        // e.nativeEvent.stopImmediatePropagation();
         // 获取歌曲详情,添加到播放列表
         dispatch(getAddSongDetailAction(id));
         // 提示添加成功或失败

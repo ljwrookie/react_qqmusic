@@ -42,7 +42,7 @@ export const SETTLE_SINGER = 5;
 export const SONG_PLAYLIST_ID = [
     167876, 411214279, 1483891561, 1363948882, 467952048,
 ];
-// 本地存储音乐Key
+// // 本地存储音乐Key
 export const LOCAL_PLAYLIST_ID_KEY = 'playlistId'; // 歌曲列表id
 export const LOCAL_CURRENT_SONG_INDEX_KEY = 'currentSongIndex'; // 歌曲所引
 

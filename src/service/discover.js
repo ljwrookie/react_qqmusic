@@ -37,3 +37,10 @@ export function getSingerList(
         },
     });
 }
+
+//获得排行榜
+export function getTopList() {
+    return request({
+        url: '/toplist',
+    });
+}

@@ -17,6 +17,8 @@ import {
     changePlaySequenceAction,
     changeCurrentIndexAndSongAction,
     changeCurrentLyricIndexAction,
+    changeCurrentSongAction,
+    changeSongIndexAction,
 } from '../store/actionCreators';
 import { Slider, Drawer, message } from 'antd';
 
@@ -75,10 +77,18 @@ export default memo(function PlayBar() {
     };
     // other hook
     const audioRef = useRef();
-    // 默认歌曲
+
+    // 恢复上次关闭之前的歌曲状态
     useEffect(() => {
-        dispatch(getSongDetailAction(167876));
-    }, [dispatch]);
+        if (firstLoad) {
+            const playListId = localStorage.getItem('playlistId')
+                ? JSON.parse(localStorage.getItem('playlistId'))
+                : [167876];
+            for (let item of playListId) {
+                dispatch(getSongDetailAction(item));
+            }
+        }
+    }, [dispatch, firstLoad]);
 
     // 设置音频src
     useEffect(() => {
@@ -106,7 +116,6 @@ export default memo(function PlayBar() {
         // 播放音乐
         isPlaying ? audioRef.current.pause() : audioRef.current.play();
     }, [isPlaying]);
-
     // 歌曲播放触发
     const timeUpdate = useCallback(
         (e) => {
