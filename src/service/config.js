@@ -1,6 +1,6 @@
 // 本地测试API
-const devBaseURL = 'http://47.108.191.181:3000/';
-const proBaseURL = 'http://47.108.191.181:3000/';
+const devBaseURL = 'http://localhost:4000';
+const proBaseURL = 'http://localhost:4000';
 // const devBaseURL = 'http://hudd.xyz:4000';
 // const proBaseURL = 'http://hudd.xyz:4000';
 

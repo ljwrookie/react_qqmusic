@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import moment from 'moment';
 import { Carousel } from 'antd';
 import { getNewSongsAction } from '../../store/actionCreators';
-
+import { getSongDetailAction } from '@/pages/player/store/actionCreators';
 import { RecommendWrapper, RecommendControl } from './style';
 
 import ThemeHeaderRCM from '@/components/theme-header-rcm';
@@ -61,7 +61,11 @@ export default memo(function NewSongs() {
         return index + item;
     });
     // 全部:0 华语:7 欧美:96 日本:8 韩国:16
-
+    const clickPlay = (id) => {
+        return () => {
+            dispatch(getSongDetailAction(id));
+        };
+    };
     return (
         <RecommendWrapper>
             <ThemeHeaderRCM
@@ -92,14 +96,18 @@ export default memo(function NewSongs() {
                                             };
                                             return (
                                                 <div key={it.id}>
-                                                    <Link className='song-name'
-                                                        to={`/player?id=${it.id}`}
+                                                    <div
+                                                        className="song-name"
+                                                        // to={`/player?id=${it.id}`}
+                                                        onClick={clickPlay(
+                                                            it.id
+                                                        )}
                                                     >
                                                         <ThemeCover
                                                             className="cover"
                                                             {...cover_props}
                                                         />
-                                                    </Link>
+                                                    </div>
                                                     <div className="all_name text-nowrap">
                                                         {it.artists.map(
                                                             (artist) => {

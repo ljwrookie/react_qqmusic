@@ -70,7 +70,6 @@ export default memo(function Player() {
     }, [dispatch, id, page]);
 
     const commentChange = (index, number) => {
-        
         setPage({ offset: (index - 1) * number, limit: number });
     };
 
@@ -132,7 +131,6 @@ export default memo(function Player() {
 
                     <div className="simi-playlists">
                         {similarAlbum.map((item) => {
-                            console.log(item);
                             return (
                                 <Link
                                     key={item.id}

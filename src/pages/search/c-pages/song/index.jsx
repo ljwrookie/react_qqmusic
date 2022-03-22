@@ -1,28 +1,43 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { SongWrapper } from './style';
 import SongListItem from '@/components/song-item';
 import { getSongListAction } from '../../store/actionCreators';
-import { message } from 'antd';
+import { message, Skeleton, Divider } from 'antd';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { useAddPlaylist } from '@/hooks/change-music';
-import { getSongDetailAction } from '@/pages/player/store/actionCreators';
 export default memo(function SearchSong() {
-    const { playList } = useSelector(
+    const { playList, songs } = useSelector(
         (state) => ({
             playList: state.getIn(['player', 'playList']),
+            songs: state.getIn(['search', 'songList']),
         }),
         shallowEqual
     );
     const [keyword] = useSearchParams();
     const keywords = keyword.get('keywords');
-    const { songs } = useSelector(
-        (state) => ({
-            songs: state.getIn(['search', 'songList']),
-        }),
-        shallowEqual
-    );
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState([]);
+    const [offset, setOffset] = useState(0);
+
+    const loadMoreData = () => {
+        if (loading || offset > 10) {
+            return;
+        }
+        console.log(offset);
+        setLoading(true);
+        dispatch(getSongListAction(keywords, 30, offset * 30));
+        setOffset(offset + 1);
+        setData([...data, ...songs]);
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        loadMoreData();
+    }, []);
+
     useEffect(() => {
         dispatch(getSongListAction(keywords));
     }, [dispatch, keywords]);
@@ -43,6 +58,7 @@ export default memo(function SearchSong() {
             addPlayList(e, id);
         }
     };
+
     return (
         <SongWrapper>
             <div className="batch_operation">
@@ -64,25 +80,34 @@ export default memo(function SearchSong() {
                 <div className="album">专辑</div>
                 <div className="total_time">时长</div>
             </div>
-            {songs &&
-                songs.map((item) => {
-                    const props = {
-                        id: item.id,
-                        name: item.name,
-                        dt: item.dt,
-                        album: item.al.name,
-                        artist: item.ar[0].name,
-                        alias: item.alia,
-                    };
-                    return (
-                        <SongListItem
-                            className="song_list"
-                            key={item.id}
-                            {...props}
-                            lazyload="true"
-                        />
-                    );
-                })}
+            <InfiniteScroll
+                dataLength={data.length}
+                next={loadMoreData}
+                hasMore={data.length < 270}
+                loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+                endMessage={<Divider plain>我是有底线的 🤐</Divider>}
+                scrollableTarget="scrollableDiv"
+            >
+                {data &&
+                    data.map((item) => {
+                        const props = {
+                            id: item.id,
+                            name: item.name,
+                            dt: item.dt,
+                            album: item.al.name,
+                            artist: item.ar[0].name,
+                            alias: item.alia,
+                        };
+                        return (
+                            <SongListItem
+                                className="song_list"
+                                key={item.id + item.al.name + item.name}
+                                {...props}
+                                lazyload="true"
+                            />
+                        );
+                    })}
+            </InfiniteScroll>
         </SongWrapper>
     );
 });

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import propTypes from 'prop-types';
 
-import { formatDate, getPlayUrl } from '@/utils/format-utils.js';
+import { formatDate } from '@/utils/format-utils.js';
 import { removeSongId } from '@/utils/localstorage';
 import { changePlaylistAndCount } from '@/pages/player/store/actionCreators.js';
 import { ItemWrapper } from './style';
@@ -38,7 +38,6 @@ function SongListItem(props) {
         playList.splice(currentSongIndex, 1);
         dispatch(changePlaylistAndCount(playList));
         // 切换下一首音乐
-        nextMusic();
     };
     return (
         <ItemWrapper className={isActive} onClick={clickItem}>
