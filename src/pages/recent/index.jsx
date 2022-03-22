@@ -1,6 +1,18 @@
 import React, { memo } from 'react';
-
-
-export default memo(function Recent() {
-    return <div>Recent</div>;
+import { RecentNav } from './style';
+import { Skeleton } from 'antd';
+export default memo(function Radio() {
+    return (
+        
+            <RecentNav>
+                <div className="nav_title">最近播放</div>
+                <Skeleton active />
+                <Skeleton active />
+                <Skeleton active />
+                <Skeleton active />
+                <Skeleton active />
+                <Skeleton active />
+            </RecentNav>
+        
+    );
 });

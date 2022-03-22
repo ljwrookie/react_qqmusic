@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo , Suspense} from 'react';
 import { Provider } from 'react-redux';
 
 import GetRoutes from './route';
@@ -10,7 +10,7 @@ import AppHeader from './components/app-header';
 import AppPlayerBar from './pages/player/app-player-bar';
 // import PlayerBar from './components/playerbar';
 import AppSidernav from './components/app-sidernav';
-import { BackTop } from 'antd';
+import { BackTop, Skeleton } from 'antd';
 export default memo(function App() {
     //使用router路由表
 
@@ -25,7 +25,20 @@ export default memo(function App() {
                         <div className="app_right">
                             <AppHeader />
                             <div className="w1100">
-                                <GetRoutes />
+                                <Suspense
+                                    fallback={
+                                        <div>
+                                            <Skeleton active />
+                                            <Skeleton active />
+                                            <Skeleton active />
+                                            <Skeleton active />
+                                            <Skeleton active />
+                                            <Skeleton active />
+                                        </div>
+                                    }
+                                >
+                                    <GetRoutes />
+                                </Suspense>
                             </div>
                             <AppPlayerBar />
                         </div>

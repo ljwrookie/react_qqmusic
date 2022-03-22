@@ -1,32 +1,55 @@
 import { Navigate, useRoutes } from 'react-router-dom';
-import Discover from '../pages/discover';
-import Ranking from '../pages/discover/c-pages/ranking';
-import Singer from '../pages/discover/c-pages/singer';
-import New from '../pages/discover/c-pages/new';
-import MvCommend from '../pages/mv/c-pages/recommend';
-import MvRanking from '../pages/mv/c-pages/ranking';
-import MvList from '../pages/mv/c-pages/mv-list';
-import Download from '../pages/download';
-import Like from '../pages/like';
-import LocalSong from '../pages/local-song';
-import Mv from '../pages/mv';
-import Radio from '../pages/radio';
-import Recommend from '../pages/recommend';
-import Recent from '../pages/recent';
-import Player from '../pages/player';
+import React from 'react';
+const Discover = React.lazy((_) => import('../pages/discover'));
+const Ranking = React.lazy((_) =>
+    import('../pages/discover/c-pages/ranking')
+);
+const Singer = React.lazy((_) =>
+    import('../pages/discover/c-pages/singer')
+);
+const New = React.lazy((_) => import('../pages/discover/c-pages/new'));
+const MvCommend = React.lazy((_) =>
+    import('../pages/mv/c-pages/recommend')
+);
+const MvRanking = React.lazy((_) => import('../pages/mv/c-pages/ranking'));
+const MvList = React.lazy((_) => import('../pages/mv/c-pages/mv-list'));
+const Download = React.lazy((_) => import('../pages/download'));
+const Like = React.lazy((_) => import('../pages/like'));
+const LocalSong = React.lazy((_) => import('../pages/local-song'));
+const Mv = React.lazy((_) => import('../pages/mv'));
+const Radio = React.lazy((_) => import('../pages/radio'));
+const Recommend = React.lazy((_) => import('../pages/recommend'));
+const Recent = React.lazy((_) => import('../pages/recent'));
+const Player = React.lazy((_) => import('../pages/player'));
 
-import Playlist from '../pages/playlist';
-import PlaylistDetail from '../pages/playlist/c-pages/all-songs';
-import PlaylistComment from '../pages/playlist/c-pages/comment';
-import PlaylistSubscriber from '../pages/playlist/c-pages/subscriber';
-import MvPlayer from '../pages/mv-player';
-import Search from '../pages/search';
-import SearchSong from '../pages/search/c-pages/song';
-import SearchMv from '../pages/search/c-pages/mv';
-import SearchAlbum from '../pages/search/c-pages/album';
-import SearchSinger from '../pages/search/c-pages/singer';
-import DiscoverNewSong from '../pages/discover/c-pages/new/c-pages/songs';
-import DiscoverNewAlbum from '../pages/discover/c-pages/new/c-pages/albums';
+const Playlist = React.lazy((_) => import('../pages/playlist'));
+const PlaylistDetail = React.lazy((_) =>
+    import('../pages/playlist/c-pages/all-songs')
+);
+const PlaylistComment = React.lazy((_) =>
+    import('../pages/playlist/c-pages/comment')
+);
+const PlaylistSubscriber = React.lazy((_) =>
+    import('../pages/playlist/c-pages/subscriber')
+);
+const MvPlayer = React.lazy((_) => import('../pages/mv-player'));
+const Search = React.lazy((_) => import('../pages/search'));
+const SearchSong = React.lazy((_) =>
+    import('../pages/search/c-pages/song')
+);
+const SearchMv = React.lazy((_) => import('../pages/search/c-pages/mv'));
+const SearchAlbum = React.lazy((_) =>
+    import('../pages/search/c-pages/album')
+);
+const SearchSinger = React.lazy((_) =>
+    import('../pages/search/c-pages/singer')
+);
+const DiscoverNewSong = React.lazy((_) =>
+    import('../pages/discover/c-pages/new/c-pages/songs')
+);
+const DiscoverNewAlbum = React.lazy((_) =>
+    import('../pages/discover/c-pages/new/c-pages/albums')
+);
 // import { element } from 'prop-types';
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArray": true}] */
