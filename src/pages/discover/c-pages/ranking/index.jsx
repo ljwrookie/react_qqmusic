@@ -17,9 +17,6 @@ export default memo(function Ranking() {
     useEffect(() => {
         dispatch(getTopListAction());
     }, [dispatch]);
-    useEffect(() => {
-        console.log(topList);
-    });
     const navigate = useNavigate();
     const clickItem = (id) => {
         return () => {
@@ -33,15 +30,14 @@ export default memo(function Ranking() {
                     const props = {
                         id: item.id,
                         name: item.name,
-                        key: item.id,
                         img_url: item.coverImgUrl,
                         playCount: item.playCount,
                         width: 150,
                         height: 150,
                     };
                     return (
-                        <div onClick={clickItem(item.id)}>
-                            <RankingItem {...props} />
+                        <div onClick={clickItem(item.id)} key={item.id}>
+                            <RankingItem {...props} key={item.id} />
                         </div>
                     );
                 })}
@@ -60,6 +56,7 @@ export default memo(function Ranking() {
                             <div
                                 className="theme_cover"
                                 onClick={clickItem(item.id)}
+                                key={item.id}
                             >
                                 <ThemeCover key={item.id} {...props} />
                             </div>

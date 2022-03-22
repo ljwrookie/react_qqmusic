@@ -22,6 +22,7 @@ export const RankingWrapper = styled.div`
         }
     }
     .rank_name {
+        margin: 15px 0 -10px;
         font-size: 24px;
         font-weight: 500;
         color: ${normalColor};

@@ -10,20 +10,20 @@ import { ExclamationOutlined } from '@ant-design/icons';
  */
 export function useAddPlaylist(playlist, message) {
     const dispatch = useDispatch();
-    return (id) => {
-        // // 阻止超链接跳转
-        // e.preventDefault && e.preventDefault();
-        // // 阻止合成事件的冒泡
-        // e.stopPropagation();
-        // // 阻止与原生事件的冒泡
-        // e.nativeEvent.stopImmediatePropagation();
+    return (e, id) => {
+        // 阻止超链接跳转
+        e.preventDefault && e.preventDefault();
+        // 阻止合成事件的冒泡
+        e.stopPropagation();
+        // 阻止与原生事件的冒泡
+        e.nativeEvent.stopImmediatePropagation();
         // 获取歌曲详情,添加到播放列表
         dispatch(getAddSongDetailAction(id));
         // 提示添加成功或失败
         const index = getFindIdIndex(playlist, id);
         switch (index) {
             case -1:
-                message.success({ content: '添加成功' });
+                message.success({ content: '添加成功', key: 'addList' });
                 break;
             default:
                 message.error({

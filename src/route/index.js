@@ -15,10 +15,10 @@ import Recommend from '../pages/recommend';
 import Recent from '../pages/recent';
 import Player from '../pages/player';
 
-import Playlist from '../pages/playlist'
-import PlaylistDetail from '../pages/playlist/c-pages/all-songs'
-import PlaylistComment from '../pages/playlist/c-pages/comment'
-import PlaylistSubscriber from '../pages/playlist/c-pages/subscriber'
+import Playlist from '../pages/playlist';
+import PlaylistDetail from '../pages/playlist/c-pages/all-songs';
+import PlaylistComment from '../pages/playlist/c-pages/comment';
+import PlaylistSubscriber from '../pages/playlist/c-pages/subscriber';
 import MvPlayer from '../pages/mv-player';
 import Search from '../pages/search';
 import SearchSong from '../pages/search/c-pages/song';
@@ -33,38 +33,26 @@ import DiscoverNewAlbum from '../pages/discover/c-pages/new/c-pages/albums';
 const GetRoutes = () => {
     const routes = useRoutes([
         {
-            lazy: true,
-            auth: true,
             path: '/discover',
             element: <Discover />,
             children: [
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'ranking',
                     element: <Ranking />,
                 },
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'singer',
                     element: <Singer />,
                 },
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'new',
                     element: <New />,
                     children: [
                         {
-                            lazy: true,
-                            auth: true,
                             path: 'songs',
                             element: <DiscoverNewSong />,
                         },
                         {
-                            lazy: true,
-                            auth: true,
                             path: 'album',
                             element: <DiscoverNewAlbum />,
                         },
@@ -81,44 +69,30 @@ const GetRoutes = () => {
             ],
         },
         {
-            lazy: true,
-            auth: true,
             path: '/download',
             element: <Download />,
         },
         {
-            lazy: true,
-            auth: true,
             path: '/like',
             element: <Like />,
         },
         {
-            lazy: true,
-            auth: true,
             path: '/localsong',
             element: <LocalSong />,
         },
         {
-            lazy: true,
-            auth: true,
-            path: '/mv/*',
+            path: '/mv',
             element: <Mv />,
             children: [
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'recommend',
                     element: <MvCommend />,
                 },
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'ranking',
                     element: <MvRanking />,
                 },
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'list',
                     element: <MvList />,
                 },
@@ -129,50 +103,35 @@ const GetRoutes = () => {
             ],
         },
         {
-            lazy: true,
-            auth: true,
             path: '/radio',
             element: <Radio />,
         },
         {
-            lazy: true,
-            auth: true,
             path: '/recommend',
             element: <Recommend />,
         },
         {
-            lazy: true,
-            auth: true,
             path: '/recent',
             element: <Recent />,
         },
         {
             path: '/player',
             element: <Player />,
-            lazy: true,
-            auth: true,
         },
         {
             path: '/playlist',
             element: <Playlist />,
-            lazy: true,
-            auth: true,
+
             children: [
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'detail',
                     element: <PlaylistDetail />,
                 },
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'comment',
                     element: <PlaylistComment />,
                 },
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'subscriber',
                     element: <PlaylistSubscriber />,
                 },
@@ -185,8 +144,6 @@ const GetRoutes = () => {
         {
             path: '/mvplayer',
             element: <MvPlayer />,
-            lazy: true,
-            auth: true,
         },
 
         {
@@ -194,32 +151,22 @@ const GetRoutes = () => {
             element: <Search />,
             children: [
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'song',
                     element: <SearchSong />,
                 },
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'mv',
                     element: <SearchMv />,
                 },
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'album',
                     element: <SearchAlbum />,
                 },
                 {
-                    lazy: true,
-                    auth: true,
                     path: 'singer',
                     element: <SearchSinger />,
                 },
                 {
-                    lazy: true,
-                    auth: true,
                     path: '',
                     element: <Navigate to="/search/song" />,
                 },
