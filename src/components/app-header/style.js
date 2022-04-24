@@ -2,16 +2,23 @@ import styled from 'styled-components';
 import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
 // 存储
 
-const { themeColor, normalColor, bodyColor, searchBarColor, grayFontColor } =
-    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const {
+    themeColor,
+    normalColor,
+    bodyColor,
+    searchBarColor,
+    grayFontColor,
+} = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 export const HeaderWrapper = styled.div`
     position: sticky;
     display: flex;
     justify-content: space-between;
     top: 0;
+    right: 0;
+    left: 210px;
     height: 75px;
     background-color: ${bodyColor};
-     z-index: 9; 
+    z-index: 9;
 `;
 
 export const HeaderLeft = styled.div`
@@ -22,7 +29,7 @@ export const HeaderLeft = styled.div`
     .prev_next {
         margin-left: 40px;
         span {
-            color:${grayFontColor};
+            color: ${grayFontColor};
             cursor: pointer;
             &:hover {
                 color: ${themeColor};

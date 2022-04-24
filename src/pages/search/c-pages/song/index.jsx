@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useState, useCallback } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { SongWrapper } from './style';
@@ -19,28 +19,24 @@ export default memo(function SearchSong() {
     const keywords = keyword.get('keywords');
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([...songs]);
     const [offset, setOffset] = useState(0);
 
-    const loadMoreData = () => {
+    const loadMoreData = useCallback(() => {
         if (loading || offset > 10) {
             return;
         }
-        console.log(offset);
         setLoading(true);
         dispatch(getSongListAction(keywords, 30, offset * 30));
         setOffset(offset + 1);
         setData([...data, ...songs]);
         setLoading(false);
-    };
-
-    useEffect(() => {
-        loadMoreData();
-    }, []);
+    }, [data, dispatch, keywords, loading, offset, songs]);
 
     useEffect(() => {
         dispatch(getSongListAction(keywords));
-    }, [dispatch, keywords]);
+        setData([...songs]);
+    }, [keywords]);
     const addPlayList = useAddPlaylist(playList, message);
     const clickAll = (e) => {
         // 阻止超链接跳转

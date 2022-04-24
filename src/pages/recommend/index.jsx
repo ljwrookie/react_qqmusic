@@ -15,7 +15,6 @@ export default memo(function Recommend() {
             <PrivateContent />
             <NewSongs />
             <MvRecommend />
-            
         </RecmdMain>
     );
 });
