@@ -16,7 +16,6 @@ export const HeaderWrapper = styled.div`
     height: 75px;
     justify-content: space-between;
     background-color: ${bodyColor};
-    z-index: 9;
 `;
 
 export const HeaderLeft = styled.div`

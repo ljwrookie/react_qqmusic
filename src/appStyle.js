@@ -30,6 +30,7 @@ export const AppWrapper = styled.div`
         top: 0;
         left: 210px;
         right: 0;
+        z-index: 9;
     }
 `;
 
