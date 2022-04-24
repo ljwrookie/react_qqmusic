@@ -10,13 +10,11 @@ const {
     grayFontColor,
 } = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
 export const HeaderWrapper = styled.div`
-    position: sticky;
+    /* float: right; */
     display: flex;
-    justify-content: space-between;
-    top: 0;
-    right: 0;
-    left: 210px;
+    width: 100%;
     height: 75px;
+    justify-content: space-between;
     background-color: ${bodyColor};
     z-index: 9;
 `;

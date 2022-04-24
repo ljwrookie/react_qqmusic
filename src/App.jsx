@@ -1,4 +1,4 @@
-import React, { memo , Suspense} from 'react';
+import React, { memo, Suspense } from 'react';
 import { Provider } from 'react-redux';
 
 import GetRoutes from './route';
@@ -23,7 +23,9 @@ export default memo(function App() {
                             <AppSidernav />
                         </div>
                         <div className="app_right">
-                            <AppHeader />
+                            <div className="app-top">
+                                <AppHeader />
+                            </div>
                             <div className="w1100">
                                 <Suspense
                                     fallback={
