@@ -19,24 +19,29 @@ export default memo(function SearchSong() {
     const keywords = keyword.get('keywords');
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-    const [data, setData] = useState([...songs]);
-    const [offset, setOffset] = useState(0);
+    const [data, setData] = useState([]);
+    const [offset, setOffset] = useState(1);
 
-    const loadMoreData = useCallback(() => {
+    const loadMoreData = () => {
         if (loading || offset > 10) {
             return;
         }
         setLoading(true);
         dispatch(getSongListAction(keywords, 30, offset * 30));
         setOffset(offset + 1);
-        setData([...data, ...songs]);
         setLoading(false);
-    }, [data, dispatch, keywords, loading, offset, songs]);
+    };
 
     useEffect(() => {
+        setData([...data, ...songs]);
+    }, [songs]);
+    useEffect(() => {
         dispatch(getSongListAction(keywords));
-        setData([...songs]);
-    }, [keywords]);
+        setData([...data, ...songs]);
+        return () => {
+            setData();
+        };
+    }, []);
     const addPlayList = useAddPlaylist(playList, message);
     const clickAll = (e) => {
         // 阻止超链接跳转
