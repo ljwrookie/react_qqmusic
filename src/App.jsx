@@ -46,13 +46,10 @@ export default memo(function App() {
                                     <GetRoutes />
                                 </Suspense>
                             </div>
-                            <AppPlayerBar/>
+                            <AppPlayerBar />
                         </div>
                     </div>
                 </AppWrapper>
-                <LoginWrapper>
-                    <Login />
-                </LoginWrapper>
                 <BackTopWrapper>
                     <BackTop>
                         <div className="back_top">UP</div>
