@@ -46,6 +46,7 @@ export default memo(function App() {
                                     <GetRoutes />
                                 </Suspense>
                             </div>
+                            <AppPlayerBar/>
                         </div>
                     </div>
                 </AppWrapper>

@@ -13,7 +13,16 @@ import {
 
 import ThemeHeaderRCM from '@/components/theme-header-rcm';
 import VideoCover from '@/components/video-cover'
-
+const hover = () => {
+    const btn = document.querySelectorAll('.btn span');
+    btn[3].style.visibility = 'visible';
+    btn[4].style.visibility = 'visible';
+};
+const leave = () => {
+    const btn = document.querySelectorAll('.btn span');
+    btn[3].style.visibility = 'hidden';
+    btn[4].style.visibility = 'hidden';
+};
 
 export default memo(function HotMv() {
     // const [currentIndex, setCurrentIndex] = useState(0);
@@ -36,7 +45,7 @@ export default memo(function HotMv() {
     })
 
     return (
-        <HotMvWrapper>
+        <HotMvWrapper onMouseLeave={leave} onMouseEnter={hover}>
             <ThemeHeaderRCM title="热门" moreLink="#" />
             <div className="content">
                 {/* <div className="arrow arrow-left"

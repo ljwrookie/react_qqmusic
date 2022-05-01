@@ -6,6 +6,14 @@ import * as action from './store/actionCreator.js';
 export default memo(function Login() {
     // const [isShow, setIsShow] = useState(false);
     const dispatch = useDispatch();
+    const [check, setCheck] = useState(1);
+    const time = () => {
+        requestAnimationFrame(() => {
+            setCheck(check + 1);
+            time();
+        }
+        , 1000)
+    }
     const { login = [] } = useSelector(
     (state) => ({
         // topBanners: state.get('recommend').get('topBanners')
@@ -41,6 +49,12 @@ export default memo(function Login() {
     //     dispatch(action.getQrCheckAction(login.qrKey));
     // },1000)
     // requestAnimationFrame(() => {dispatch(action.getQrCheckAction(login.qrKey))},10000)
+
+    useEffect(() => {
+        dispatch(action.getQrCheckAction(login.qrKey));
+        console.log(login.qrKey)
+        console.log(login.qrCheck)
+    },[login.qrKey, check])
     useEffect( () => {
         // 在组件渲染之后发送网络请求
         dispatch(action.getQrKeyAction());
@@ -59,20 +73,20 @@ export default memo(function Login() {
         //     );
         // }, 1000)
     }, [login.qrCheck, dispatch]);
-    const check = () => {
-        requestAnimationFrame(() => {
-            dispatch(
-                action.getQrCheckAction(login.qrKey)
-            );
-            console.log(login.qrCheck)
-            // check()
-        }, 1000)
-    }
+    // const check = () => {
+    //     requestAnimationFrame(() => {
+    //         dispatch(
+    //             action.getQrCheckAction(login.qrKey)
+    //         );
+    //         console.log(login.qrCheck)
+    //         // check()
+    //     }, 1000)
+    // }
     
     useEffect(() => {
-        console.log(login.qrKey)
+        // console.log(login.qrKey)
         // dispatch(action.getQrCheckAction(login.qrKey));
-        check()
+        // check()
         // console.log('login.qrCheck', login.qrCheck);
         if (login.qrCheck) {
             dispatch(action.getLoginStatusAction(login.qrKey));

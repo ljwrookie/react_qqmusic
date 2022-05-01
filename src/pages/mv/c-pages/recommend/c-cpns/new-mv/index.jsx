@@ -25,7 +25,17 @@ export default memo(function NewMv() {
             newMv: state.getIn(["mv", "newMv"])
     }), shallowEqual);
 
-
+    const hover = () => {
+        const btn = document.querySelectorAll('.btn span');
+        console.log(btn)
+        btn[1].style.visibility = 'visible';
+        btn[2].style.visibility = 'visible';
+    };
+    const leave = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[1].style.visibility = 'hidden';
+        btn[2].style.visibility = 'hidden';
+    };
     useEffect(() => {
         dispatch(getNewMvAction(24))
     }, [dispatch]);
@@ -36,8 +46,8 @@ export default memo(function NewMv() {
     })
 
     return (
-        <NewMvWrapper>
-            <ThemeHeaderRCM title="最新" moreLink="#"/>
+        <NewMvWrapper onMouseLeave={leave} onMouseEnter={hover}>
+            <ThemeHeaderRCM title="最新" moreLink="#" />
             <div className="content">
                 {/* <div className="arrow arrow-left"
                     onClick={e => carouselRef.current.prev()}></div> */}
@@ -53,8 +63,8 @@ export default memo(function NewMv() {
 
                                             newMv
                                                 .slice(
-                                                    6+item * 3,
-                                                   6+ (item + 1) * 3
+                                                    6 + item * 3,
+                                                    6 + (item + 1) * 3
                                                 )
                                                 .map((it) => {
                                                     const cover_props = {

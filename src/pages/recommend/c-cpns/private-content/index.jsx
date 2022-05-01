@@ -13,6 +13,16 @@ export default memo(function PrivateContent() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
     const dispatch = useDispatch();
+    const hover = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[4].style.visibility = 'visible';
+        btn[5].style.visibility = 'visible';
+    };
+    const leave = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[4].style.visibility = 'hidden';
+        btn[5].style.visibility = 'hidden';
+    };
     const privateContentRef = useRef();
     const { privateContent = [] } = useSelector(
         (state) => ({
@@ -30,10 +40,14 @@ export default memo(function PrivateContent() {
         return index + item;
     });
     return (
-        <RecommendWrapper>
+        <RecommendWrapper onMouseLeave={leave}
+                onMouseEnter={hover}>
             <ThemeHeaderRCM title="独家放送" moreLink="#" />
 
-            <div className="content">
+            <div
+                className="content"
+                
+            >
                 {/* <div className="arrow arrow-left"
                     onClick={e => carouselRef.current.prev()}></div> */}
                 <div className="album">

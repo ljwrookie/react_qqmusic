@@ -13,6 +13,16 @@ import ThemeCover from '@/components/theme-cover';
 export default memo(function HotRecommend() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
+    const hover = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[2].style.visibility = 'visible';
+        btn[3].style.visibility = 'visible';
+    };
+    const leave = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[2].style.visibility = 'hidden';
+        btn[3].style.visibility = 'hidden';
+    };
     const dispatch = useDispatch();
     const recommendRef = useRef();
     const { hotRecommends = [] } = useSelector(
@@ -36,7 +46,7 @@ export default memo(function HotRecommend() {
     });
     // console.log(nums)
     return (
-        <RecommendWrapper>
+        <RecommendWrapper onMouseLeave={leave} onMouseEnter={hover}>
             <ThemeHeaderRCM title="推荐歌单" moreLink="#" />
             <div className="content">
                 {/* <div className="arrow arrow-left"
@@ -51,7 +61,6 @@ export default memo(function HotRecommend() {
                                         .map((it) => {
                                             // key={it.id} info={it}  url_name="picUrl" playCount={true} width={200} height={200}
                                             const cover_props = {
-                                                
                                                 img_url: it.picUrl,
                                                 name: it.name,
                                                 playCount: it.playCount,
@@ -65,7 +74,10 @@ export default memo(function HotRecommend() {
                                             // width={200}
                                             // height={200}
                                             return (
-                                                <Link key={it.id} to={`/playlist/detail?id=${it.id}`}>
+                                                <Link
+                                                    key={it.id}
+                                                    to={`/playlist/detail?id=${it.id}`}
+                                                >
                                                     <ThemeCover
                                                         className="cover"
                                                         {...cover_props}

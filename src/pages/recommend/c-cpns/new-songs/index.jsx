@@ -19,7 +19,16 @@ export default memo(function NewSongs() {
         type: 0,
         index: 0,
     });
-
+    const hover = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[6].style.visibility = 'visible';
+        btn[7].style.visibility = 'visible';
+    };
+    const leave = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[6].style.visibility = 'hidden';
+        btn[7].style.visibility = 'hidden';
+    };
     const newSongsRef = useRef();
     const { newSongs = [] } = useSelector(
         (state) => ({
@@ -67,7 +76,7 @@ export default memo(function NewSongs() {
         };
     };
     return (
-        <RecommendWrapper>
+        <RecommendWrapper onMouseLeave={leave} onMouseEnter={hover}>
             <ThemeHeaderRCM
                 title="最新音乐"
                 index={state.index}

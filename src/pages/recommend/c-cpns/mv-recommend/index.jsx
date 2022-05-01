@@ -21,7 +21,16 @@ export default memo(function MvRecommend() {
         }),
         shallowEqual
     );
-
+    const hover = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[8].style.visibility = 'visible';
+        btn[9].style.visibility = 'visible';
+    };
+    const leave = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[8].style.visibility = 'hidden';
+        btn[9].style.visibility = 'hidden';
+    };
     useEffect(() => {
         dispatch(getMvRecommendAction());
     }, [dispatch]);
@@ -31,7 +40,7 @@ export default memo(function MvRecommend() {
     });
 
     return (
-        <RecommendWrapper>
+        <RecommendWrapper onMouseLeave={leave} onMouseEnter={hover}>
             <ThemeHeaderRCM title="推荐MV" moreLink="#" />
             <div className="content">
                 {/* <div className="arrow arrow-left"

@@ -21,7 +21,16 @@ export default memo(function ExclusiveMv() {
         }),
         shallowEqual
     );
-
+    const hover = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[5].style.visibility = 'visible';
+        btn[6].style.visibility = 'visible';
+    };
+    const leave = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[5].style.visibility = 'hidden';
+        btn[6].style.visibility = 'hidden';
+    };
     useEffect(() => {
         dispatch(getExclusiveMvAction(12));
     }, [dispatch]);
@@ -31,7 +40,7 @@ export default memo(function ExclusiveMv() {
     });
 
     return (
-        <ExclusiveMvWrapper>
+        <ExclusiveMvWrapper onMouseLeave={leave} onMouseEnter={hover}>
             <ThemeHeaderRCM title="独家" moreLink="#" />
             <div className="content">
                 {/* <div className="arrow arrow-left"

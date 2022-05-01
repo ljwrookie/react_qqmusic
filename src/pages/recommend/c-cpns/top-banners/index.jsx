@@ -12,7 +12,22 @@ export default memo(function TopBanners() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
     const dispatch = useDispatch();
+    // const carousel = document.querySelector('.content');
+    
+    // console.log(carousel);
+    
+    const hover = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[0].style.visibility = 'visible';
+        btn[1].style.visibility = 'visible';
+    };
+    const leave = () => {
+        const btn = document.querySelectorAll('.btn span');
+        btn[0].style.visibility = 'hidden';
+        btn[1].style.visibility = 'hidden';
+    };
     const { topBanners } = useSelector(
+        
         (state) => ({
             // topBanners: state.get('recommend').get('topBanners')
             // 获取redux-reducer转换成Immutable对象的深层state
@@ -36,8 +51,8 @@ export default memo(function TopBanners() {
     });
 
     return (
-        <BannerWrapper>
-            <Carousel effect="fade" autoplay ref={bannerRef}>
+        <BannerWrapper onMouseLeave={leave} onMouseEnter={hover}>
+            <Carousel effect="fade" autoplay ref={bannerRef} >
                 {nums.map((item) => {
                     return (
                         <div key={item} className="content">
