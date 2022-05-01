@@ -33,7 +33,15 @@ export const AppWrapper = styled.div`
         z-index: 9;
     }
 `;
+export const LoginWrapper = styled.div`
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index:1000;
+    
 
+`
 export const BackTopWrapper = styled.div`
     .ant-back-top {
         bottom: 85px;

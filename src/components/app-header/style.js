@@ -59,7 +59,8 @@ export const HeaderRight = styled.div`
     font-size: 14px;
     margin-right: 40px;
     color: ${grayFontColor};
-    .login {
+    .login-button {
+        cursor: pointer;
         &:hover {
             text-decoration: none;
             color: ${themeColor};

@@ -17,7 +17,10 @@ export default memo(function AppHeader() {
         window.location.reload();
     };
     const inputRef = useRef();
-
+    const showLogin = () => {
+        document.querySelector('.lg-container').style.display =
+            'flex';
+    };
     const searchKeyword = (e) => {
         navigate(`/search/song?keywords=${e.target.value}`);
     };
@@ -53,7 +56,7 @@ export default memo(function AppHeader() {
                 {/* <a href="/login" className="login">
                     点击登录
                 </a> */}
-                <Login />
+                <span className='login-button' onClick={showLogin}>点击登录</span>
                 <span className="iconfont toolbar">&#xe63a;</span>
                 <span className="iconfont toolbar" onClick={changeTheme}>
                     &#xe650;
