@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
 const {
     themeColor,
@@ -7,7 +7,7 @@ const {
     normalColor,
     grayFontColor,
     searchBarColor,
-} = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+} = myTheme;
 
 export const DiscoverSingerWrapper = styled.div`
     .area,
@@ -58,7 +58,7 @@ export const NoPicName = styled.div`
         font-weight: 600;
         font-size: 14px;
         text-align: center;
-        color :${normalColor};
+        color: ${normalColor};
         cursor: pointer;
     }
 `;

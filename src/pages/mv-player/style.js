@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 import { normalizeUnits } from 'moment';
 
 const {
@@ -9,7 +9,7 @@ const {
     bodyColor,
     grayFontColor,
     normalColor,
-} = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+} = myTheme;
 export const MvPlayerWrapper = styled.div`
     overflow: hidden;
     width: 100%;
@@ -41,13 +41,12 @@ export const MvPlayerWrapper = styled.div`
         width: 66%;
 
         video {
-            margin-top:10px;
+            margin-top: 10px;
             width: 100%;
             height: 408px;
-            border-radius:5px;
+            border-radius: 5px;
         }
         .video {
-            
             .resolution {
                 /* visibility: hidden; */
                 top: 395px;
@@ -247,23 +246,22 @@ export const MvPlayerWrapper = styled.div`
         color: ${themeColor};
         .ant-pagination-item-active {
             border-color: ${themeColor};
-            a{
-                color:${themeColor}
+            a {
+                color: ${themeColor};
             }
         }
         .ant-pagination-item:hover {
             border-color: ${themeColor};
-            a{
-                color:${themeColor}
+            a {
+                color: ${themeColor};
             }
         }
-        .ant-pagination-item-link:hover{
+        .ant-pagination-item-link:hover {
             border-color: ${themeColor};
         }
-        .ant-pagination-options .ant-select.ant-pagination-options-size-changer.ant-select-single.ant-select-show-arrow:hover{
+        .ant-pagination-options
+            .ant-select.ant-pagination-options-size-changer.ant-select-single.ant-select-show-arrow:hover {
             border-color: ${themeColor};
-
         }
-
     }
 `;

@@ -29,10 +29,9 @@ import {
     ControlWrapper,
     OperateWrapper,
 } from './style';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
-const { normalColor, bodyColor } =
-    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { normalColor, bodyColor } = myTheme;
 // import { SONG_PLAYLIST_ID } from '@/common/constants';
 
 export default memo(function PlayBar() {

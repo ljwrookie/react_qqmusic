@@ -1,20 +1,17 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
-const {
-    themeColor,
-    grayFontColor,
-} = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { themeColor, grayFontColor } = myTheme;
 
 export const SwitchArea = styled.div`
     color: ${grayFontColor};
     span {
         display: inline-block;
-        position:relative;
+        position: relative;
         margin-right: 50px;
         cursor: pointer;
         font-size: 12px;
-        line-height:30px;
+        line-height: 30px;
         margin-bottom: 10px;
         &:hover {
             color: ${themeColor};
@@ -24,15 +21,15 @@ export const SwitchArea = styled.div`
         color: ${themeColor};
     }
     .active::after {
-        position:absolute;
-        content:'';
-        width:25px;
-        height:3px;
-        border-radius:2px;
-        top:100%;
+        position: absolute;
+        content: '';
+        width: 25px;
+        height: 3px;
+        border-radius: 2px;
+        top: 100%;
         left: 50%;
-        transform:translateX(-50%);
-        background-color:${themeColor};
+        transform: translateX(-50%);
+        background-color: ${themeColor};
     }
 `;
 export const CardWrapper = styled.div`

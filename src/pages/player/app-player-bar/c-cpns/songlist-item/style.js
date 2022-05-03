@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
-const { themeColor, normalColor, searchBarColor, grayFontColor } =
-    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { themeColor, normalColor, searchBarColor, grayFontColor } = myTheme;
 export const ItemWrapper = styled.div`
     /* position: fixed; */
     display: flex;

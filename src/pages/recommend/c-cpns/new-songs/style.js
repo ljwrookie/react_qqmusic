@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
-const { themeColor, grayFontColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
+const { themeColor, grayFontColor } = myTheme;
 export const RecommendWrapper = styled.div`
-
     margin-top: 50px;
     position: relative;
 
@@ -18,30 +17,25 @@ export const RecommendWrapper = styled.div`
             .page {
                 display: flex !important;
                 justify-content: space-between;
-                .song-name{
-                    text-decoration:none;
+                .song-name {
+                    text-decoration: none;
                 }
             }
         }
     }
 
-  
+    .all_name {
+        width: 200px;
+        /* margin-top:5px; */
+        /* margin:0; */
+        line-height: 20px;
+        .artist {
+            /* display:inline-block; */
+            text-decoration: none;
+            color: ${grayFontColor};
+            /* word-wrap:break-word; */
+            margin-right: 6px;
 
-
-  .all_name{
-    width:200px;
-    /* margin-top:5px; */
-    /* margin:0; */
-    line-height:20px;
-    .artist{
-      /* display:inline-block; */
-      text-decoration: none;
-      color:${grayFontColor};
-      /* word-wrap:break-word; */
-      margin-right: 6px;
-      
-    
-      
             &:not(:last-of-type) {
                 &::after {
                     content: '  /';
@@ -52,17 +46,12 @@ export const RecommendWrapper = styled.div`
             &:hover {
                 color: ${themeColor};
             }
-          }
         }
-  .time{
-    color:${grayFontColor};
-    line-height:20px;
-  }
-
-
-
-  
-
+    }
+    .time {
+        color: ${grayFontColor};
+        line-height: 20px;
+    }
 `;
 export const RecommendControl = styled.div`
     /* overflow:auto; */

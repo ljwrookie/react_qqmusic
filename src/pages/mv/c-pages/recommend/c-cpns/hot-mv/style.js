@@ -1,8 +1,7 @@
+import styled from 'styled-components';
+import { myTheme } from '@/common/constants';
 
-import styled from "styled-components";
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
-
-const { themeColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
+const { themeColor } = myTheme;
 
 export const HotMvWrapper = styled.div`
     margin-top: 50px;
@@ -30,9 +29,9 @@ export const MvControl = styled.div`
     position: absolute;
     left: 0;
     right: 0;
-    
+
     top: 45%;
-    
+
     .btn {
         position: absolute;
         background-color: transparent;
@@ -59,9 +58,8 @@ export const MvControl = styled.div`
             }
         }
         &:nth-child(2) {
-            right:0px;
+            right: 0px;
             transform: translateX(100%);
         }
     }
 `;
-

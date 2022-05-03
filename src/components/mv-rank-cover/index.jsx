@@ -1,16 +1,14 @@
 import React, { memo } from 'react';
-import {Link} from 'react-router-dom'
-import {nanoid} from 'nanoid'
-import { getSizeImage} from '@/utils/format-utils';
+import { Link } from 'react-router-dom';
+import { nanoid } from 'nanoid';
+import { getSizeImage } from '@/utils/format-utils';
 // import VideoCover from '../video-cover'
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
 import { RankListCoverWrapper } from './style';
 
 export default memo(function MvRankCover(props) {
-
-    const { themeColor,  normalColor } =
-        getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+    const { themeColor, normalColor } = myTheme;
 
     const { info, url_name, index, width, height, time } = props; // const {url_name} =
     const urlList = url_name.split('.');
@@ -60,4 +58,3 @@ export default memo(function MvRankCover(props) {
         </RankListCoverWrapper>
     );
 });
-

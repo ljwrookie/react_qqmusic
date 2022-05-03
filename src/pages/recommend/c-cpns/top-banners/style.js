@@ -1,7 +1,6 @@
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
-
-const { themeColor, normalColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
+const { themeColor, normalColor } = myTheme;
 
 const { default: styled } = require('styled-components');
 
@@ -29,27 +28,24 @@ export const BannerWrapper = styled.div`
             width: 537px;
             border-radius: 15px;
         }
-        
     }
     .slick-dots {
         position: absolute;
         bottom: -30px;
         li {
             width: 10px !important;
-            height:10px ;
+            height: 10px;
             margin: 0 6px;
-        
+
             button {
-                height: 10px ;
+                height: 10px;
                 border-radius: 50%;
                 background-color: ${normalColor} !important;
-                &:hover{
+                &:hover {
                     background-color: ${themeColor} !important;
                 }
             }
-        
         }
-
     }
     /* overflow:scroll;
     overflow-x:hidden */

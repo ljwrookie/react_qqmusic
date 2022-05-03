@@ -1,45 +1,47 @@
 import React, { useEffect, useState, memo } from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { MvRankingWrapper } from './style';
 import MvRankCover from '../../../../components/mv-rank-cover';
 import { getMvRankingAction } from '../../store/actionCreator';
-import { nanoid } from "nanoid";
+import { nanoid } from 'nanoid';
 import moment from 'moment';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
-const { themeColor} = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
+import { myTheme } from '@/common/constants';
+const { themeColor } = myTheme;
 export default memo(function Ranking() {
-    const dispatch = useDispatch()
-    const {mvRanking = []}= useSelector(
-        (state)=>({
-            mvRanking: state.getIn(['mv','mvRanking'])
+    const dispatch = useDispatch();
+    const { mvRanking = [] } = useSelector(
+        (state) => ({
+            mvRanking: state.getIn(['mv', 'mvRanking']),
         }),
         shallowEqual
     );
 
     const [state, setState] = useState({
         index: 0,
-        value: ''
-    })
+        value: '',
+    });
 
-    useEffect(()=>{
-        dispatch(getMvRankingAction(state.value))
-    },[dispatch,state])
-    const keywordClick = (item,index) => {
-        if(index === 0) setState({index: 0 , value: ''})
-        else setState({index, value: item})
-    }
+    useEffect(() => {
+        dispatch(getMvRankingAction(state.value));
+    }, [dispatch, state]);
+    const keywordClick = (item, index) => {
+        if (index === 0) setState({ index: 0, value: '' });
+        else setState({ index, value: item });
+    };
 
     const getCurrWeekDays = () => {
-        let date = []
-        let weekOfday = parseInt(moment().format('d')) // 计算今天是这周第几天 周日为一周中的第一天
-        let start = moment().subtract(weekOfday, 'days').format('MM.DD') // 周一日期
-        let end = moment().add(7 - weekOfday - 1, 'days').format('MM.DD') // 周日日期
-        date.push(start)
-        date.push(end)
-        return date
-    }
-    const navList = ['总榜', '内地', '港台', '欧美', '韩国', '日本']
+        let date = [];
+        let weekOfday = parseInt(moment().format('d')); // 计算今天是这周第几天 周日为一周中的第一天
+        let start = moment().subtract(weekOfday, 'days').format('MM.DD'); // 周一日期
+        let end = moment()
+            .add(7 - weekOfday - 1, 'days')
+            .format('MM.DD'); // 周日日期
+        date.push(start);
+        date.push(end);
+        return date;
+    };
+    const navList = ['总榜', '内地', '港台', '欧美', '韩国', '日本'];
     return (
         <MvRankingWrapper>
             <div className="rank-title">
@@ -53,7 +55,7 @@ export default memo(function Ranking() {
                 <div className="rank-title-right">
                     <p className="rank-name">巅峰榜.MV</p>
                     <p className="rank-time">
-                        {getCurrWeekDays()[0] } - {getCurrWeekDays()[1]}
+                        {getCurrWeekDays()[0]} - {getCurrWeekDays()[1]}
                     </p>
                 </div>
             </div>
@@ -63,7 +65,10 @@ export default memo(function Ranking() {
                         return (
                             <span
                                 key={nanoid()}
-                                className={ index === state.index ? 'active' : 'link'
+                                className={
+                                    index === state.index
+                                        ? 'active'
+                                        : 'link'
                                 }
                                 onClick={() => keywordClick(item, index)}
                             >

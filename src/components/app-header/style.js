@@ -1,14 +1,13 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
-// 存储
-
+import { myTheme } from '@/common/constants';
 const {
     themeColor,
-    normalColor,
     bodyColor,
     searchBarColor,
+    normalColor,
     grayFontColor,
-} = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+} = myTheme;
+
 export const HeaderWrapper = styled.div`
     /* float: right; */
     display: flex;

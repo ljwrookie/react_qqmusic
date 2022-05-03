@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import styled from 'styled-components';
+import { myTheme } from '@/common/constants';
 
-const {themeColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
-export const RecommendWrapper = styled.div `
+const { themeColor } = myTheme;
+export const RecommendWrapper = styled.div`
     margin-top: 50px;
     position: relative;
 
@@ -17,20 +17,19 @@ export const RecommendWrapper = styled.div `
             .page {
                 display: flex !important;
                 justify-content: space-between;
-
             }
         }
     }
 `;
-export const RecommendControl = styled.div `
+export const RecommendControl = styled.div`
     /* overflow:auto; */
 
     position: absolute;
     left: 0;
     right: 0;
-    
+
     top: 45%;
-    
+
     .btn {
         position: absolute;
         background-color: transparent;
@@ -57,7 +56,7 @@ export const RecommendControl = styled.div `
             }
         }
         &:nth-child(2) {
-            right:0px;
+            right: 0px;
             transform: translateX(100%);
         }
     }

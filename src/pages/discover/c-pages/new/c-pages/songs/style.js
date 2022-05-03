@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
 const {
     themeColor,
@@ -7,33 +7,33 @@ const {
     normalColor,
     grayFontColor,
     searchBarColor,
-} = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+} = myTheme;
 
 export const SwitchArea = styled.div`
     color: ${grayFontColor};
     span {
-        position:relative;
+        position: relative;
         display: inline-block;
         margin-right: 50px;
         font-size: 14px;
-        line-height:30px;
+        line-height: 30px;
         &:hover {
             color: ${themeColor};
         }
     }
-    .active{
+    .active {
         color: ${themeColor};
     }
     .active::after {
-        position:absolute;
-        content:'';
-        width:25px;
-        height:3px;
-        border-radius:2px;
-        top:100%;
+        position: absolute;
+        content: '';
+        width: 25px;
+        height: 3px;
+        border-radius: 2px;
+        top: 100%;
         left: 50%;
-        transform:translateX(-50%);
-        background-color:${themeColor};
+        transform: translateX(-50%);
+        background-color: ${themeColor};
     }
 `;
 export const PlayList = styled.div`

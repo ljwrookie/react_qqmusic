@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
@@ -12,18 +12,15 @@ import Login from '../../pages/login';
 
 export const LoginContext = React.createContext(null);
 
-export default memo(function AppHeader() {
+export default memo(function AppHeader(props) {
+    const [theme, setTheme] = props.theme;
     const [isShow, setIsShow] = useState(false);
-
     let navigate = useNavigate();
     const changeTheme = () => {
-        let mode = localStorage.getItem('MODE');
-
-        if (mode === undefined || mode === 'DARK_MODE')
-            localStorage.setItem('MODE', 'LIGHT_MODE');
-        else localStorage.setItem('MODE', 'DARK_MODE');
-
-        window.location.reload();
+        if (theme) localStorage.setItem('Dark', false);
+        else localStorage.setItem('Dark', true);
+        // window.location.reload();
+        setTheme(!theme);
     };
     const inputRef = useRef();
     const showLogin = () => {

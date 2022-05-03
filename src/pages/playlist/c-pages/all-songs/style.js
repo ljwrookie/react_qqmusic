@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
-
-const {  grayFontColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
+const { grayFontColor } = myTheme;
 export const AllSongsWrapper = styled.div`
     .list_header {
-        margin-top:30px;
+        margin-top: 30px;
         display: flex;
         /* justify-content: space-between; */
         align-items: center;
@@ -21,4 +20,4 @@ export const AllSongsWrapper = styled.div`
             margin-left: 270px;
         }
     }
-`
+`;

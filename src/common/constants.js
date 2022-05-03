@@ -1,3 +1,4 @@
+import theme from 'styled-theming';
 export const LIGHT_MODE = {
     logoUrl: require('@/assets/image/logo.png'),
     themeColor: '#1fcfa1',
@@ -21,6 +22,55 @@ export const DARK_MODE = {
     grayFontColor: '#8e8e8f',
     hoverColor: '#2e2e2f',
 };
+
+const logoUrl = theme('mode', {
+    light: LIGHT_MODE.logoUrl,
+    dark: DARK_MODE.logoUrl,
+});
+const themeColor = theme('mode', {
+    light: LIGHT_MODE.themeColor,
+    dark: DARK_MODE.themeColor,
+});
+const bodyColor = theme('mode', {
+    light: LIGHT_MODE.bodyColor,
+    dark: DARK_MODE.bodyColor,
+});
+const sideColor = theme('mode', {
+    light: LIGHT_MODE.sideColor,
+    dark: DARK_MODE.sideColor,
+});
+const sideFontColor = theme('mode', {
+    light: LIGHT_MODE.sideFontColor,
+    dark: DARK_MODE.sideFontColor,
+});
+const searchBarColor = theme('mode', {
+    light: LIGHT_MODE.searchBarColor,
+    dark: DARK_MODE.searchBarColor,
+});
+const normalColor = theme('mode', {
+    light: LIGHT_MODE.normalColor,
+    dark: DARK_MODE.normalColor,
+});
+const grayFontColor = theme('mode', {
+    light: LIGHT_MODE.grayFontColor,
+    dark: DARK_MODE.grayFontColor,
+});
+const hoverColor = theme('mode', {
+    light: LIGHT_MODE.hoverColor,
+    dark: DARK_MODE.hoverColor,
+});
+export const myTheme = {
+    logoUrl,
+    themeColor,
+    bodyColor,
+    sideColor,
+    sideFontColor,
+    searchBarColor,
+    normalColor,
+    grayFontColor,
+    hoverColor,
+};
+
 export function getMode() {
     let mode = localStorage.getItem('MODE');
     let modeName;
@@ -31,6 +81,14 @@ export function getMode() {
         localStorage.setItem('MODE', 'LIGHT_MODE');
     }
     return modeName;
+}
+
+export function asyncGetMode() {
+    window.load = () => {
+        window.addEventListener('storage', (e) => {
+            console.log(e);
+        });
+    };
 }
 
 export const HOT_RECOMMEND_LIMIT = 8;

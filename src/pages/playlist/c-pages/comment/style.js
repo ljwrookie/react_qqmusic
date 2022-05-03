@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
 const {
     themeColor,
@@ -8,9 +8,9 @@ const {
     bodyColor,
     grayFontColor,
     normalColor,
-} = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+} = myTheme;
 export const CommentWrapper = styled.div`
-overflow:hidden;
+    overflow: hidden;
     .btn {
         height: 30px;
         cursor: pointer;

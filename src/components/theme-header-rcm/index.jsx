@@ -1,12 +1,13 @@
-import React, { memo } from 'react'
+import React, { memo } from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import { HeaderWrapper } from './style';
-import { LIGHT_MODE, DARK_MODE, getMode } from '../../common/constants';
+import { myTheme } from '../../common/constants';
 
-const {themeColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+const { themeColor } = myTheme;
 const ThemeHeaderRCM = memo(function (props) {
-    const { index, title, keywords, moreLink, keywordClick, moreDisplay } = props;
+    const { index, title, keywords, moreLink, keywordClick, moreDisplay } =
+        props;
     return (
         <HeaderWrapper>
             <div className="left">
@@ -36,7 +37,8 @@ const ThemeHeaderRCM = memo(function (props) {
                     className="link"
                     to={moreLink}
                     style={{
-                        display: moreDisplay===undefined ? 'visible' : 'none',
+                        display:
+                            moreDisplay === undefined ? 'visible' : 'none',
                     }}
                 >
                     <span>更多</span>
@@ -45,14 +47,14 @@ const ThemeHeaderRCM = memo(function (props) {
             </div>
         </HeaderWrapper>
     );
-})
+});
 ThemeHeaderRCM.defaultProps = {
-    keywords: []
-}
+    keywords: [],
+};
 
 ThemeHeaderRCM.propTypes = {
     title: PropTypes.string.isRequired,
-    keywords: PropTypes.array
-}
+    keywords: PropTypes.array,
+};
 
-export default ThemeHeaderRCM
+export default ThemeHeaderRCM;

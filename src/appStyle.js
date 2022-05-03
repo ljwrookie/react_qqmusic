@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
-const { themeColor, bodyColor, sideColor } =
-    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+import { myTheme } from '@/common/constants';
+
+const { themeColor, bodyColor, sideColor } = myTheme;
 export const AppWrapper = styled.div`
     /* height: 100%; */
     .app_main {

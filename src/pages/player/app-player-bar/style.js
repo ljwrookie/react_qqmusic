@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
 const {
     themeColor,
@@ -7,7 +7,7 @@ const {
     bodyColor,
     searchBarColor,
     grayFontColor,
-} = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+} = myTheme;
 
 export const PlayerBarWrapper = styled.div`
     position: fixed;

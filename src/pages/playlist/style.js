@@ -1,85 +1,83 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
-
-const { themeColor, grayFontColor, bodyColor, normalColor } = (getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE)
+const { themeColor, grayFontColor, bodyColor, normalColor } = myTheme;
 export const PlaylistWrapper = styled.div`
-    margin-top:20px;
+    margin-top: 20px;
     color: ${normalColor};
-    font-size:14px;
-    .top-detail{
+    font-size: 14px;
+    .top-detail {
         display: flex;
-        .top-left{
+        .top-left {
             margin-right: 30px;
-            img{
+            img {
                 border-radius: 10px;
                 cursor: pointer;
             }
         }
-        .top-right{
-            .playlist-name{
-                font-size:26px;
-                font-weight:700;
+        .top-right {
+            .playlist-name {
+                font-size: 26px;
+                font-weight: 700;
                 margin-bottom: 10px;
             }
-            .creator{
-                font-size:12px;
+            .creator {
+                font-size: 12px;
                 margin-bottom: 10px;
-                img{
-                    border-radius:50%;
+                img {
+                    border-radius: 50%;
                     margin-right: 10px;
                     cursor: pointer;
                 }
-                span{
+                span {
                     margin-right: 25px;
                 }
-                span:first-of-type{
+                span:first-of-type {
                     cursor: pointer;
                 }
-                span:not(:first-of-type){
-                    color:${grayFontColor};
+                span:not(:first-of-type) {
+                    color: ${grayFontColor};
                 }
-                span:first-of-type:hover{
+                span:first-of-type:hover {
                     color: ${themeColor};
                 }
             }
-            .description{
-                font-size:12px;
-                color:${grayFontColor};
+            .description {
+                font-size: 12px;
+                color: ${grayFontColor};
             }
-            .btns{
-                margin-top:20px;
-                height:30px;
-                .btn{
-                    height:30px;
+            .btns {
+                margin-top: 20px;
+                height: 30px;
+                .btn {
+                    height: 30px;
                     display: inline-block;
-                    vertical-align:center;
-                    line-height:20px;
-                    width:90px;
-                    border-radius:15px;
+                    vertical-align: center;
+                    line-height: 20px;
+                    width: 90px;
+                    border-radius: 15px;
                     text-align: center;
-                    opacity:0.9;
+                    opacity: 0.9;
                     cursor: pointer;
-                    margin-right:10px;
-                    &:hover{
-                        opacity:1;
+                    margin-right: 10px;
+                    &:hover {
+                        opacity: 1;
                     }
                 }
-                .play{
-                    background-color:${themeColor};
+                .play {
+                    background-color: ${themeColor};
                     color: #fff;
                 }
-                .more{
-                    width:30px;
-                    font-size:15px;
-                    border-radius:50%;
+                .more {
+                    width: 30px;
+                    font-size: 15px;
+                    border-radius: 50%;
                 }
             }
-
         }
     }
     .playlist-nav {
-        margin-top:20px;
+        margin-top: 20px;
         display: flex;
         padding: 5px 0;
         font-size: 14px;
@@ -89,8 +87,8 @@ export const PlaylistWrapper = styled.div`
             text-align: center;
             a {
                 text-decoration: none;
-                position:relative;
-                line-height:30px;
+                position: relative;
+                line-height: 30px;
                 color: ${normalColor};
                 display: inline-block;
                 &:hover,
@@ -98,17 +96,17 @@ export const PlaylistWrapper = styled.div`
                     color: ${themeColor};
                 }
                 &.active::after {
-                    position:absolute;
-                    content:'';
-                    width:25px;
-                    height:3px;
-                    border-radius:2px;
-                    top:100%;
-                    left: 50%; 
-                    transform:translateX(-50%);
-                    background-color:${themeColor};
+                    position: absolute;
+                    content: '';
+                    width: 25px;
+                    height: 3px;
+                    border-radius: 2px;
+                    top: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: ${themeColor};
                 }
             }
         }
     }
-`
+`;

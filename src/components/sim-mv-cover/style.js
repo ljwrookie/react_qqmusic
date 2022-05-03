@@ -1,18 +1,18 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
-const {themeColor, grayFontColor, normalColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+const { themeColor, grayFontColor, normalColor } = myTheme;
 export const SimMvCoverWrapper = styled.div`
     display: flex;
-     font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;    /* justify-content: space-between; */
+    font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif; /* justify-content: space-between; */
     align-items: center;
     margin-top: 20px;
-    a{
-        text-decoration:none;
+    a {
+        text-decoration: none;
     }
     /* height:30px; */
     .cover-left {
-        cursor: pointer; 
+        cursor: pointer;
         position: relative;
         transition: all 0.3s;
 
@@ -67,13 +67,14 @@ export const SimMvCoverWrapper = styled.div`
             .time {
                 position: absolute;
                 bottom: 5px;
-                right:10px;
+                right: 10px;
                 display: inline-block;
                 font-size: 12px;
             }
 
             &:hover {
-                .info, .time {
+                .info,
+                .time {
                     display: none;
                 }
 
@@ -95,32 +96,31 @@ export const SimMvCoverWrapper = styled.div`
 
     .cover-right {
         width: 300px;
-        text-decoration:none;
-        cursor: pointer; 
+        text-decoration: none;
+        cursor: pointer;
         font-size: 14px;
         /* margin-top: 5px; */
-        
-        .mv-name{
+
+        .mv-name {
             text-overflow: -o-ellipsis-lastline;
             overflow: hidden;
             text-overflow: ellipsis;
-            display: -webkit-box;/*重点，不能用block等其他*/
-            -webkit-line-clamp: 2;/*重点IE和火狐不支持*/
-            -webkit-box-orient: vertical;/*重点*/
+            display: -webkit-box; /*重点，不能用block等其他*/
+            -webkit-line-clamp: 2; /*重点IE和火狐不支持*/
+            -webkit-box-orient: vertical; /*重点*/
             color: ${normalColor};
             margin: 5px 0px 5px 10px;
-            
-            &:hover{
-            color: ${themeColor};
-        }
-        }
-        .artist-name{
-            margin-left:  10px;
-            color: ${grayFontColor};
-            &:hover{
-            color: ${themeColor};
+
+            &:hover {
+                color: ${themeColor};
             }
         }
-    
+        .artist-name {
+            margin-left: 10px;
+            color: ${grayFontColor};
+            &:hover {
+                color: ${themeColor};
+            }
+        }
     }
 `;

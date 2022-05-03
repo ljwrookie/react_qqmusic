@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
-const { themeColor, bodyColor, normalColor } = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { themeColor, bodyColor, normalColor } = myTheme;
 export const TopNav = styled.div`
     color: ${normalColor};
     .nav_title {
@@ -18,8 +18,8 @@ export const TopNav = styled.div`
             margin-right: 50px;
             text-align: center;
             a {
-                position:relative;
-                line-height:30px;
+                position: relative;
+                line-height: 30px;
                 color: ${normalColor};
                 display: inline-block;
                 &:hover,
@@ -28,15 +28,15 @@ export const TopNav = styled.div`
                     color: ${themeColor};
                 }
                 &.active::after {
-                    position:absolute;
-                    content:'';
-                    width:25px;
-                    height:3px;
-                    border-radius:2px;
-                    top:100%;
-                    left: 50%; 
-                    transform:translateX(-50%);
-                    background-color:${themeColor};
+                    position: absolute;
+                    content: '';
+                    width: 25px;
+                    height: 3px;
+                    border-radius: 2px;
+                    top: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: ${themeColor};
                 }
             }
         }

@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
-const {themeColor, normalColor, grayFontColor} = (getMode()==='LIGHT_MODE'?LIGHT_MODE:DARK_MODE)
+const { themeColor, normalColor, grayFontColor } = myTheme;
 export const HeaderWrapper = styled.div`
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,7 +10,7 @@ export const HeaderWrapper = styled.div`
     .left {
         display: flex;
         align-items: center;
-        
+
         .title {
             color: ${normalColor};
             font-size: 24px;
@@ -23,13 +22,13 @@ export const HeaderWrapper = styled.div`
             .item {
                 font-size: 12px;
                 color: ${grayFontColor};
-                .link{
+                .link {
                     text-decoration: none;
-                    margin:0 15px;
-                    &:hover{
+                    margin: 0 15px;
+                    &:hover {
                         color: ${themeColor};
                     }
-                    &:active{
+                    &:active {
                         color: ${themeColor};
                     }
                 }
@@ -37,17 +36,15 @@ export const HeaderWrapper = styled.div`
         }
     }
     .right {
-        color:${grayFontColor};
+        color: ${grayFontColor};
         display: flex;
         align-items: center;
         font-size: 14px;
-        .link{
+        .link {
             text-decoration: none;
             &:hover {
                 color: ${themeColor};
             }
-        
         }
     }
-
 `;

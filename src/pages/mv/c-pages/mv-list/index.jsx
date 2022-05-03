@@ -5,8 +5,8 @@ import { nanoid } from 'nanoid';
 import { MvListWrapper } from './style';
 import { getAllMvAction } from '../../store/actionCreator';
 import VideoCover from '@/components/video-cover';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
-const { themeColor } = getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+import { myTheme } from '@/common/constants';
+const { themeColor } = myTheme;
 export default memo(function Ranking() {
     const firstList = ['全部', '内地', '港台', '欧美', '韩国', '日本'];
     const secondList = ['全部', '官方版', '现场版', '网易出品'];
@@ -115,11 +115,7 @@ export default memo(function Ranking() {
                                         width: 350,
                                         height: 200,
                                     };
-                                    return (
-                                    
-                                            <VideoCover {...cover_props} />
-                                    
-                                    );
+                                    return <VideoCover {...cover_props} />;
                                 })}
                         </div>
                     );

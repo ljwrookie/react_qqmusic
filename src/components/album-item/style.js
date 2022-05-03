@@ -1,10 +1,6 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
-// 存储
-
-const { themeColor, searchBarColor, grayFontColor, normalColor } =
-    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
-
+import { myTheme } from '@/common/constants';
+const { themeColor, searchBarColor, normalColor, grayFontColor } = myTheme;
 export const AlbumItemWrapper = styled.div`
     position: relative;
     display: flex;

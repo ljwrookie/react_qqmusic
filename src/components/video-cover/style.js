@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
-const { themeColor, grayFontColor, normalColor } =
-    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { themeColor, grayFontColor, normalColor } = myTheme;
 export const VideoCoverWrapper = styled.div`
     .video-link {
         text-decoration: none;

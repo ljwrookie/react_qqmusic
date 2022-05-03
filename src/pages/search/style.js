@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 
-const { themeColor, bodyColor, normalColor } =
-    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { themeColor, bodyColor, normalColor } = myTheme;
 export const TopNav = styled.div`
     color: ${normalColor};
     .nav_title {

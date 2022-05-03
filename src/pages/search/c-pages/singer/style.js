@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { LIGHT_MODE, DARK_MODE, getMode } from '@/common/constants';
+import { myTheme } from '@/common/constants';
 // 存储
 
-const { themeColor, searchBarColor, grayFontColor, normalColor } =
-    getMode() === 'LIGHT_MODE' ? LIGHT_MODE : DARK_MODE;
+const { themeColor, searchBarColor, grayFontColor, normalColor } = myTheme;
 
 export const SearchSingerWrapper = styled.div`
     /* display: flex; */
