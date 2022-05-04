@@ -1,25 +1,55 @@
 import React, { memo, useRef, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Input } from 'antd';
+import { useNavigate, Link } from 'react-router-dom';
+import { Input, message } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+
 import {
     HeaderWrapper,
     HeaderLeft,
     HeaderRight,
     LoginWrapper,
 } from './style';
+import {
+    getLoginStatus,
+    getLogout,
+    getLoginUserInfo,
+    getSignIn,
+    getUserDetail
+} from '../../service/login';
 import Login from '../../pages/login';
+
+import { DownOutlined } from '@ant-design/icons';
+
 
 export const LoginContext = React.createContext(null);
 
 export default memo(function AppHeader(props) {
     const [theme, setTheme] = props.theme;
     const [isShow, setIsShow] = useState(false);
+
+    const [loginStatus, setLoginStatus] = useState(null);
+    const [userInfo, setUserInfo] = useState(null);
+    const [userDetail, setUserDetail] = useState(null);
+
+    const forLogin = async () => {
+        const res = await getLoginStatus();
+        console.log(res);
+        setLoginStatus(res.data);
+        const res1 = await getLoginUserInfo();
+        console.log(res1);
+        setUserInfo(res1);
+
+        const res3 = await getUserDetail(res.data.profile?.userId);
+        console.log(res3);
+        setUserDetail(res3);
+    }
+
+    useEffect(() => {
+        forLogin();
+    }, [isShow]);
+    const [showDrop, setShowDrop] = useState(false);
     let navigate = useNavigate();
     const changeTheme = () => {
-        if (theme) localStorage.setItem('Dark', false);
-        else localStorage.setItem('Dark', true);
-        // window.location.reload();
         setTheme(!theme);
     };
     const inputRef = useRef();
@@ -34,6 +64,39 @@ export default memo(function AppHeader(props) {
     };
     const next = () => {
         navigate(1, { replace: true });
+    };
+    const logout = async () => {
+        const res = await getLogout();
+        if (res.code === 200) {
+            setLoginStatus(null);
+            setShowDrop(false);
+            message.success({
+                content:
+                    '退出成功',
+                style: {
+                    marginTop: '5vh',
+                    borderRadius: '5px',
+                },
+            });
+        }
+    };
+    //关闭下拉栏
+    const closeDrop = () => {
+        setShowDrop(false);
+    };
+    const signIn = async () => {
+        const res = await getSignIn();
+        console.log(res)
+        if (res.code === 200) {
+            message.success({
+                content:
+                    '签到成功',
+                style: {
+                    marginTop: '5vh',
+                    borderRadius: '5px',
+                },
+            });
+        }
     };
     return (
         <>
@@ -59,12 +122,102 @@ export default memo(function AppHeader(props) {
                     />
                 </HeaderLeft>
                 <HeaderRight>
-                    {/* <a href="/login" className="login">
-                    点击登录
-                </a> */}
-                    <span className="login-button" onClick={showLogin}>
-                        点击登录
-                    </span>
+                    {loginStatus &&
+                    loginStatus.code === 200 &&
+                    loginStatus.account !== null ? (
+                        <>
+                            <Link
+                                to={`/userdetail?uid=${loginStatus.profile.userId}`}
+                            >
+                                <img
+                                    src={loginStatus?.profile?.avatarUrl}
+                                />
+                            </Link>
+                            <div className="drop-down">
+                                <div
+                                    className="nickname"
+                                    onClick={() => setShowDrop(!showDrop)}
+                                >
+                                    <span className="text-nowrap">
+                                        {loginStatus.profile?.nickname}
+                                    </span>
+                                    <DownOutlined
+                                        style={{ fontSize: '10px' }}
+                                    />
+                                </div>
+                                {showDrop ? (
+                                    <div className="drop-bottom">
+                                        <div className="drop-sore">
+                                            <div>
+                                                <span className="sore-number">
+                                                    {userDetail.level}
+                                                </span>
+                                                级
+                                            </div>
+                                            <button onClick={signIn}>
+                                                立即签到得积分
+                                            </button>
+                                        </div>
+                                        <div className="drop-list">
+                                            <div onClick={closeDrop}>
+                                                <Link
+                                                    to={`/userdetail?uid=${loginStatus.profile.userId}`}
+                                                >
+                                                    {' '}
+                                                    歌单
+                                                    {
+                                                        userDetail.profile
+                                                            .playlistCount
+                                                    }
+                                                </Link>
+                                            </div>
+                                            <div onClick={closeDrop}>
+                                                <Link
+                                                    to={`/userdetail/follow?uid=${loginStatus.profile.userId}`}
+                                                >
+                                                    关注
+                                                    {
+                                                        userDetail.profile
+                                                            .follows
+                                                    }
+                                                </Link>
+                                            </div>
+                                            <div onClick={closeDrop}>
+                                                <Link
+                                                    to={`/userdetail/followed?uid=${loginStatus.profile.userId}`}
+                                                >
+                                                    粉丝
+                                                    {
+                                                        userDetail.profile
+                                                            .followeds
+                                                    }
+                                                </Link>
+                                            </div>
+                                        </div>
+                                        {/* 分割线 */}
+                                        <div className="drop-line"></div>
+                                        <div className="drop-logout">
+                                            <div onClick={closeDrop}>
+                                                <Link
+                                                    to={`/userdetail?uid=${loginStatus.profile.userId}`}
+                                                >
+                                                    个人主页
+                                                </Link>
+                                            </div>
+                                            <div></div>
+                                            <div onClick={logout}>
+                                                退出登录
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : null}
+                            </div>
+                        </>
+                    ) : (
+                        <span className="login-button" onClick={showLogin}>
+                            点击登录
+                        </span>
+                    )}
                     <span className="iconfont toolbar">&#xe63a;</span>
                     <span
                         className="iconfont toolbar"

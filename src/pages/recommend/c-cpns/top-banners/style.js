@@ -32,6 +32,7 @@ export const BannerWrapper = styled.div`
     .slick-dots {
         position: absolute;
         bottom: -30px;
+        z-index:0 !important;
         li {
             width: 10px !important;
             height: 10px;
@@ -40,6 +41,7 @@ export const BannerWrapper = styled.div`
             button {
                 height: 10px;
                 border-radius: 50%;
+                
                 background-color: ${normalColor} !important;
                 &:hover {
                     background-color: ${themeColor} !important;

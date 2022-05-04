@@ -9,6 +9,7 @@ export const LIGHT_MODE = {
     normalColor: '#000',
     grayFontColor: '#7d7d7d',
     hoverColor: '#dedede',
+    boxShadow: 'rgba(0,0,0,0.1)',
 };
 
 export const DARK_MODE = {
@@ -21,6 +22,7 @@ export const DARK_MODE = {
     normalColor: '#fff',
     grayFontColor: '#8e8e8f',
     hoverColor: '#2e2e2f',
+    boxShadow: 'rgba(52, 53, 52, 0.5)',
 };
 
 const logoUrl = theme('mode', {
@@ -59,6 +61,10 @@ const hoverColor = theme('mode', {
     light: LIGHT_MODE.hoverColor,
     dark: DARK_MODE.hoverColor,
 });
+const boxShadow = theme('mode', {
+    light: LIGHT_MODE.boxShadow,
+    dark: DARK_MODE.boxShadow,
+});
 export const myTheme = {
     logoUrl,
     themeColor,
@@ -69,6 +75,7 @@ export const myTheme = {
     normalColor,
     grayFontColor,
     hoverColor,
+    boxShadow,
 };
 
 export function getMode() {
@@ -83,13 +90,13 @@ export function getMode() {
     return modeName;
 }
 
-export function asyncGetMode() {
-    window.load = () => {
-        window.addEventListener('storage', (e) => {
-            console.log(e);
-        });
-    };
-}
+// export function asyncGetMode() {
+//     window.load = () => {
+//         window.addEventListener('storage', (e) => {
+//             console.log(e);
+//         });
+//     };
+// }
 
 export const HOT_RECOMMEND_LIMIT = 8;
 export const NEW_ALBUM_PAGE_NUM = 2;
@@ -100,7 +107,7 @@ export const SETTLE_SINGER = 5;
 export const SONG_PLAYLIST_ID = [
     167876, 411214279, 1483891561, 1363948882, 467952048,
 ];
-// // 本地存储音乐Key
+// 本地存储音乐Key
 export const LOCAL_PLAYLIST_ID_KEY = 'playlistId'; // 歌曲列表id
 export const LOCAL_CURRENT_SONG_INDEX_KEY = 'currentSongIndex'; // 歌曲所引
 

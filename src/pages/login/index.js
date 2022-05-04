@@ -16,7 +16,7 @@ export default memo(function Login() {
     };
     const shutDown = () => {
         const container = document.querySelector('.lg-container');
-        container.style.display = 'none';
+        // container.style.display = 'none';
         setIsShow(false);
         // setIsShow(true);
         // console.log(isShow)

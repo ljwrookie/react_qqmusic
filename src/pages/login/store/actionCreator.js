@@ -5,8 +5,9 @@ import {
     getQrCheck,
     getRefreshLogin,
     getLoginStatus,
-    getLogout
-} from '@/service/login.js'
+    getLogout,
+    getLoginWithPhoneAndPassword,
+} from '@/service/login.js';
 
 export const changeQrKeyAction = (res) => ({
     type: action.CHANGE_QR_KEY,
@@ -62,6 +63,10 @@ export const changeLogoutAction = (res) => ({
     logout: res.code
 })
 
+export const changeLoginWithPhoneAndPasswordAction = (res) => ({
+    type: action.CHANGE_LOGIN_WITH_PHONE_AND_PASSWORD,
+    loginWithPhoneAndPassword: res
+})
 
 //发送网络请求将结果传递给派发的action中
 export const getQrKeyAction = () => {
@@ -100,7 +105,7 @@ export const getLoginStatusAction = () => {
     return (dispatch) => {
         //发送登录状态网络请求
         getLoginStatus().then((res) => {
-            dispatch(changeRefreshLoginAction(res))
+            dispatch(changeLoginStatusAction(res));
         })
     }
 }
@@ -112,3 +117,13 @@ export const getLogoutAction = () => {
         })
     }
 }
+
+export const getLoginWithPhoneAndPasswordAction = (phone, password) => {
+    return (dispatch) => {
+        //发送登录网络请求
+        getLoginWithPhoneAndPassword(phone, password).then((res) => {
+            dispatch(changeLoginWithPhoneAndPasswordAction(res))
+        })
+    }
+}
+

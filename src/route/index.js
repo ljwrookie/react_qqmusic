@@ -50,6 +50,9 @@ const DiscoverNewSong = React.lazy((_) =>
 const DiscoverNewAlbum = React.lazy((_) =>
     import('../pages/discover/c-pages/new/c-pages/albums')
 );
+const HomePage = React.lazy((_) => import('../pages/user/c-pages/home-page'));
+const Follow = React.lazy((_) => import('../pages/user/c-pages/follow'));
+const Followed = React.lazy((_) => import('../pages/user/c-pages/followed'));
 // import { element } from 'prop-types';
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArray": true}] */
@@ -195,6 +198,29 @@ const GetRoutes = () => {
                 },
             ],
         },
+        {
+            path: '/userdetail',
+            element: <HomePage />,
+            // children: [
+            //     {
+            //         path: 'follow',
+            //         element: <Follow />,
+            //     },
+            //     {
+            //         path: 'followed',
+            //         element: <Followed />,
+            //     }
+            // ]
+        },
+        {
+            path: '/userdetail/follow',
+            element: <Follow />,
+        },
+        {
+            path: '/userdetail/followed',
+            element: <Followed />,
+        },
+        
         {
             path: '/',
             element: <Navigate to="/recommend" />,

@@ -14,19 +14,24 @@ const defaultState = Map({
 function reducer(state=defaultState, action){
     switch (action.type) {
         case actionTypes.CHANGE_QR_KEY:
-            return state.set('qrKey', action.qrKey)
+            return state.set('qrKey', action.qrKey);
         case actionTypes.CHANGE_QR:
-            return state.set('qr', action.qr)
+            return state.set('qr', action.qr);
         case actionTypes.CHANGE_QR_CHECK:
-            return state.set('qrCheck', action.qrCheck)
+            return state.set('qrCheck', action.qrCheck);
         case actionTypes.CHANGE_REFRESH_LOGIN:
-            return state.set('refreshLogin', action.refreshLogin)
+            return state.set('refreshLogin', action.refreshLogin);
         case actionTypes.CHANGE_LOGIN_STATUS:
-            return state.set('loginStatus', action.loginStatus)
+            return state.set('loginStatus', action.loginStatus);
         case actionTypes.CHANGE_LOGOUT:
-            return state.set('logout', action.logout)
+            return state.set('logout', action.logout);
+        case actionTypes.CHANGE_LOGIN_WITH_PHONE_AND_PASSWORD:
+            return state.set(
+                'loginWithPhoneAndPassword',
+                action.loginWithPhoneAndPassword
+            );
         default:
-            return state
+            return state;
     }
 }
 export default reducer;
