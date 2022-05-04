@@ -15,6 +15,7 @@ export const LoginContext = React.createContext(null);
 export default memo(function AppHeader(props) {
     const [theme, setTheme] = props.theme;
     const [isShow, setIsShow] = useState(false);
+    const [fullscreen, setFullScreen] = useState(false);
     let navigate = useNavigate();
     const changeTheme = () => {
         if (theme) localStorage.setItem('Dark', false);
@@ -29,6 +30,33 @@ export default memo(function AppHeader(props) {
     const searchKeyword = (e) => {
         navigate(`/search/song?keywords=${e.target.value}`);
     };
+    function troggleFullScreen() {
+        if (fullscreen) {
+            //退出全屏
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+        } else {
+            var element = document.documentElement;
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullScreen();
+            }
+        }
+        setFullScreen(!fullscreen);
+    }
+
     const pre = () => {
         navigate(-1, { replace: true });
     };
@@ -72,7 +100,21 @@ export default memo(function AppHeader(props) {
                     >
                         &#xe650;
                     </span>
-                    <span className="iconfont toolbar">&#xe6a9;</span>
+                    {fullscreen ? (
+                        <span
+                            className="iconfont toolbar"
+                            onClick={() => troggleFullScreen()}
+                        >
+                            &#xe633;
+                        </span>
+                    ) : (
+                        <span
+                            className="iconfont toolbar"
+                            onClick={() => troggleFullScreen()}
+                        >
+                            &#xe651;
+                        </span>
+                    )}
                 </HeaderRight>
             </HeaderWrapper>
             {isShow ? (

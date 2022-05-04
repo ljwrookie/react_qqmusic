@@ -32,6 +32,7 @@ export const BannerWrapper = styled.div`
     .slick-dots {
         position: absolute;
         bottom: -30px;
+        z-index: 0;
         li {
             width: 10px !important;
             height: 10px;

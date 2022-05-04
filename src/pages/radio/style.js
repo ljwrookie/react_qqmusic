@@ -9,4 +9,9 @@ export const RadioNav = styled.div`
         font-weight: 900;
         margin: 20px 0;
     }
+    .ant-result {
+        margin-top: 30%;
+        margin-bottom: 40%;
+        height: 100%;
+    }
 `;

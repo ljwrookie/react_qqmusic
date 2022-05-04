@@ -18,12 +18,8 @@ export const AppWrapper = styled.div`
     .app_right {
         flex: 1;
         margin-left: 210px;
-        padding-top: 75px;
-        padding-bottom: 80px;
-        height: 100%;
-        /* min-height: 1000px; */
-        background: ${bodyColor};
-        /* overflow: auto; */
+        margin-top: 75px;
+        background-color: ${bodyColor};
     }
     .app-top {
         position: fixed;
