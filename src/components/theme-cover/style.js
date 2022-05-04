@@ -9,6 +9,11 @@ export const ThemeCoverWrapper = styled.div`
     margin-top: ${(props) => {
         return props.hover === false ? '0px' : '20px';
     }};
+    &:hover {
+        .cover-bottom > .delete-it {
+            visibility: visible;
+        }
+    }
 
     /* height:30px; */
     .cover-top {
@@ -80,9 +85,7 @@ export const ThemeCoverWrapper = styled.div`
         }
         &:hover {
             transform: ${(props) => {
-                return props.hover === false
-                    ? 'none'
-                    : 'translateY(-20px)';
+                return props.hover === false ? 'none' : 'translateY(-5%)';
             }};
 
             .mask {
@@ -95,11 +98,21 @@ export const ThemeCoverWrapper = styled.div`
     .cover-bottom {
         cursor: pointer;
         font-size: 14px;
+        line-height:20px;
         color: ${normalColor};
         margin-top: 10px;
-
-        &:hover {
+        display: flex;
+        justify-content: space-between;
+        div:first-of-type:hover {
             color: ${themeColor};
+        }
+        .delete-it {
+            visibility: hidden;
+            font-size: 20px;
+            &:hover {
+                color: ${themeColor};
+                visibility: visible;
+            }
         }
     }
     .singer_name {

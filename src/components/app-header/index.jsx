@@ -1,4 +1,5 @@
 import React, { memo, useRef, useState, useEffect } from 'react';
+import {getSizeImage} from '@/utils/format-utils'
 import { useNavigate, Link } from 'react-router-dom';
 import { Input, message } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
@@ -12,10 +13,13 @@ import {
 import {
     getLoginStatus,
     getLogout,
+} from '../../service/login';
+import {
     getLoginUserInfo,
     getSignIn,
-    getUserDetail
-} from '../../service/login';
+    getUserDetail,
+} from '../../service/user';
+
 import Login from '../../pages/login';
 
 import { DownOutlined } from '@ant-design/icons';
@@ -155,10 +159,13 @@ export default memo(function AppHeader(props) {
                     loginStatus.account !== null ? (
                         <>
                             <Link
-                                to={`/userdetail?uid=${loginStatus.profile.userId}`}
+                                to={`/userdetail/love?uid=${loginStatus.profile.userId}`}
                             >
                                 <img
-                                    src={loginStatus?.profile?.avatarUrl}
+                                    src={
+                                        getSizeImage(loginStatus?.profile
+                                            ?.avatarUrl, 60,60)
+                                    }
                                 />
                             </Link>
                             <div className="drop-down">
@@ -189,9 +196,8 @@ export default memo(function AppHeader(props) {
                                         <div className="drop-list">
                                             <div onClick={closeDrop}>
                                                 <Link
-                                                    to={`/userdetail?uid=${loginStatus.profile.userId}`}
+                                                    to={`/userdetail/love?uid=${loginStatus.profile.userId}`}
                                                 >
-                                                    {' '}
                                                     歌单
                                                     {
                                                         userDetail.profile
@@ -227,7 +233,7 @@ export default memo(function AppHeader(props) {
                                         <div className="drop-logout">
                                             <div onClick={closeDrop}>
                                                 <Link
-                                                    to={`/userdetail?uid=${loginStatus.profile.userId}`}
+                                                    to={`/userdetail/love?uid=${loginStatus.profile.userId}`}
                                                 >
                                                     个人主页
                                                 </Link>

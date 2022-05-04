@@ -71,41 +71,4 @@ export function getLoginWithPhoneAndPassword(phone, password) {
     });
 }
 
-//获取到帐号信息
 
-export function getAccountInfo() {
-    return request({
-        url: '/user/account',
-    });
-}
-
-//获取登录用户信息
-export function getLoginUserInfo() {
-    return request({
-        url: '/user/subcount',
-    });
-}
-
-//获取用户等级
-export function getUserLevel() {
-    return request({
-        url: '/user/level',
-    });
-}
-
-//签到
-export function getSignIn() {
-    return request({
-        url: '/daily_signin',
-    });
-}
-
-//获取用户详情
-export function getUserDetail(uid) {
-    return request({
-        url: '/user/detail',
-        params: {
-            uid
-        }
-    });
-}

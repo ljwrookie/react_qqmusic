@@ -80,7 +80,7 @@ export const VideoCoverWrapper = styled.div`
             }
         }
         &:hover {
-            transform: translateY(-20px);
+            transform: translateY(-5%);
 
             .mask {
                 background-color: #000;

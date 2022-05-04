@@ -8,7 +8,7 @@ import {
 } from './store/actionCreator';
 import {getSizeImage} from '@/utils/format-utils'
 import { PlaylistWrapper } from './style';
-import { nanoid } from 'nanoid';
+
 export default  memo(function Playlist(){
     const [playlistId, setPlaylistId] = useSearchParams();
     const id = playlistId.get('id');
@@ -66,7 +66,7 @@ export default  memo(function Playlist(){
                         {tags &&
                             tags.map((item) => {
                                 return (
-                                    <span key={nanoid()}>
+                                    <span key={item.id}>
                                         {'#' + item}
                                     </span>
                                 );

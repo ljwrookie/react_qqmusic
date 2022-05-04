@@ -13,8 +13,9 @@ export const RankingItemWrapper = styled.div`
     border-radius: 15px;
     background-color: ${sideColor};
     margin-top: 20px;
+    transition: all 0.3s;
     &:hover {
-        transform: translateY(-20px);
+        transform: translateY(-5%);
     }
     .cover {
         border-radius: 15px;

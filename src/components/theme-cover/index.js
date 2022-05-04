@@ -5,7 +5,7 @@ import { getSizeImage, getCount } from '@/utils/format-utils';
 import { ThemeCoverWrapper } from './style';
 
 export default memo(function ThemeCover(props) {
-    const { name, singer, img_url, playCount, width, height,hover } = props; // const {url_name} =
+    const { name, singer, img_url, playCount, width, height, hover,  deleteIt , deleteThis} = props; // const {url_name} =
     // console.log(urlList)
     return (
         <ThemeCoverWrapper width={width} height={height} hover={hover}>
@@ -32,7 +32,17 @@ export default memo(function ThemeCover(props) {
                     </div>
                 </div>
             </div>
-            <div className="cover-bottom text-nowrap ">{name}</div>
+            <div className="cover-bottom  ">
+                <div className="text-nowrap">{name}</div>
+                {deleteIt ? (
+                    <div
+                        className="delete-it iconfont"
+                        onClick={deleteThis}
+                    >
+                        &#xe61c;
+                    </div>
+                ) : null}
+            </div>
             <div className="singer_name">{singer}</div>
         </ThemeCoverWrapper>
     );
