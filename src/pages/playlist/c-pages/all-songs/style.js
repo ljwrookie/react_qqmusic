@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { myTheme } from '@/common/constants';
+import theme from 'styled-theming';
 
-const { grayFontColor } = myTheme;
+const { grayFontColor, themeColor } = myTheme;
 export const AllSongsWrapper = styled.div`
     min-height: 60vh;
     .list_header {
@@ -19,6 +20,20 @@ export const AllSongsWrapper = styled.div`
         }
         .total_time {
             margin-left: 270px;
+        }
+    }
+    .un-open{
+        height: 50vh;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        span{
+            font-size:16px;
+        }
+        .iconfont{
+            font-size:50px;
+            color:${themeColor};
         }
     }
 `;

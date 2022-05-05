@@ -57,7 +57,7 @@ export default memo(function Singer() {
         };
     };
     return (
-        <div>
+        <div style={{minHeight:'80vh'}}>
             <DiscoverSingerWrapper>
                 <div className="area">
                     {areaList.map((item) => {

@@ -11,7 +11,9 @@ export const FollowedWarper = styled.div`
         font-size: 24px;
         font-weight:900;
     }
-    
+    a{
+        text-decoration:none;
+    }
     .main{
         display: flex;
         flex-wrap: wrap;

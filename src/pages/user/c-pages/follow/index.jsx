@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react'
 import { getFollows, getUserDetail } from '@/service/user'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, Link } from 'react-router-dom'
 import { getSizeImage } from '@/utils/format-utils';
 import {FollowWarper} from './style'
 const Follow = memo(() => {
@@ -24,6 +24,7 @@ const Follow = memo(() => {
       {
         follows.map((item)=>{
           return (
+            <Link to={`/userdetail/love?uid=${item.userId}`}>
             <div>
               <img src={getSizeImage(
                             item?.avatarUrl,
@@ -33,6 +34,7 @@ const Follow = memo(() => {
               <span className='text-nowrap'>{item.nickname}</span>
               <button>已关注</button>
             </div>
+            </Link>
           )
         })
       }

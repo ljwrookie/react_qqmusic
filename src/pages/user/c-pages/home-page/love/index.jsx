@@ -29,15 +29,14 @@ const Love = memo(() => {
   // }
   useEffect(()=>{
     love()
-  },showSong)
+  },[])
   return (
     <LoveWrapper>
     {/* // <div onClick={changeShowSong}>歌曲</div>
    
     // <div onClick={changeShowVideo}>视频</div> */}
 
-    {showSong
-     && 
+    {musicList.length !==0 ?(
      musicList 
      &&
       musicList.map((item) => {
@@ -57,10 +56,13 @@ const Love = memo(() => {
                   lazyload="true"
               />
           );
-      })}
-      {
-        !showSong 
-      }
+      })): 
+      <div className='un-open'>
+        <span className='iconfont'>&#xe664;</span>
+        <span> 主人信息未公开</span>
+    </div>
+  }
+  
     </LoveWrapper>
     
   )

@@ -1,7 +1,7 @@
 import React, { memo, Suspense, useState } from 'react';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import { LIGHT_MODE, DARK_MODE } from '@/common/constants';
+
 import GetRoutes from './route';
 
 import store from './store';

@@ -30,7 +30,7 @@ export default memo(function PlaylistAllSongs() {
                 <div className="album">专辑</div>
                 <div className="total_time">时长</div>
             </div>
-            {playlistAllSongs &&
+            { playlistAllSongs.length !== 0 ? (playlistAllSongs &&
                 playlistAllSongs.map((item) => {
                     const props = {
                         id: item.id,
@@ -48,7 +48,12 @@ export default memo(function PlaylistAllSongs() {
                             lazyload="true"
                         />
                     );
-                })}
+                })) : 
+                <div className='un-open'>
+                    <span className='iconfont'>&#xe664;</span>
+                    <span> 主人信息未公开</span>
+                </div>
+            }
         </AllSongsWrapper>
     );
 });

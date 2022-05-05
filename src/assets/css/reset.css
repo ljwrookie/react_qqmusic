@@ -2,12 +2,12 @@
 @import '~antd/dist/antd.css';
 
 @font-face {
-    font-family: 'iconfont';
-    /* Project id 3240690 */
-    src: url('//at.alicdn.com/t/font_3240690_yi1ulmonuir.woff2?t=1651651594134') format('woff2'),
-        url('//at.alicdn.com/t/font_3240690_yi1ulmonuir.woff?t=1651651594134') format('woff'),
-        url('//at.alicdn.com/t/font_3240690_yi1ulmonuir.ttf?t=1651651594134') format('truetype');
-}
+    font-family: 'iconfont';  /* Project id 3240690 */
+    src: url('//at.alicdn.com/t/font_3240690_8m5i34v8njp.woff2?t=1651733506780') format('woff2'),
+         url('//at.alicdn.com/t/font_3240690_8m5i34v8njp.woff?t=1651733506780') format('woff'),
+         url('//at.alicdn.com/t/font_3240690_8m5i34v8njp.ttf?t=1651733506780') format('truetype');
+  }
+  
 /* 样式的重置 */
 body,
 html,

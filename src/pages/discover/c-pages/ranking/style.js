@@ -10,7 +10,7 @@ const {
 } = myTheme;
 
 export const RankingWrapper = styled.div`
-    min-height:60vh;
+    min-height:80vh;
 
     .long_item,
     .cover_item {
