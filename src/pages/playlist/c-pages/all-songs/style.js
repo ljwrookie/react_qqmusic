@@ -3,6 +3,7 @@ import { myTheme } from '@/common/constants';
 
 const { grayFontColor } = myTheme;
 export const AllSongsWrapper = styled.div`
+    min-height: 60vh;
     .list_header {
         margin-top: 30px;
         display: flex;

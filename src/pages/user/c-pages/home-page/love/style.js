@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import { myTheme } from '@/common/constants';
+// import { myTheme } from '@/common/constants';
 
-const { themeColor, bodyColor, grayFontColor, normalColor } = myTheme;
-export const Wrapper = styled.div`
+// const { themeColor, bodyColor, grayFontColor, normalColor } = myTheme;
+export const LoveWrapper = styled.div`
+    margin-top: 20px;
+    min-height: 60vh;
 `;

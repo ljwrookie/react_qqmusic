@@ -1,5 +1,5 @@
 import React, { memo, useState, useEffect } from 'react'
-import { useSearchParams, NavLink, Outlet } from 'react-router-dom'
+import { useSearchParams, NavLink, Link, Outlet } from 'react-router-dom'
 import {
     getUserDetail,
     getLoginUserInfo,
@@ -48,8 +48,8 @@ const HomePage = memo(() => {
                             : userDetail.profile?.signature}
                     </div>
                     <div className="top-right-bottom">
-                        <span>关注: {userDetail.profile?.follows}</span>
-                        <span>粉丝: {userDetail.profile?.followeds}</span>
+                        <span><Link to={`/userdetail/follow?uid=${uid}`}>关注: {userDetail.profile?.follows}</Link></span>
+                        <span><Link to={`/userdetail/followed?uid=${uid}`}>粉丝: {userDetail.profile?.followeds}</Link></span>
                     </div>
                 </div>
             </div>

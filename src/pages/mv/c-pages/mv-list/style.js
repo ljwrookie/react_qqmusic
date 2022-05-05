@@ -5,6 +5,8 @@ const { themeColor, hoverColor, sideColor, bodyColor, normalColor } =
     myTheme;
 
 export const MvListWrapper = styled.ul`
+    min-height:80vh;
+
     .firstList {
         margin-top: 15px;
     }

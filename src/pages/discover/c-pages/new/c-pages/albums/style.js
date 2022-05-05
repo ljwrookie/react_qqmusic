@@ -33,6 +33,8 @@ export const SwitchArea = styled.div`
     }
 `;
 export const CardWrapper = styled.div`
+    min-height:60vh;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;

@@ -1,8 +1,44 @@
-import React, { memo } from 'react'
-
+import React, { memo, useEffect, useState } from 'react'
+import { getFollows, getUserDetail } from '@/service/user'
+import { useSearchParams } from 'react-router-dom'
+import { getSizeImage } from '@/utils/format-utils';
+import {FollowWarper} from './style'
 const Follow = memo(() => {
+  const [userId, setUserId] = useSearchParams()
+  const [follows, setFollows] = useState([])
+  const [userDetail, setUserDetail] = useState({})
+  const uid = userId.get('uid')
+  useEffect(()=>{
+    getFollows(uid).then((res)=>{
+      console.log(res)
+      setFollows(res.follow)
+    })
+    getUserDetail(uid).then((res)=>{
+      setUserDetail(res.profile)
+    })
+  },uid)
   return (
-    <div>我的关注</div>
+    <FollowWarper>
+      <div className='title'>{`${userDetail.nickname}的关注`}</div>
+      <div className='main'>
+      {
+        follows.map((item)=>{
+          return (
+            <div>
+              <img src={getSizeImage(
+                            item?.avatarUrl,
+                            200,
+                            200
+                        )}></img>
+              <span className='text-nowrap'>{item.nickname}</span>
+              <button>已关注</button>
+            </div>
+          )
+        })
+      }
+      </div>
+    </FollowWarper>
+    
   )
 })
 

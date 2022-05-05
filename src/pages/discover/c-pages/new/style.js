@@ -12,6 +12,7 @@ const {
 export const DiscoverNewWrapper = styled.div`
     position: relative;
     height: 68px;
+
     .switch_part {
         position: absolute;
         display: flex;

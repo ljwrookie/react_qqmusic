@@ -52,6 +52,7 @@ const DiscoverNewAlbum = React.lazy((_) =>
 );
 const HomePage = React.lazy((_) => import('../pages/user/c-pages/home-page'));
 const Love = React.lazy((_) => import('../pages/user/c-pages/home-page/love'));
+
 const CreatePlaylist = React.lazy((_) => import('../pages/user/c-pages/home-page/create-playlist'));
 const CollectionPlaylist = React.lazy((_) => import('../pages/user/c-pages/home-page/collection-playlist'));
 const Follow = React.lazy((_) => import('../pages/user/c-pages/follow'));
@@ -208,6 +209,20 @@ const GetRoutes = () => {
                 {
                     path: 'love',
                     element: <Love />,
+                    // children: [
+                    //     {
+                    //         path: 'song',
+                    //         element: <LoveSong/>
+                    //     },
+                    //     {
+                    //         path: 'video',
+                    //         element: <LoveVideo/>
+                    //     },
+                    //     {
+                    //         path: '',
+                    //         element: <Navigate to="song"/>
+                    //     }
+                    // ]
                 },
                 {
                     path: 'createplaylist',
@@ -219,7 +234,7 @@ const GetRoutes = () => {
                 },
                 {
                     path: '',
-                    element: <Navigate to="/userdetail/love" />,
+                    element: <Navigate to="love" />,
                 }
             ]
         },

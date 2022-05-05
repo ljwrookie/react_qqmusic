@@ -1,6 +1,6 @@
 import  request from '@/service/request';
 //喜欢音乐列表
-export const likeMusicList = (uid) => {
+export const getLikeMusicList = (uid) => {
     return request({
         url: '/likelist',
         params: {
@@ -90,4 +90,39 @@ export function deletePlayList(id) {
             id
         }
     });
+}
+
+// 获取用户关注列表
+// 说明 : 登录后调用此接口 , 传入用户 id, 可以获取用户关注列表
+// 必选参数 : uid : 用户 id
+// 可选参数 :
+// limit : 返回数量 , 默认为 30
+// offset : 偏移数量，用于分页 ,如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0
+// 接口地址 : /user/follows
+export function getFollows (uid,limit,offset){
+    return request({
+        url: '/user/follows',
+        params:{
+            uid,
+            limit,
+            offset
+        }
+    })
+}
+
+// 获取用户粉丝列表
+// 说明 : 登录后调用此接口 , 传入用户 id, 可以获取用户粉丝列表
+// 必选参数 : uid : 用户 id
+// 可选参数 : limit : 返回数量 , 默认为 30
+// offset : 偏移数量，用于分页 ,如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0
+// 接口地址 : /user/followeds
+export function getFolloweds (uid,limit,offset){
+    return request({
+        url: '/user/followeds',
+        params:{
+            uid,
+            limit,
+            offset
+        }
+    })
 }

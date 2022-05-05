@@ -10,6 +10,7 @@ const {
     normalColor,
 } = myTheme;
 export const CommentWrapper = styled.div`
+    min-height:60vh;
     overflow: hidden;
     .btn {
         height: 30px;

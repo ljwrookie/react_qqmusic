@@ -37,8 +37,13 @@ export const HomePageWrapper = styled.div`
             }
 
             .top-right-bottom {
-                span {
+                a{
+                    cursor: pointer;
                     margin-right: 10px;
+                    text-decoration: none;
+                    &:hover{
+                        color: ${themeColor}
+                    }
                 }
             }
         }

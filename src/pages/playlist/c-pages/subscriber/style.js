@@ -3,6 +3,7 @@ import { myTheme } from '@/common/constants';
 
 const { themeColor, sideColor } = myTheme;
 export const SubScriberWrapper = styled.div`
+    min-height:60vh;
     overflow: hidden;
     .person-list {
         font-size: 1px;

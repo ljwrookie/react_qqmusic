@@ -8,7 +8,7 @@ import { RecommendWrapper, RecommendControl } from './style';
 
 import ThemeHeaderRCM from '@/components/theme-header-rcm';
 import VideoCover from '@/components/video-cover';
-import ThemeCover from '@/components/theme-cover';
+
 export default memo(function PrivateContent() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作

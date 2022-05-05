@@ -3,6 +3,7 @@ import { myTheme } from '@/common/constants';
 
 const { themeColor, bodyColor, normalColor } = myTheme;
 export const TopNav = styled.div`
+
     color: ${normalColor};
     .nav_title {
         font-size: 32px;

@@ -37,6 +37,8 @@ export const SwitchArea = styled.div`
     }
 `;
 export const PlayList = styled.div`
+    min-height:60vh;
+
     .batch_operation {
         display: flex;
         align-items: center;

@@ -27,7 +27,7 @@ const CreatePlaylist = memo(() => {
             setPlaylist(res.playlist);
             console.log(res);
         });
-    }, []);
+    }, [uid]);
     return (
         <CollectionPlaylistWrapper>
             {playlist.slice(length, -1).map((item) => {

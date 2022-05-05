@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const CreatePlaylistWrapper = styled.div`
     display: flex;
     flex-direction: row;
-    min-height: 55vh;
+    min-height: 60vh;
     flex-wrap: wrap;
     .item{
         text-decoration: none; 

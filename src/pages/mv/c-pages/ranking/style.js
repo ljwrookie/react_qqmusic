@@ -3,7 +3,8 @@ import { myTheme } from '@/common/constants';
 
 const { themeColor, grayFontColor, normalColor } = myTheme;
 export const MvRankingWrapper = styled.ul`
-    /* width:1100px; */
+    min-height:80vh;
+
     margin-top: 30px;
     .rank-title {
         .rank-title-left {
