@@ -32,16 +32,16 @@ export default memo(function AppHeader(props) {
     const [isShow, setIsShow] = useState(false);
 
     const [loginStatus, setLoginStatus] = useState(null);
-    const [userInfo, setUserInfo] = useState(null);
+    // const [userInfo, setUserInfo] = useState(null);
     const [userDetail, setUserDetail] = useState(null);
 
     const forLogin = async () => {
         const res = await getLoginStatus();
         console.log(res);
         setLoginStatus(res.data);
-        const res1 = await getLoginUserInfo();
-        console.log(res1);
-        setUserInfo(res1);
+        // const res1 = await getLoginUserInfo();
+        // console.log(res1);
+        // setUserInfo(res1);
 
         const res3 = await getUserDetail(res.data.profile?.userId);
         console.log(res3);
@@ -159,7 +159,7 @@ export default memo(function AppHeader(props) {
                     loginStatus.account !== null ? (
                         <>
                             <Link
-                                to={`/userdetail/love?uid=${loginStatus.profile.userId}`}
+                                to={`/userdetail?uid=${loginStatus.profile.userId}`}
                             >
                                 <img
                                     src={
@@ -196,7 +196,7 @@ export default memo(function AppHeader(props) {
                                         <div className="drop-list">
                                             <div onClick={closeDrop}>
                                                 <Link
-                                                    to={`/userdetail/love?uid=${loginStatus.profile.userId}`}
+                                                    to={`/userdetail?uid=${loginStatus.profile.userId}`}
                                                 >
                                                     歌单
                                                     {
@@ -233,7 +233,7 @@ export default memo(function AppHeader(props) {
                                         <div className="drop-logout">
                                             <div onClick={closeDrop}>
                                                 <Link
-                                                    to={`/userdetail/love?uid=${loginStatus.profile.userId}`}
+                                                    to={`/userdetail?uid=${loginStatus.profile.userId}`}
                                                 >
                                                     个人主页
                                                 </Link>

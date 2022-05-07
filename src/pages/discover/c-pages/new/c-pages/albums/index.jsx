@@ -32,7 +32,7 @@ export default memo(function DiscoverNewAlbum() {
         setCurrentCode(catLink[e.target.innerText]);
     };
     return (
-        <div>
+        <div style={{minHeight: '80vh'}}>
             <SwitchArea>
                 {catkeys.map((item) => {
                     return (

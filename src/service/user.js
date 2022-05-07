@@ -42,7 +42,8 @@ export function getUserDetail(uid) {
     return request({
         url: '/user/detail',
         params: {
-            uid
+            uid,
+            timerstamp: Date.now(),
         }
     });
 }
@@ -66,13 +67,14 @@ export function getLikeVideo() {
 // offset : 偏移数量，用于分页 , 如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0
 // 接口地址 : /user/playlist
 // 请求方式 : GET
-export function getUserPlayList(uid, limit, offset) {
+export function getUserPlaylist(uid, limit, offset) {
     return request({
         url: '/user/playlist',
         params: {
             uid,
             limit,
-            offset
+            offset,
+            timerstamp: Date.now(),
         }
     });
 }
@@ -82,7 +84,7 @@ export function getUserPlayList(uid, limit, offset) {
 // 必选参数 : id : 歌单 id,可多个,用逗号隔开
 // 接口地址 : /playlist/delete
 // 请求方式 : POST
-export function deletePlayList(id) {
+export function deletePlaylist(id) {
     return request({
         url: '/playlist/delete',
         // method: 'POST',

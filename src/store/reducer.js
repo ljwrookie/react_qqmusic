@@ -3,7 +3,7 @@ import { combineReducers } from 'redux-immutable';
 import { reducer as recommendReducer } from '../pages/recommend/store';
 import { reducer as playerReducer } from '../pages/player/store';
 import { reducer as playlistReducer } from '../pages/playlist/store';
-import { reducer as loginReducer } from '../pages/login/store';
+import { reducer as userReducer } from '../pages/user/store';
 import { reducer as mvReducer } from '../pages/mv/store';
 import { reducer as searchReducer } from '../pages/search/store';
 import { reducer as mvPlayReducer } from '../pages/mv-player/store';
@@ -14,7 +14,7 @@ const cReducer = combineReducers({
     recommend: recommendReducer,
     player: playerReducer,
     playlist: playlistReducer,
-    login: loginReducer,
+    user: userReducer,
     mv: mvReducer,
     search: searchReducer,
     mvPlayer: mvPlayReducer,

@@ -24,7 +24,7 @@ const Followed = memo(() => {
       {
         followeds.map((item)=>{
           return (
-            <Link to={`/userdetail/love?uid=${item.userId}`}>
+            <Link to={`/userdetail?uid=${item.userId}`}>
             <div>
               <img src={getSizeImage(
                             item?.avatarUrl,

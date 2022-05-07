@@ -3,7 +3,7 @@ import { DiscoverNewWrapper } from './style';
 import { NavLink, Outlet } from 'react-router-dom';
 export default memo(function New() {
     return (
-        <div>
+        <div style={{minHeight: '80vh'}}>
             <DiscoverNewWrapper>
                 <div className="switch_part">
                     <NavLink to={'/discover/new/songs'} className="songs">

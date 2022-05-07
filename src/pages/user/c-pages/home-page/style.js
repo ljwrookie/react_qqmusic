@@ -58,8 +58,8 @@ export const HomePageWrapper = styled.div`
         .nav-item {
             margin-right: 50px;
             text-align: center;
-            a {
-                text-decoration: none;
+            span {
+                cursor: pointer;
                 position: relative;
                 line-height: 30px;
                 color: ${normalColor};
@@ -80,6 +80,51 @@ export const HomePageWrapper = styled.div`
                     background-color: ${themeColor};
                 }
             }
+        }
+    }
+`;
+export const PlaylistWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    min-height: 60vh;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    .item{
+        text-decoration: none; 
+        &:not(:nth-of-type(6n)){
+            margin-right: 28px;
+        }
+    }
+    .un-open{
+        height: 50vh;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        span{
+            font-size:16px;
+        }
+        .iconfont{
+            font-size:50px;
+            color:${themeColor};
+        }
+    }
+`;
+export const LoveWrapper = styled.div`
+    margin-top: 20px;
+    min-height: 60vh;
+    .un-open{
+        height: 50vh;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        span{
+            font-size:16px;
+        }
+        .iconfont{
+            font-size:50px;
+            color:${themeColor};
         }
     }
 `;

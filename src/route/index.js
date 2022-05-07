@@ -51,10 +51,10 @@ const DiscoverNewAlbum = React.lazy((_) =>
     import('../pages/discover/c-pages/new/c-pages/albums')
 );
 const HomePage = React.lazy((_) => import('../pages/user/c-pages/home-page'));
-const Love = React.lazy((_) => import('../pages/user/c-pages/home-page/love'));
+// const Love = React.lazy((_) => import('../pages/user/c-pages/home-page/love'));
 
-const CreatePlaylist = React.lazy((_) => import('../pages/user/c-pages/home-page/create-playlist'));
-const CollectionPlaylist = React.lazy((_) => import('../pages/user/c-pages/home-page/collection-playlist'));
+// const CreatePlaylist = React.lazy((_) => import('../pages/user/c-pages/home-page/create-playlist'));
+// const CollectionPlaylist = React.lazy((_) => import('../pages/user/c-pages/home-page/collection-playlist'));
 const Follow = React.lazy((_) => import('../pages/user/c-pages/follow'));
 const Followed = React.lazy((_) => import('../pages/user/c-pages/followed'));
 // import { element } from 'prop-types';
@@ -205,38 +205,38 @@ const GetRoutes = () => {
         {
             path: '/userdetail',
             element: <HomePage />,
-            children: [
-                {
-                    path: 'love',
-                    element: <Love />,
-                    // children: [
-                    //     {
-                    //         path: 'song',
-                    //         element: <LoveSong/>
-                    //     },
-                    //     {
-                    //         path: 'video',
-                    //         element: <LoveVideo/>
-                    //     },
-                    //     {
-                    //         path: '',
-                    //         element: <Navigate to="song"/>
-                    //     }
-                    // ]
-                },
-                {
-                    path: 'createplaylist',
-                    element: <CreatePlaylist />,
-                },
-                {
-                    path: 'collectionplaylist',
-                    element: <CollectionPlaylist />,
-                },
-                {
-                    path: '',
-                    element: <Navigate to="love" />,
-                }
-            ]
+            // children: [
+            //     {
+            //         path: 'love',
+            //         element: <Love />,
+            //         // children: [
+            //         //     {
+            //         //         path: 'song',
+            //         //         element: <LoveSong/>
+            //         //     },
+            //         //     {
+            //         //         path: 'video',
+            //         //         element: <LoveVideo/>
+            //         //     },
+            //         //     {
+            //         //         path: '',
+            //         //         element: <Navigate to="song"/>
+            //         //     }
+            //         // ]
+            //     },
+            //     {
+            //         path: 'createplaylist',
+            //         element: <CreatePlaylist />,
+            //     },
+            //     {
+            //         path: 'collectionplaylist',
+            //         element: <CollectionPlaylist />,
+            //     },
+            //     {
+            //         path: '',
+            //         element: <Navigate to="love" />,
+            //     }
+            // ]
         },
         {
             path: '/userdetail/follow',

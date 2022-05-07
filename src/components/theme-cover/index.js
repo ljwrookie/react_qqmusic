@@ -12,7 +12,7 @@ export default memo(function ThemeCover(props) {
             <div className="cover-top">
                 <img
                     className="image"
-                    src={getSizeImage(img_url, height, width)}
+                    src={getSizeImage(img_url, height*2, width*2)}
                     alt={name}
                 />
                 <div className="mask"></div>
