@@ -4,9 +4,10 @@ import * as actionTypes from './actionTypes'
 
 const defaultState = Map({
     loginUserInfo: {},
-    loginUserPlaylist: {},
+    loginUserPlaylist: [],
     loginStatus: {},
-    userDetail: {}
+    userDetail: {},
+    loginUserLoverList: [],
 })
 
 function reducer(state=defaultState, action){
@@ -19,6 +20,8 @@ function reducer(state=defaultState, action){
             return state.set('loginStatus', action.loginStatus);
         case actionTypes.CHANGE_USER_DETAIL:
             return state.set('userDetail', action.userDetail);
+        case actionTypes.CHANGE_LOGIN_USER_LOVER_LIST:
+            return state.set('loginUserLoverList', action.loginUserLoverList);
         default:
             return state;
     }

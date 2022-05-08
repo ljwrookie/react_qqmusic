@@ -20,7 +20,7 @@ export default memo(function VideoCover(props) {
             <div className="cover-top">
                 <img
                     className="image"
-                    src={getSizeImage(img_url, width*2, height*2)}
+                    src={getSizeImage(img_url, width, height)}
                     alt={type === 'mv' ? info.name : info.title}
                 />
                 <div className="mask"></div>

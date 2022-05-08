@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-
+import classnames from 'classnames'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { MvListWrapper } from './style';
@@ -49,14 +49,12 @@ export default memo(function Ranking() {
                 {firstList.map((item) => {
                     return (
                         <button
-                            className="nav-button"
+                            className={classnames(
+                                'nav-button',
+                                state.area === item ? 'active' : ''
+                            )}
                             key={nanoid()}
                             onClick={() => changeArea(item)}
-                            style={{
-                                backgroundColor:
-                                    state.area === item ? themeColor : '',
-                                color: state.area === item ? '#fff' : '',
-                            }}
                         >
                             {item}
                         </button>
@@ -67,12 +65,10 @@ export default memo(function Ranking() {
                 {secondList.map((item) => {
                     return (
                         <button
-                            className="nav-button"
-                            style={{
-                                backgroundColor:
-                                    state.type === item ? themeColor : '',
-                                color: state.type === item ? '#fff' : '',
-                            }}
+                            className={classnames(
+                                'nav-button',
+                                state.area === item ? 'active' : ''
+                            )}
                             onClick={() => changeType(item)}
                             key={nanoid()}
                         >
@@ -86,14 +82,16 @@ export default memo(function Ranking() {
                 <div className="title-right">
                     <span
                         onClick={() => changeOrder('最新')}
-                        style={{
-                            color:
-                                state.order === '最新' ? themeColor : '',
-                        }}
+                        className={state.order === '最新' ? 'active' : ''}
                     >
                         最新
                     </span>
-                    <span onClick={() => changeOrder('最热')}>最热</span>
+                    <span
+                        onClick={() => changeOrder('最热')}
+                        className={state.order === '最热' ? 'active' : ''}
+                    >
+                        最热
+                    </span>
                 </div>
             </div>
 

@@ -27,13 +27,13 @@ const HomePage = memo(() => {
     const [currentPlaylist, setCurrentPlaylist] = useState([])
     const [loginUser, setLoginUser] = useState({})
     const [playlistClass, setPlaylistClass] = useState()
-    const dispatch = useDispatch()
-    const { loginUserInfo } = useSelector(
-        (state) => ({
-            loginUserInfo: state.getIn(['user', 'loginUserInfo']),
-        }),
-        shallowEqual
-    );
+    // const dispatch = useDispatch()
+    // const { loginUserInfo } = useSelector(
+    //     (state) => ({
+    //         loginUserInfo: state.getIn(['user', 'loginUserInfo']),
+    //     }),
+    //     shallowEqual
+    // );
     const deleteFunc = (id) => {
         return (e) => {
             e.preventDefault();
@@ -45,7 +45,6 @@ const HomePage = memo(() => {
                     setPlaylist(playlist.filter((item) => item.id !== id));
                 });
             }
-            
         }
     }
     const userDetailInfo = async () => {
@@ -68,7 +67,6 @@ const HomePage = memo(() => {
         let login_status = await getLoginStatus()
         console.log('loginStatus',login_status)
         setLoginUser(login_status.data.profile)
-        
         
     };
     useEffect(() => {

@@ -1,9 +1,12 @@
 import React, { memo, useRef, useState, useEffect } from 'react';
+import {  useDispatch } from 'react-redux';
 import {getSizeImage} from '@/utils/format-utils'
 import { useNavigate, Link } from 'react-router-dom';
 import { Input, message } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-
+import {
+    getLoginStatusAction,
+} from '../../pages/user/store/actionCreator';
 import {
     HeaderWrapper,
     HeaderLeft,
@@ -15,7 +18,6 @@ import {
     getLogout,
 } from '../../service/login';
 import {
-    getLoginUserInfo,
     getSignIn,
     getUserDetail,
 } from '../../service/user';
@@ -34,7 +36,7 @@ export default memo(function AppHeader(props) {
     const [loginStatus, setLoginStatus] = useState(null);
     // const [userInfo, setUserInfo] = useState(null);
     const [userDetail, setUserDetail] = useState(null);
-
+    const dispatch = useDispatch();
     const forLogin = async () => {
         const res = await getLoginStatus();
         console.log(res);
@@ -102,6 +104,7 @@ export default memo(function AppHeader(props) {
         if (res.code === 200) {
             setLoginStatus(null);
             setShowDrop(false);
+            dispatch(getLoginStatusAction());
             message.success({
                 content:
                     '退出成功',

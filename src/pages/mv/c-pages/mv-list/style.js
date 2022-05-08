@@ -5,7 +5,7 @@ const { themeColor, hoverColor, sideColor, bodyColor, normalColor } =
     myTheme;
 
 export const MvListWrapper = styled.ul`
-    min-height:80vh;
+    min-height: 80vh;
 
     .firstList {
         margin-top: 15px;
@@ -28,6 +28,10 @@ export const MvListWrapper = styled.ul`
 
             background-color: ${sideColor};
         }
+        &.active {
+            color: ${sideColor};
+            background-color: ${themeColor};
+        }
     }
     .list-title {
         margin-top: 30px;
@@ -46,6 +50,9 @@ export const MvListWrapper = styled.ul`
                 margin-left: 30px;
                 cursor: pointer;
                 &:hover {
+                    color: ${themeColor};
+                }
+                &.active{
                     color: ${themeColor};
                 }
             }

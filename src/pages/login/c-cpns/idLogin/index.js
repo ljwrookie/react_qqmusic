@@ -2,14 +2,15 @@ import React, { memo, useContext } from 'react';
 import { IdLoginComponentWrapper } from './style';
 
 import * as loginService from '../../../../service/login';
-
+import { useDispatch } from 'react-redux';
+import { getLoginStatusAction } from '../../../user/store/actionCreator'
 
 import { message } from 'antd';
 import { LoginContext } from '../../../../components/app-header';
 
 export default memo(function IdLogin() {
     const [isShow, setIsShow] = useContext(LoginContext);
-
+    const dispatch = useDispatch();
     const loginWithPAP = async() => {
         console.log('loginWithPAP');
         let res = await loginService.getLoginWithPhoneAndPassword(
@@ -21,7 +22,8 @@ export default memo(function IdLogin() {
             let res3 = await loginService.getLoginStatus();
             if (res3.data.account !== null) {
                 console.log(res3)
-                setIsShow(false);    
+                setIsShow(false); 
+                dispatch(getLoginStatusAction());
                 message.success({
                     content: '登录成功',
                     // className: 'custom-class',
