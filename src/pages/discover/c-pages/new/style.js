@@ -22,7 +22,7 @@ export const DiscoverNewWrapper = styled.div`
         height: 38px;
         width: 260px;
         border: solid 1px ${themeColor};
-        border-radius: 21px;
+        border-radius: 19px;
         line-height: 36px;
         font-size: 14px;
         color: ${normalColor};
@@ -32,15 +32,16 @@ export const DiscoverNewWrapper = styled.div`
             justify-content: center;
             width: 50%;
             height: 100%;
-            border-radius: 21px;
+            border-radius: 19px;
             text-decoration: none;
             &:hover {
                 background-color: ${searchBarColor};
+                color: ${normalColor}
             }
         }
         .active {
             background-color: ${themeColor};
-            color: ${bodyColor};
+            color: #fff;
         }
     }
 `;

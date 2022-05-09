@@ -1,15 +1,10 @@
 import React, { memo, useState, useEffect } from 'react';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import {
-    getLoginStatusAction,
-    getLoginUserPlaylistAction,
-    getLoginUserInfoAction
-} from '../../store/actionCreator';
+import { message } from 'antd';
 import ThemeCover from '@/components/theme-cover';
 import SongListItem from '@/components/song-item';
 import { useSearchParams, Link } from 'react-router-dom';
 import {getLoginStatus} from '@/service/login'
-import { getUserDetail, getUserPlaylist, deletePlaylist, getLoginUserInfo } from '@/service/user';
+import { getUserDetail, getUserPlaylist, deletePlaylist } from '@/service/user';
 import { getPlaylistAllSongs } from '@/service/playlist';
 import { getSizeImage } from '@/utils/format-utils';
 import { HomePageWrapper, PlaylistWrapper, LoveWrapper } from './style';
@@ -20,7 +15,7 @@ const HomePage = memo(() => {
     const [userDetail, setUserDetail] = useState({});
     // const [loginUserInfo, setLoginUserInfo] = useState({})
     const [createPlaylist, setCreatePlaylist] = useState();
-    const [playlist, setPlaylist] = useState();
+    const [playlist, setPlaylist] = useState([]);
     const [collectionPlaylist, setCollectionPlaylist] = useState();
     const [showOption, setShowOption] = useState('love');
     const [musicList, setMusicList] = useState([]);
@@ -36,15 +31,14 @@ const HomePage = memo(() => {
     // );
     const deleteFunc = (id) => {
         return (e) => {
-            e.preventDefault();
-            if (window.confirm('确定删除？')) {
-                deletePlaylist(id).then(async(res) => {
-                    // let user_detail = await getUserDetail(uid);
-                    // setUserDetail(user_detail);
-                    // console.log(userDetail)
-                    setPlaylist(playlist.filter((item) => item.id !== id));
-                });
-            }
+            // e.preventDefault();
+            deletePlaylist(id).then((res) => { 
+                console.log(playlist)
+                setPlaylist(playlist.filter((item) => item.id !== id));
+                console.log(playlist)
+            });
+            
+            
         }
     }
     const userDetailInfo = async () => {
@@ -171,7 +165,7 @@ const HomePage = memo(() => {
                 musicList &&
                 musicList.length === 0 ? (<LoveWrapper>
                     <div className="un-open">
-                        <span className="iconfont">&#xe664;</span>
+                        <span className="iconfont">&#xe646;</span>
                         <span> 主人信息未公开</span>
                     </div></LoveWrapper>
                 ) : (
@@ -217,7 +211,7 @@ const HomePage = memo(() => {
                 currentPlaylist &&
                 currentPlaylist.length === 0 ? (<PlaylistWrapper>
                     <div className="un-open">
-                        <span className="iconfont">&#xe664;</span>
+                        <span className="iconfont">&#xe760;</span>
                         <span> 暂无内容</span>
                     </div></PlaylistWrapper>
                 ) : (

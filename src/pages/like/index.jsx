@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { LikeNav } from './style';
-import { Result } from 'antd';
+
 import ThemeCover from '@/components/theme-cover';
 import SongListItem from '@/components/song-item';
 import { LovePageWrapper, LoveWrapper,PlaylistWrapper } from './style';
@@ -27,16 +27,9 @@ export default memo(function Like() {
     );
     const deleteFunc = (id) => {
         return (e) => {
-            e.preventDefault();
-            if (window.confirm('确定删除？')) {
-                deletePlaylist(id).then(async (res) => {
-                    dispatch(getLoginUserPlaylistAction());
-                    // let user_detail = await getUserDetail(uid);
-                    // setUserDetail(user_detail);
-                    // console.log(userDetail)
-                    // setPlaylist(playlist.filter((item) => item.id !== id));
-                });
-            }
+            deletePlaylist(id).then((res) => {
+                dispatch(getLoginUserPlaylistAction());
+            });
         };
     };
     useEffect(() => {
@@ -47,7 +40,7 @@ export default memo(function Like() {
         <LovePageWrapper>
             <div className="top-main">
                 <div className="top-left">我喜欢</div>
-                <div className="top-right">智能管理</div>
+                <div className="top-right"><span className='iconfont'>&#xe638;</span><span>智能管理</span></div>
             </div>
             <ul className="user-nav">
                 <li className="nav-item">
@@ -77,6 +70,34 @@ export default memo(function Like() {
                     </span>
                 </li>
             </ul>
+            <div className='button-option'>
+               
+                <div className="batch_operation">
+                    <div className="play_all">
+                        <span className="iconfont">&#xea6d;</span> 播放全部
+                    </div>
+                    <div className="download_all">
+                        <span className="iconfont">&#xe639;</span> 下载
+                    </div>
+                    <div className="handle_all">
+                        <span className="iconfont">&#xe618;</span> 批量操作
+                    </div>
+                </div>
+                <div className="other_operation">
+                    <div className="search"><span className="iconfont">&#xe8b9;</span>搜索</div>
+                    <div className="sort"><span className="iconfont">&#xe66e;</span>排序</div>
+                    <div className='btn list'><span className="iconfont">&#xe60b;</span></div>
+                    <div className='btn singer'><span className="iconfont">&#xe605;</span></div>
+                    <div className='btn album'><span className="iconfont">&#xed2d;</span></div>
+                </div>
+              
+            </div>
+            <div className="list_header">
+                    <div className="song">歌曲</div>
+                    <div className="singer">歌手</div>
+                    <div className="album">专辑</div>
+                    <div className="total_time">时长</div>
+                </div>
             <div className="bottom-main">
                 {showOption == 'love' &&
                 loginUserLoverList &&
@@ -109,7 +130,7 @@ export default memo(function Like() {
                 loginUserLoverList.length === 0 ? (
                     <LoveWrapper>
                         <div className="un-open">
-                            <span className="iconfont">&#xe664;</span>
+                            <span className="iconfont">&#xe646;</span>
                             <span> 主人信息未公开</span>
                         </div>
                     </LoveWrapper>
@@ -169,7 +190,7 @@ export default memo(function Like() {
                 ).length === 0 ? (
                     <PlaylistWrapper>
                         <div className="un-open">
-                            <span className="iconfont">&#xe664;</span>
+                            <span className="iconfont">&#xe760;</span>
                             <span> 暂无内容</span>
                         </div>
                     </PlaylistWrapper>
@@ -180,11 +201,10 @@ export default memo(function Like() {
         </LovePageWrapper>
     ) : (
         <LikeNav>
-            <Result
-                status="info"
-                title="请登录"
-                subTitle="登录后可查看相关内容"
-            />
+            <div className="un-login">
+                            <span className="iconfont">&#xe60d;</span>
+                            <span> 请登录</span>
+                        </div>
         </LikeNav>
     );
 });

@@ -59,11 +59,12 @@ export const PlayList = styled.div`
                 font-size: 16px;
             }
             &:hover {
-                color: ${themeColor};
+                /* color: ${themeColor}; */
+                background-color: ${themeColor}
             }
         }
         .play_all {
-            color: ${bodyColor};
+            color: #fff;
             background-color: ${themeColor};
         }
     }

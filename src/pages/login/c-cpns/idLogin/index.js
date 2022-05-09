@@ -3,7 +3,7 @@ import { IdLoginComponentWrapper } from './style';
 
 import * as loginService from '../../../../service/login';
 import { useDispatch } from 'react-redux';
-import { getLoginStatusAction } from '../../../user/store/actionCreator'
+import { getLoginStatusAction, getLoginUserPlaylistAction } from '../../../user/store/actionCreator'
 
 import { message } from 'antd';
 import { LoginContext } from '../../../../components/app-header';
@@ -24,6 +24,7 @@ export default memo(function IdLogin() {
                 console.log(res3)
                 setIsShow(false); 
                 dispatch(getLoginStatusAction());
+                dispatch(getLoginUserPlaylistAction());
                 message.success({
                     content: '登录成功',
                     // className: 'custom-class',

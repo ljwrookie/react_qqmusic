@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-
+import { Popconfirm, message } from 'antd';
 import { getSizeImage, getCount } from '@/utils/format-utils';
 
 import { ThemeCoverWrapper } from './style';
@@ -7,6 +7,34 @@ import { ThemeCoverWrapper } from './style';
 export default memo(function ThemeCover(props) {
     const { name, singer, img_url, playCount, width, height, hover,  deleteIt , deleteThis} = props; // const {url_name} =
     // console.log(urlList)
+
+    async function confirm(e) {
+        e.preventDefault();
+        // console.log(e)
+        await deleteThis();
+        
+        message.success({
+            content:
+                '删除成功',
+            style: {
+                marginTop: '5vh',
+                borderRadius: '5px',
+            },
+        });
+      }
+      
+      function cancel(e) {
+        e.preventDefault();
+        
+        message.error({
+            content:
+                '取消删除',
+            style: {
+                marginTop: '5vh',
+                borderRadius: '5px',
+            },
+        });
+      }
     return (
         <ThemeCoverWrapper width={width} height={height} hover={hover}>
             <div className="cover-top">
@@ -35,12 +63,17 @@ export default memo(function ThemeCover(props) {
             <div className="cover-bottom  ">
                 <div className="text-nowrap">{name}</div>
                 {deleteIt ? (
-                    <div
-                        className="delete-it iconfont"
-                        onClick={deleteThis}
-                    >
+                    <Popconfirm
+                    title="确定删除这个歌单吗?"
+                    onConfirm={confirm}
+                    onCancel={cancel}
+                    okText="确定"
+                    cancelText="取消"
+                  >
+                    <div className="delete-it iconfont">
                         &#xe61c;
                     </div>
+                  </Popconfirm>
                 ) : null}
             </div>
             <div className="singer_name">{singer}</div>

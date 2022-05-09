@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState, useContext } from 'react';
-
+import { useDispatch } from 'react-redux';
+import { getLoginStatusAction, getLoginUserPlaylistAction } from '../../../user/store/actionCreator'
 import { QrLoginComponentWrapper } from './style';
 import { LoginContext } from '../../../../components/app-header';
 import * as loginService from '../../../../service/login';
@@ -11,7 +12,7 @@ export default memo(function QrLogin() {
 
     const [qr, setQr] = useState();
     //关注英文
-    
+    const dispatch = useDispatch();
 
     let timer;
     const qrLogin = async () => {
@@ -37,6 +38,8 @@ export default memo(function QrLogin() {
                 if (res3.data.account !== null) {
                     console.log(res3);
                     setIsShow(false);
+                    dispatch(getLoginStatusAction());
+                    dispatch(getLoginUserPlaylistAction());
                     message.success({
                         content: '登录成功',
                         // className: 'custom-class',

@@ -82,6 +82,7 @@ export const HomePageWrapper = styled.div`
             }
         }
     }
+
 `;
 export const PlaylistWrapper = styled.div`
     display: flex;
@@ -89,13 +90,16 @@ export const PlaylistWrapper = styled.div`
     min-height: 60vh;
     margin-top: 10px;
     flex-wrap: wrap;
+    /* justify-content: center; */
     .item{
         text-decoration: none; 
         &:not(:nth-of-type(6n)){
             margin-right: 28px;
         }
     }
+    
     .un-open{
+        margin: 0 auto;
         height: 50vh;
         display:flex;
         justify-content: center;
@@ -105,7 +109,7 @@ export const PlaylistWrapper = styled.div`
             font-size:16px;
         }
         .iconfont{
-            font-size:50px;
+            font-size:100px;
             color:${themeColor};
         }
     }
@@ -123,7 +127,7 @@ export const LoveWrapper = styled.div`
             font-size:16px;
         }
         .iconfont{
-            font-size:50px;
+            font-size:80px;
             color:${themeColor};
         }
     }

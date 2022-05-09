@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { myTheme } from '@/common/constants';
 
-const { themeColor, logoUrl, hoverColor, sideFontColor, grayFontColor } =
+const { themeColor, logoUrl, hoverColor, sideFontColor, grayFontColor,normalColor } =
     myTheme;
 
 export const AppSiderNav = styled.div`
@@ -18,10 +18,12 @@ export const AppSiderNav = styled.div`
 
         background-size: 90px 25px;
     }
+    
 `;
 
 export const NavList = styled.div`
     margin-bottom: 50px;
+    
     .list_title {
         margin-left: 50px;
         color: ${grayFontColor};
@@ -54,5 +56,40 @@ export const NavList = styled.div`
     .active {
         background-color: ${themeColor};
         color: #ffffff;
+    }
+    .playlist-title {
+        line-height:14px;
+        display: flex;
+        justify-content: space-between;
+        span{
+            cursor: pointer;
+            &:hover{
+                color: ${normalColor};
+            }
+            a{
+                text-decoration: none;
+                &:hover{
+                    color: ${normalColor};
+                }
+            }
+        }
+        .iconfont{
+            
+            font-size: 14px;
+            font-weight: bold;
+            color: ${grayFontColor};
+            margin-right: 30px;
+        }
+        .title-right{
+            span:first-child{
+                margin-right: 10px;
+            }
+        }
+        
+    }
+    &.playlist{
+        .list_item{
+            width: 140px;
+        }
     }
 `;

@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { myTheme } from '@/common/constants';
 
-const { themeColor, bodyColor, sideColor } = myTheme;
+const { themeColor, bodyColor, sideColor, grayFontColor } = myTheme;
 export const AppWrapper = styled.div`
+    /*定义滚动条样式（高宽及背景）*/ 
+    
     /* height: 100%; */
     .app_main {
         display: flex;
@@ -13,6 +15,8 @@ export const AppWrapper = styled.div`
         position: fixed;
         width: 210px;
         height: 100%;
+        /* height:auto; */
+        overflow-x: scroll;
         background: ${sideColor};
     }
     .app_right {

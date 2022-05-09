@@ -1,22 +1,29 @@
 import styled from 'styled-components';
 import { myTheme } from '@/common/constants';
-const { normalColor, themeColor, grayFontColor, bodyColor } = myTheme;
+const { normalColor, themeColor, grayFontColor, bodyColor, searchBarColor } = myTheme;
 export const LikeNav = styled.div`
     color: ${normalColor};
     height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* .nav_title {
-        font-size: 32px;
-        font-weight: 900;
-        margin: 20px 0;
-    } */
-    .ant-result-info .ant-result-icon > .anticon {
-        color: ${themeColor};
-    }
-    .ant-result {
-        margin-top: -80px;
+    .un-login {
+        height: 100%;
+        display: flex;
+        margin:0 auto;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transform: translateY(-10%);
+        span:last-child {
+            font-size: 30px;
+            font-weight:700;
+            margin-top: -50px;
+        }
+        .iconfont {
+            font-size: 200px;
+            color: ${themeColor};
+        }
     }
 `;
 export const LovePageWrapper = styled.div`
@@ -26,43 +33,33 @@ export const LovePageWrapper = styled.div`
     .top-main {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         width: 100%;
-        height: 200px;
+        height: 80px;
         .top-left {
-            img {
-                width: 150px;
-                height: 150px;
-                border-radius: 50%;
-            }
+           
+            font-size: 32px;
+            font-weight: 900;
+            margin: 20px 0;
+    
         }
         .top-right {
-            margin-left: 20px;
-            /* margin-top:20px; */
-            .top-right-top {
-                margin-bottom: 15px;
-                display: flex;
-                align-items: center;
-                .top-right-top-name {
-                    margin-right: 10px;
-                    font-size: 20px;
-                    font-weight: 900;
+            cursor: pointer;
+            font-size:14px;
+            span{
+                margin-left: 5px;
+                &:nth-of-type(1){
+                    font-size:16px;
+                    color: ${grayFontColor}
                 }
             }
-            .top-right-middle {
-                margin-bottom: 15px;
-                color: ${grayFontColor};
-            }
-
-            .top-right-bottom {
-                a {
-                    cursor: pointer;
-                    margin-right: 10px;
-                    text-decoration: none;
-                    &:hover {
-                        color: ${themeColor};
-                    }
+            &:hover{
+                color: ${themeColor};
+                span{
+                    color: ${themeColor}
                 }
             }
+            
         }
     }
 
@@ -99,7 +96,121 @@ export const LovePageWrapper = styled.div`
             }
         }
     }
-`;
+
+    .button-option{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .batch_operation {
+        display: flex;
+        align-items: center;
+        
+        margin-top: 20px;
+        margin-bottom:30px;
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+            width: 110px;
+            line-height: 30px;
+            margin-right: 15px;
+            border-radius: 15px;
+            color: ${normalColor};
+            background-color: ${searchBarColor};
+            cursor: pointer;
+            .iconfont {
+                font-size: 16px;
+            }
+            &:hover {
+                /* color: ${themeColor}; */
+                background-color: ${themeColor}
+            }
+            span{
+                margin-right:5px;
+            }
+        }
+        .play_all {
+            color: #fff;
+            background-color: ${themeColor};
+        }
+    }
+    .other_operation{
+        display: flex;
+        /* align-items: center; */
+        div{
+            cursor: pointer;
+            padding-left:10px;
+            padding-right:10px;
+            padding-top:5px;
+            padding-bottom:5px;
+            margin-right:5px;
+            &:hover{
+                background-color: ${searchBarColor};
+            }
+            span{
+                line-height:15px;
+                margin-right:5px;
+            }
+        }
+        
+        .btn{
+            padding-left:0;
+            padding-right:0;
+            margin-right:0px;
+            
+            color: ${grayFontColor};
+            &:hover{
+                background-color: transparent;
+            }
+            span{
+                padding-top:2px;
+                padding-bottom:2px;
+                margin-right:0;
+                display:inline-block;
+                padding-left:5px;
+                font-size:15px;
+                padding-right:5px;
+                &:hover{
+                    background-color:${searchBarColor};
+                    color: ${themeColor}
+                }
+            }
+
+        }
+        .btn.list{
+            span{
+                
+                background-color:${searchBarColor};
+            }
+        }
+    }
+    .list_header {
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: center;
+        color: ${grayFontColor};
+        font-size: 14px;
+        .singer {
+            margin-left: 370px;
+        }
+        .album {
+            margin-left: 175px;
+        }
+        .total_time {
+            margin-left: 270px;
+        }
+    }
+    .bottom-main{
+        min-height:70vh;
+        &>div>div>div>div>div.name{
+            span{
+                color: #ff6a6a;
+            }
+        }
+    }
+`
 export const PlaylistWrapper = styled.div`
     display: flex;
     flex-direction: row;
@@ -115,6 +226,7 @@ export const PlaylistWrapper = styled.div`
     .un-open {
         height: 50vh;
         display: flex;
+        margin:0 auto;
         justify-content: center;
         align-items: center;
         flex-direction: column;
@@ -122,7 +234,7 @@ export const PlaylistWrapper = styled.div`
             font-size: 16px;
         }
         .iconfont {
-            font-size: 50px;
+            font-size: 100px;
             color: ${themeColor};
         }
     }
