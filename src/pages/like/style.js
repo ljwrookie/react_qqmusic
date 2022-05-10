@@ -202,14 +202,7 @@ export const LovePageWrapper = styled.div`
             margin-left: 270px;
         }
     }
-    .bottom-main{
-        min-height:70vh;
-        &>div>div>div>div>div.name{
-            span{
-                color: #ff6a6a;
-            }
-        }
-    }
+    
 `
 export const PlaylistWrapper = styled.div`
     display: flex;

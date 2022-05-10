@@ -4,30 +4,59 @@ import { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import {
     getPlaylistDetailAction,
-    getPlaylistAllSongsAction,
 } from './store/actionCreator';
+import { getLoginStatusAction, getLoginUserPlaylistAction } from '../user/store/actionCreator';
+import { message } from 'antd';
 import {getSizeImage} from '@/utils/format-utils'
 import { PlaylistWrapper } from './style';
-
+import { subscribePlaylist } from '../../service/user';
 export default  memo(function Playlist(){
     const [playlistId, setPlaylistId] = useSearchParams();
     const id = playlistId.get('id');
     const dispatch = useDispatch();
-    const { playlistDetail, playlistAllSongs } = useSelector(
+    const { playlistDetail, loginStatus, loginUserPlaylist } = useSelector(
         (state) => ({
             playlistDetail: state.getIn(['playlist', 'playlistDetail']),
-            playlistAllSongs: state.getIn([
-                'playlist',
-                'playlistAllSongs',
-            ]),
+            loginStatus: state.getIn(['user', 'loginStatus']),
+            loginUserPlaylist: state.getIn(['user', 'loginUserPlaylist']),
         }),
         shallowEqual
     );
     useEffect(() => {
         dispatch(getPlaylistDetailAction(id));
-        dispatch(getPlaylistAllSongsAction(id));
+        dispatch(getLoginStatusAction());
+        dispatch(getLoginUserPlaylistAction());
     }, [dispatch, id]);
+    const subscribe = ()=>{
+        subscribePlaylist(1,id).then((res)=>{
+            
+            dispatch(getLoginUserPlaylistAction());
+            message.success({
+                content:
+                    '收藏成功',
+                style: {
+                    marginTop: '5vh',
+                    borderRadius: '5px',
+                },
+            });
+        })
+    }
 
+    
+    const cancelSubscribe = ()=>{
+        subscribePlaylist(2,id).then((res)=>{
+            
+            dispatch(getLoginUserPlaylistAction());
+            message.success({
+                content:
+                    '取消收藏成功',
+                style: {
+                    marginTop: '5vh',
+                    borderRadius: '5px',
+                },
+            });
+        })
+    }
     const nickname =
         playlistDetail &&
         playlistDetail.creator &&
@@ -83,7 +112,12 @@ export default  memo(function Playlist(){
                             </span>
                         </button>
                         <button className="btn love">
-                            <span className="iconfont">&#xe761;</span> 收藏
+                            {loginUserPlaylist.filter(item=>item.userId == loginStatus.profile.userId).filter(item=>item.id == id).length == 1 ? 
+                            (<span className="iconfont">&#xe607; 分享</span> ): 
+                            loginUserPlaylist.filter(item=>item.userId != loginStatus.profile.userId).filter(item=>item.id == id).length == 1 ?
+                            <span className="iconfont" onClick={cancelSubscribe} style={{color: '#ff6a6a'}}>&#xe761; 已收藏</span>:
+                            <span className="iconfont" onClick={subscribe}>&#xe761; 收藏</span>
+                             }
                         </button>
                         <button className="btn more">
                             <span className="iconfont">&#xe63b;</span>

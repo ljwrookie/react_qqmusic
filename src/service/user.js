@@ -1,4 +1,5 @@
 import  request from '@/service/request';
+import { func } from 'prop-types';
 //喜欢音乐列表
 export const getLikeMusicList = (uid) => {
     return request({
@@ -89,7 +90,8 @@ export function deletePlaylist(id) {
         url: '/playlist/delete',
         // method: 'POST',
         params: {
-            id
+            id,
+            timerstamp: Date.now()
         }
     });
 }
@@ -107,7 +109,8 @@ export function getFollows (uid,limit,offset){
         params:{
             uid,
             limit,
-            offset
+            offset,
+            timerstamp: Date.now()
         }
     })
 }
@@ -124,7 +127,42 @@ export function getFolloweds (uid,limit,offset){
         params:{
             uid,
             limit,
-            offset
+            offset,
+            timerstamp: Date.now()
+        }
+    })
+}
+
+// 收藏/取消收藏歌单
+// 说明 : 调用此接口 , 传入类型和歌单 id 可收藏歌单或者取消收藏歌单
+// 必选参数 :
+// t : 类型,1:收藏,2:取消收藏 id : 歌单 id
+// 接口地址 : /playlist/subscribe
+// 调用例子 : /playlist/subscribe?t=1&id=106697785 /playlist/subscribe?t=2&id=106697785
+export function subscribePlaylist(t,id){
+    return request({
+        url: '/playlist/subscribe',
+        params:{
+            t,
+            id,
+            timerstamp: Date.now()
+        }
+    })
+}
+
+// 喜欢音乐
+// 说明 : 调用此接口 , 传入音乐 id, 可喜欢该音乐
+// 必选参数 : id: 歌曲 id
+// 可选参数 : like: 布尔值 , 默认为 true 即喜欢 , 若传 false, 则取消喜欢
+// 接口地址 : /like
+// 调用例子 : /like?id=347230
+export function likeSong(like,id){
+    return request({
+        url: '/like',
+        params: {
+            like,
+            id,
+            timerstamp: Date.now()
         }
     })
 }

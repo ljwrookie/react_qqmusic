@@ -66,7 +66,8 @@ export function getLoginWithPhoneAndPassword(phone, password) {
         url: '/login/cellphone',
         params: {
             phone,
-            password
+            password,
+            timerstamp: Date.now(),
         }
     });
 }

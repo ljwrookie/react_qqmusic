@@ -11,8 +11,10 @@ import {
     getLoginUserPlaylistAction,
 } from '../user/store/actionCreator';
 import {
-    deletePlaylist
+    deletePlaylist,
+    likeSong
 } from '@/service/user';
+import { message } from 'antd';
 export default memo(function Like() {
     // const [isLoginStatus, setIsLogin] = useState(false);
     const [showOption, setShowOption] = useState('love');
@@ -32,6 +34,71 @@ export default memo(function Like() {
             });
         };
     };
+
+    const loveSongFunc = (id)=>{
+        return (e)=>{
+            e.preventDefault();
+
+            likeSong(true, id).then(res=>{
+                if(res.code === 200){
+                    dispatch(getLoginUserPlaylistAction());
+                    // dispatch(getSongListAction(keywords));
+                    console.log('喜欢歌曲',id, res)
+                    message.success({
+                        content:
+                            '加入喜欢列表',
+                        style: {
+                            marginTop: '5vh',
+                            borderRadius: '5px',
+                        },
+                    });
+                }else{
+                    message.error({
+                        content:
+                            '请勿频繁添加',
+                        style: {
+                            marginTop: '5vh',
+                            borderRadius: '5px',
+                        },
+                    });
+                }
+                
+            })
+        }
+    }
+    const unLoveSongFunc = (id)=>{
+        
+        return (e)=>{
+            e.preventDefault();
+            likeSong(false, id).then(res=>{
+                if(res.code === 200){
+                    dispatch(getLoginUserPlaylistAction());
+                    // dispatch(getSongListAction(keywords));
+                    console.log('不喜欢歌曲',id, res)
+                    message.success({
+                        content:
+                            '移除喜欢列表',
+                        style: {
+                            marginTop: '5vh',
+                            borderRadius: '5px',
+                        },
+                    });
+                }
+                else{
+                    message.error({
+                        content:
+                            '请勿频繁移除',
+                        style: {
+                            marginTop: '5vh',
+                            borderRadius: '5px',
+                        },
+                    });
+                }
+                
+            })
+        }
+    }
+
     useEffect(() => {
         dispatch(getLoginStatusAction());
         dispatch(getLoginUserPlaylistAction());
@@ -111,6 +178,10 @@ export default memo(function Like() {
                                 album: item.al.name,
                                 artist: item.ar[0].name,
                                 alias: item.alia,
+                                isLogin: loginStatus.profile !== null,
+                                loveFunc: loveSongFunc(item.id),
+                                unLoveFunc: unLoveSongFunc(item.id),
+                                isLove: loginUserLoverList.filter(items=>items.id == item.id).length === 1
                             };
                             return (
                                 <SongListItem

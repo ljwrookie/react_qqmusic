@@ -15,7 +15,8 @@ export function getPlaylistAllSongs(id) {
     return request({
         url: '/playlist/track/all',
         params: {
-            id
+            id,
+            timerstamp: Date.now()
         }
     })
 }

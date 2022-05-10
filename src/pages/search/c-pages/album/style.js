@@ -5,6 +5,7 @@ import { myTheme } from '@/common/constants';
 const { grayFontColor } = myTheme;
 
 export const AlbumListWrapper = styled.div`
+    min-height: 80vh;
     .list_header {
         display: flex;
         justify-content: space-between;

@@ -205,38 +205,6 @@ const GetRoutes = () => {
         {
             path: '/userdetail',
             element: <HomePage />,
-            // children: [
-            //     {
-            //         path: 'love',
-            //         element: <Love />,
-            //         // children: [
-            //         //     {
-            //         //         path: 'song',
-            //         //         element: <LoveSong/>
-            //         //     },
-            //         //     {
-            //         //         path: 'video',
-            //         //         element: <LoveVideo/>
-            //         //     },
-            //         //     {
-            //         //         path: '',
-            //         //         element: <Navigate to="song"/>
-            //         //     }
-            //         // ]
-            //     },
-            //     {
-            //         path: 'createplaylist',
-            //         element: <CreatePlaylist />,
-            //     },
-            //     {
-            //         path: 'collectionplaylist',
-            //         element: <CollectionPlaylist />,
-            //     },
-            //     {
-            //         path: '',
-            //         element: <Navigate to="love" />,
-            //     }
-            // ]
         },
         {
             path: '/userdetail/follow',

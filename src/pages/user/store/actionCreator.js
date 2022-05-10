@@ -53,15 +53,13 @@ export const getLoginUserPlaylistAction = (uid) => {
                 //发送用户歌单请求
                 getUserPlaylist(res.data.account.id).then((res1) => {
                     dispatch(changeLoginUserPlaylistAction(res1))
-                    console.log('res1',res1)
+                    
                     getPlaylistAllSongs(res1.playlist[0].id).then((res2) => {
                         dispatch(changeLoginUserLoverListAction(res2))
                     })
                 })
             }
-        }
-        )
-        
+        }) 
     }
 }
 export const getLoginUserInfoAction = (key) => {

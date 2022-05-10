@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink , Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { HeaderWrapper } from './style';
 import { myTheme } from '../../common/constants';
-
+import classNames from 'classnames';
 const { themeColor } = myTheme;
 const ThemeHeaderRCM = memo(function (props) {
     const { index, title, keywords, moreLink, keywordClick, moreDisplay } =
@@ -16,17 +16,14 @@ const ThemeHeaderRCM = memo(function (props) {
                     {keywords.map((item, id) => {
                         return (
                             <div className="item" key={item}>
-                                <NavLink
+                                <Link
                                     to="#"
-                                    className="link"
-                                    style={{
-                                        color:
-                                            index === id ? themeColor : '',
-                                    }}
+                                    className={classNames({'link': true, 'active': index===id})}
+                                    
                                     onClick={() => keywordClick(item)}
                                 >
                                     {item}
-                                </NavLink>
+                                </Link>
                             </div>
                         );
                     })}

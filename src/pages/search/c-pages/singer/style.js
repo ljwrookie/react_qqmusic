@@ -7,6 +7,5 @@ import styled from 'styled-components';
 export const SearchSingerWrapper = styled.div`
     /* display: flex; */
     margin: 20px 0;
-    /* justify-content: space-between;
-    align-items: center; */
+    min-height: 80vh;
 `;

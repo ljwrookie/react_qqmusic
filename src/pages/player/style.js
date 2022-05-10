@@ -8,7 +8,8 @@ const {
     bodyColor,
     hoverColor,
     sideColor,
-    grayFontColor,
+    searchBarColor,
+    grayFontColor
 } = myTheme;
 
 export const PlayerWrapper = styled.div`
@@ -66,7 +67,7 @@ export const PlayerWrapper = styled.div`
             ::-webkit-scrollbar {
                 width: 6px;
                 height: 6px;
-                background-color: ${grayFontColor};
+                background-color: ${searchBarColor};
             }
 
             /*定义滚动条轨道 内阴影+圆角*/
@@ -79,7 +80,7 @@ export const PlayerWrapper = styled.div`
             ::-webkit-scrollbar-thumb {
                 border-radius: 3px;
                 -webkit-box-shadow: inset 0 0 6px #d4d4d4;
-                background-color: ${normalColor};
+                background-color: ${bodyColor};
             }
             .lyric_content {
                 position: absolute;

@@ -16,7 +16,7 @@ export default memo(function SongListItem(props) {
     //     album: item.album.name,
     //     artist: item.artists[0].name,
     // };
-    const { id, name, dt, album, artist, alias } = props;
+    const { id, name, dt, album, artist, alias, isLove, loveFunc, unLoveFunc, isLogin } = props;
     const duration = formatDate(dt, 'mm:ss');
     const dispatch = useDispatch();
     const { playlist } = useSelector(
@@ -49,7 +49,7 @@ export default memo(function SongListItem(props) {
             <div className="song_name">
                 <div className="first_line">
                     <div className="name text-nowrap">
-                        <span className="iconfont">&#xe761;</span> {name}
+                        <span className="iconfont" onClick={!isLogin? ()=>{} : isLove? unLoveFunc: loveFunc} style={{color: isLove? '#ff6a6a': ''}}>&#xe761;</span> {name}
                     </div>
                     <div className="operator">
                         <span

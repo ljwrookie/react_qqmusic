@@ -28,7 +28,7 @@ export const HeaderWrapper = styled.div`
                     &:hover {
                         color: ${themeColor};
                     }
-                    &:active {
+                    &.active {
                         color: ${themeColor};
                     }
                 }

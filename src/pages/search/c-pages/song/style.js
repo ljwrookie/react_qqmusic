@@ -11,6 +11,7 @@ const {
 } = myTheme;
 
 export const SongWrapper = styled.div`
+    min-height: 80vh;
     .batch_operation {
         display: flex;
         align-items: center;

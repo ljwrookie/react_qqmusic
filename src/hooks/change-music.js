@@ -2,6 +2,8 @@ import { useDispatch } from 'react-redux';
 import { getAddSongDetailAction } from '@/pages/player/store/actionCreators';
 import { getFindIdIndex } from '@/utils/math-utils';
 import { ExclamationOutlined } from '@ant-design/icons';
+// import { likeSong } from '../service/user';
+// import { getLoginUserPlaylistAction } from '@/pages/user/store/actionCreator';
 
 /**
  * 调用该函数:传递播放列表和message组件,返回一个函数供于合成事件调用

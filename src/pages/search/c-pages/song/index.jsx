@@ -1,17 +1,22 @@
-import React, { memo, useEffect, useState, useCallback } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { SongWrapper } from './style';
 import SongListItem from '@/components/song-item';
+import { getLoginStatusAction, getLoginUserPlaylistAction } from '@/pages/user/store/actionCreator';
+import { likeSong } from '@/service/user';
 import { getSongListAction } from '../../store/actionCreators';
 import { message, Skeleton, Divider } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useAddPlaylist } from '@/hooks/change-music';
+import { useAddPlaylist, useUnLoveSong } from '@/hooks/change-music';
 export default memo(function SearchSong() {
-    const { playList, songs } = useSelector(
+    const { playList, songs, loginStatus, loginUserLoverList } = useSelector(
         (state) => ({
             playList: state.getIn(['player', 'playList']),
             songs: state.getIn(['search', 'songList']),
+            loginStatus: state.getIn(['user', 'loginStatus']),
+            loginUserLoverList: state.getIn(['user', 'loginUserLoverList'])
+
         }),
         shallowEqual
     );
@@ -31,17 +36,83 @@ export default memo(function SearchSong() {
         setOffset(offset + 1);
         setLoading(false);
     };
+    const loveSongFunc = (id)=>{
+        return (e)=>{
+            e.preventDefault();
 
+            likeSong(true, id).then(res=>{
+                if(res.code === 200){
+                    dispatch(getLoginUserPlaylistAction());
+                    // dispatch(getSongListAction(keywords));
+                    console.log('喜欢歌曲',id, res)
+                    message.success({
+                        content:
+                            '加入喜欢列表',
+                        style: {
+                            marginTop: '5vh',
+                            borderRadius: '5px',
+                        },
+                    });
+                }else{
+                    message.error({
+                        content:
+                            '请勿频繁添加',
+                        style: {
+                            marginTop: '5vh',
+                            borderRadius: '5px',
+                        },
+                    });
+                }
+                
+            })
+        }
+    }
+    const unLoveSongFunc = (id)=>{
+        
+        return (e)=>{
+            e.preventDefault();
+            likeSong(false, id).then(res=>{
+                if(res.code === 200){
+                    dispatch(getLoginUserPlaylistAction());
+                    // dispatch(getSongListAction(keywords));
+                    console.log('不喜欢歌曲',id, res)
+                    message.success({
+                        content:
+                            '移除喜欢列表',
+                        style: {
+                            marginTop: '5vh',
+                            borderRadius: '5px',
+                        },
+                    });
+                }
+                else{
+                    message.error({
+                        content:
+                            '请勿频繁移除',
+                        style: {
+                            marginTop: '5vh',
+                            borderRadius: '5px',
+                        },
+                    });
+                }
+                
+            })
+        }
+    }
     useEffect(() => {
-        setData([...data, ...songs]);
+        setData([...data, ...songs ]);
     }, [songs]);
+    useEffect(()=>{
+      dispatch(getLoginStatusAction());
+        dispatch(getLoginUserPlaylistAction());  
+    },[])
     useEffect(() => {
         dispatch(getSongListAction(keywords));
         setData([...data, ...songs]);
         return () => {
             setData();
         };
-    }, []);
+    }, [keywords]);
     const addPlayList = useAddPlaylist(playList, message);
     const clickAll = (e) => {
         // 阻止超链接跳转
@@ -98,6 +169,10 @@ export default memo(function SearchSong() {
                             album: item.al.name,
                             artist: item.ar[0].name,
                             alias: item.alia,
+                            isLogin: loginStatus.profile !== null,
+                            loveFunc: loveSongFunc(item.id),
+                            unLoveFunc: unLoveSongFunc(item.id),
+                            isLove: loginUserLoverList.filter(items=>items.id == item.id).length === 1
                         };
                         return (
                             <SongListItem
