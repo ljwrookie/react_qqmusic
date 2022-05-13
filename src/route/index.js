@@ -21,6 +21,7 @@ const Radio = React.lazy((_) => import('../pages/radio'));
 const Recommend = React.lazy((_) => import('../pages/recommend'));
 const Recent = React.lazy((_) => import('../pages/recent'));
 const Player = React.lazy((_) => import('../pages/player'));
+const PersonalFm = React.lazy((_) => import('../pages/personal-fm'));
 
 const Playlist = React.lazy((_) => import('../pages/playlist'));
 const PlaylistDetail = React.lazy((_) =>
@@ -213,6 +214,10 @@ const GetRoutes = () => {
         {
             path: '/userdetail/followed',
             element: <Followed />,
+        },
+        {
+            path: '/personalfm',
+            element: <PersonalFm />,
         },
         
         {

@@ -22,7 +22,7 @@ export const AppSiderNav = styled.div`
 `;
 
 export const NavList = styled.div`
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     
     .list_title {
         margin-left: 50px;

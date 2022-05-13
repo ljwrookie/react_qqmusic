@@ -166,3 +166,15 @@ export function likeSong(like,id){
         }
     })
 }
+
+// 私人 FM
+// 说明 : 私人 FM( 需要登录 )
+// 接口地址 : /personal_fm
+export function getPersonalFm(){
+    return request({
+        url: '/personal_fm',
+        params:{
+            timerstamp: Date.now()
+        }
+    })
+}
