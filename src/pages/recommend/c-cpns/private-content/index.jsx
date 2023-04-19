@@ -1,8 +1,8 @@
-import React, { useEffect, memo, useRef } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import React, { useEffect, memo, useRef, useState } from 'react';
+import {
+    getPrivateContent
+} from '@/service/recommend'
 import { Carousel } from 'antd';
-import { getPrivateContentAction } from '../../store/actionCreators';
 
 import { RecommendWrapper, RecommendControl } from './style';
 
@@ -12,7 +12,7 @@ import VideoCover from '@/components/video-cover';
 export default memo(function PrivateContent() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
-    const dispatch = useDispatch();
+    const [privateContent, setPrivateContent] = useState([])
     const hover = () => {
         const btn = document.querySelectorAll('.btn span');
         btn[4].style.visibility = 'visible';
@@ -24,19 +24,15 @@ export default memo(function PrivateContent() {
         btn[5].style.visibility = 'hidden';
     };
     const privateContentRef = useRef();
-    const { privateContent = [] } = useSelector(
-        (state) => ({
-            privateContent: state.getIn(['recommend', 'privateContent']),
-        }),
-        shallowEqual
-    );
 
     useEffect(() => {
-        dispatch(getPrivateContentAction());
-    }, [dispatch]);
+        getPrivateContent().then(res => {
+            res && res.result && setPrivateContent(res.result)
+        })
+    }, []);
 
     const arr = new Array(Math.floor(privateContent.length / 3)).fill(0);
-    const nums = arr.map((item, index) => {
+    const groupNum = arr.map((item, index) => {
         return index + item;
     });
     return (
@@ -52,7 +48,7 @@ export default memo(function PrivateContent() {
                     onClick={e => carouselRef.current.prev()}></div> */}
                 <div className="album">
                     <Carousel ref={privateContentRef} dots={false}>
-                        {nums.map((item) => {
+                        {groupNum.map((item) => {
                             return (
                                 <div key={item} className="page">
                                     {privateContent

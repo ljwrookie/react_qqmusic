@@ -1,9 +1,9 @@
 import React, { memo, useEffect, useState } from 'react';
 import classnames from 'classnames'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
+import {
+    getAllMv
+} from '@/service/mv'
 import { MvListWrapper } from './style';
-import { getAllMvAction } from '../../store/actionCreator';
 import VideoCover from '@/components/video-cover';
 import { myTheme } from '@/common/constants';
 const { themeColor } = myTheme;
@@ -16,16 +16,13 @@ export default memo(function Ranking() {
         area: '全部',
         type: '全部',
     });
-    const { allMv = [] } = useSelector(
-        (state) => ({
-            allMv: state.getIn(['mv', 'allMv']),
-        }),
-        shallowEqual
-    );
-    const dispatch = useDispatch();
+    const [allMv, setAllMv] = useState([])
+    
     useEffect(() => {
-        dispatch(getAllMvAction(state.area, state.type, state.order, 120));
-    }, [dispatch, state]);
+        getAllMv(state.area, state.type, state.order, 120).then(res => {
+            setAllMv(res?.data || allMv)
+        })
+    }, [state]);
 
     const page_num = 3;
     const arr_page = new Array(Math.floor(allMv.length / page_num)).fill(
@@ -53,7 +50,7 @@ export default memo(function Ranking() {
                                 'nav-button',
                                 state.area === item ? 'active' : ''
                             )}
-                            key={nanoid()}
+                            key={item}
                             onClick={() => changeArea(item)}
                         >
                             {item}
@@ -70,7 +67,7 @@ export default memo(function Ranking() {
                                 state.area === item ? 'active' : ''
                             )}
                             onClick={() => changeType(item)}
-                            key={nanoid()}
+                            key={item}
                         >
                             {item === '网易出品' ? '独占' : item}
                         </button>
@@ -98,7 +95,7 @@ export default memo(function Ranking() {
             <div className="content">
                 {index_page.map((item) => {
                     return (
-                        <div className="page" key={nanoid()}>
+                        <div className="page" key={item}>
                             {allMv
                                 .slice(
                                     item * page_num,

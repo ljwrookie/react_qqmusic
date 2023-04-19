@@ -1,9 +1,9 @@
-import React, { useEffect, memo, useRef } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
-import { Carousel } from 'antd';
+import React, { useEffect, memo, useRef, useState } from 'react';
 
-import { getExclusiveMvAction } from '../../../../store/actionCreator';
+import {
+    getExclusiveMv
+} from '@/service/mv'
+import { Carousel } from 'antd';
 
 import { ExclusiveMvWrapper, MvControl } from './style';
 
@@ -11,16 +11,9 @@ import ThemeHeaderRCM from '@/components/theme-header-rcm';
 import VideoCover from '@/components/video-cover';
 
 export default memo(function ExclusiveMv() {
-    // const [currentIndex, setCurrentIndex] = useState(0);
-    // redux Hook 组件和redux关联: 获取数据和进行操作
-    const dispatch = useDispatch();
+
     const exclusiveMvRef = useRef();
-    const { exclusiveMv = [] } = useSelector(
-        (state) => ({
-            exclusiveMv: state.getIn(['mv', 'exclusiveMv']),
-        }),
-        shallowEqual
-    );
+    const [exclusiveMv, setExclusiveMv] = useState([])
     const hover = () => {
         const btn = document.querySelectorAll('.btn span');
         btn[5].style.visibility = 'visible';
@@ -32,10 +25,12 @@ export default memo(function ExclusiveMv() {
         btn[6].style.visibility = 'hidden';
     };
     useEffect(() => {
-        dispatch(getExclusiveMvAction(12));
-    }, [dispatch]);
+        getExclusiveMv(12).then(res => {
+            setExclusiveMv(res?.data || exclusiveMv)
+        })
+    }, []);
     const arr = new Array(Math.floor(exclusiveMv.length / 3)).fill(0);
-    const nums = arr.map((item, index) => {
+    const groupNum = arr.map((item, index) => {
         return index + item;
     });
 
@@ -49,7 +44,7 @@ export default memo(function ExclusiveMv() {
                     <Carousel ref={exclusiveMvRef} dots={false}>
                         {
                             // const cover_props= {key:it.id, info:it ,url_name:"picUrl", playCount:true, width:200, height:200}
-                            nums.map((item) => {
+                            groupNum.map((item) => {
                                 return (
                                     <div key={item} className="page">
                                         {

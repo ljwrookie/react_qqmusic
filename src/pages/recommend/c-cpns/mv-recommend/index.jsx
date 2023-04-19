@@ -1,6 +1,14 @@
-import React, { useEffect, memo, useRef } from 'react';
+import React, { useEffect, memo, useRef, useState } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import {
+    getTopBanners,
+    getHotRecommends,
+    getPrivateContent,
+    getNewSongs,
+    getMvRecommends,
+    //   getNewAlbums,
+    // getSettleSinger,
+} from '@/service/recommend.js';
 import { Carousel } from 'antd';
 
 import { getMvRecommendAction } from '../../store/actionCreators';
@@ -14,13 +22,9 @@ export default memo(function MvRecommend() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
     const dispatch = useDispatch();
+    const [mvRecommends, setMvRecommends] = useState([])
     const mvRecommendsRef = useRef();
-    const { mvRecommends = [] } = useSelector(
-        (state) => ({
-            mvRecommends: state.getIn(['recommend', 'mvRecommends']),
-        }),
-        shallowEqual
-    );
+    
     const hover = () => {
         const btn = document.querySelectorAll('.btn span');
         btn[8].style.visibility = 'visible';
@@ -32,7 +36,9 @@ export default memo(function MvRecommend() {
         btn[9].style.visibility = 'hidden';
     };
     useEffect(() => {
-        dispatch(getMvRecommendAction());
+        getMvRecommends().then(res =>
+            res && res.data && setMvRecommends(res.data)
+        )
     }, [dispatch]);
     const arr = new Array(Math.floor(mvRecommends.length / 3)).fill(0);
     const nums = arr.map((item, index) => {

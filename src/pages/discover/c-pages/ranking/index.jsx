@@ -1,22 +1,23 @@
-import React, { memo, useEffect } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import React, { memo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import {
+    getTopList
+} from '@/service/discover'
 import { getTopListAction } from '../../store/actionCreators';
 import ThemeCover from '@/components/theme-cover';
 import RankingItem from './c-cpns/ranking-item';
 import { RankingWrapper } from './style';
 import(getTopListAction);
 export default memo(function Ranking() {
-    const { topList } = useSelector(
-        (state) => ({
-            topList: state.getIn(['discover', 'topList']),
-        }),
-        shallowEqual
-    );
-    const dispatch = useDispatch();
+
+    const [topList, setTopList] = useState([])
     useEffect(() => {
-        dispatch(getTopListAction());
-    }, [dispatch]);
+        getTopList().then(res => {
+            console.log(res)
+            setTopList(res?.list || topList)
+        })
+    }, []);
     const navigate = useNavigate();
     const clickItem = (id) => {
         return () => {

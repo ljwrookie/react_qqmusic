@@ -42,6 +42,7 @@ export const MvRankingWrapper = styled.ul`
     .rank-content {
         margin-top: 30px;
         .rank-nav {
+            cursor: pointer;
             span {
                 position: relative;
                 display: inline-block;

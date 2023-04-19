@@ -1,21 +1,14 @@
 import React, { useEffect, useState, memo } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import {
+    getMvRanking
+} from '@/service/mv'
 import { MvRankingWrapper } from './style';
 import MvRankCover from '../../../../components/mv-rank-cover';
-import { getMvRankingAction } from '../../store/actionCreator';
-import { nanoid } from 'nanoid';
 import moment from 'moment';
 import { myTheme } from '@/common/constants';
 const { themeColor } = myTheme;
 export default memo(function Ranking() {
-    const dispatch = useDispatch();
-    const { mvRanking = [] } = useSelector(
-        (state) => ({
-            mvRanking: state.getIn(['mv', 'mvRanking']),
-        }),
-        shallowEqual
-    );
+    const [mvRanking, setMvRanking] = useState([])
 
     const [state, setState] = useState({
         index: 0,
@@ -23,8 +16,10 @@ export default memo(function Ranking() {
     });
 
     useEffect(() => {
-        dispatch(getMvRankingAction(state.value));
-    }, [dispatch, state]);
+        getMvRanking(state.value).then(res => {
+            setMvRanking(res?.data || mvRanking)
+        })
+    }, [state]);
     const keywordClick = (item, index) => {
         if (index === 0) setState({ index: 0, value: '' });
         else setState({ index, value: item });
@@ -32,10 +27,10 @@ export default memo(function Ranking() {
 
     const getCurrWeekDays = () => {
         let date = [];
-        let weekOfday = parseInt(moment().format('d')); // 计算今天是这周第几天 周日为一周中的第一天
-        let start = moment().subtract(weekOfday, 'days').format('MM.DD'); // 周一日期
+        let weekOfDay = parseInt(moment().format('d')); // 计算今天是这周第几天 周日为一周中的第一天
+        let start = moment().subtract(weekOfDay, 'days').format('MM.DD'); // 周一日期
         let end = moment()
-            .add(7 - weekOfday - 1, 'days')
+            .add(7 - weekOfDay - 1, 'days')
             .format('MM.DD'); // 周日日期
         date.push(start);
         date.push(end);
@@ -64,7 +59,7 @@ export default memo(function Ranking() {
                     {navList.map((item, index) => {
                         return (
                             <span
-                                key={nanoid()}
+                                key={item}
                                 className={
                                     index === state.index
                                         ? 'active'
@@ -90,7 +85,7 @@ export default memo(function Ranking() {
                         return (
                             <MvRankCover
                                 className="rank-cover"
-                                key={nanoid()}
+                                key={item.id}
                                 {...cover_props}
                             />
                         );

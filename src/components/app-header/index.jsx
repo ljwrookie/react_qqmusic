@@ -40,12 +40,12 @@ export default memo(function AppHeader(props) {
     const forLogin = async () => {
         const res = await getLoginStatus();
         console.log(res);
-        setLoginStatus(res.data);
+        res && res.data && setLoginStatus(res.data);
         // const res1 = await getLoginUserInfo();
         // console.log(res1);
         // setUserInfo(res1);
-
-        const res3 = await getUserDetail(res.data.profile?.userId);
+        
+        const res3 = await getUserDetail(res && res.data && res.data.profile && res.data.profile.userId && res.data.profile?.userId);
         console.log(res3);
         setUserDetail(res3);
     }
@@ -159,7 +159,8 @@ export default memo(function AppHeader(props) {
                 <HeaderRight>
                     {loginStatus &&
                     loginStatus.code === 200 &&
-                    loginStatus.account !== null ? (
+                    loginStatus.account !== null &&
+                    loginStatus.profile !== null? (
                         <>
                             <Link
                                 to={`/userdetail?uid=${loginStatus.profile.userId}`}

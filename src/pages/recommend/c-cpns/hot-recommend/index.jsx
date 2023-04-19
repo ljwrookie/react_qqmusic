@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, memo } from 'react';
+import React, { useEffect, useRef, memo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import {
+    getHotRecommends,
+} from '@/service/recommend.js';
+
 import { Carousel } from 'antd';
-import { getHotRecommendAction } from '../../store/actionCreators';
 
 import { RecommendWrapper, RecommendControl } from './style';
 
@@ -23,28 +24,21 @@ export default memo(function HotRecommend() {
         btn[2].style.visibility = 'hidden';
         btn[3].style.visibility = 'hidden';
     };
-    const dispatch = useDispatch();
     const recommendRef = useRef();
-    const { hotRecommends = [] } = useSelector(
-        (state) => ({
-            // topBanners: state.get('recommend').get('topBanners')
-            // 获取redux-reducer转换成Immutable对象的深层state
-            hotRecommends: state.getIn(['recommend', 'hotRecommends']),
-        }),
-        shallowEqual
-    );
-    // 其他Hook
+    const [hotRecommends, setHotRecommends] = useState([])
+
 
     useEffect(() => {
         // 在组件渲染之后发送网络请求
-        dispatch(getHotRecommendAction());
-    }, [dispatch]);
-    // console.log(hotRecommends)
+        getHotRecommends(10).then((res) => {
+            res && res.result && setHotRecommends(res.result)
+        })
+        
+    }, []);
     const arr = new Array(Math.floor(hotRecommends.length / 5)).fill(0);
-    const nums = arr.map((item, index) => {
+    const groupNum = arr.map((item, index) => {
         return index + item;
     });
-    // console.log(nums)
     return (
         <RecommendWrapper onMouseLeave={leave} onMouseEnter={hover}>
             <ThemeHeaderRCM title="推荐歌单" moreLink="#" />
@@ -53,7 +47,7 @@ export default memo(function HotRecommend() {
                     onClick={e => carouselRef.current.prev()}></div> */}
                 <div className="album">
                     <Carousel ref={recommendRef} dots={false}>
-                        {nums.map((item) => {
+                        {groupNum.map((item) => {
                             return (
                                 <div key={item} className="page">
                                     {hotRecommends

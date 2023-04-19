@@ -1,7 +1,8 @@
 import React, { memo, useEffect, useCallback, useState } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getSingerListAction } from '../../store/actionCreators';
+import {
+    getSingerList
+} from '@/service/discover'
 import SingerListItem from '@/components/singer-item';
 import {
     singerAreaList,
@@ -16,16 +17,13 @@ export default memo(function Singer() {
     const [typeCode, setTypeCode] = useState(-1);
     const [init, setInit] = useState('全部');
     const [initCode, setInitCode] = useState(-1);
-    const { allSingerList } = useSelector(
-        (state) => ({
-            allSingerList: state.getIn(['discover', 'allSingerList']),
-        }),
-        shallowEqual
-    );
-    const dispatch = useDispatch();
+    const [allSingerList, setAllSingerList] = useState([])
     useEffect(() => {
-        dispatch(getSingerListAction(typeCode, areaCode, initCode, 100));
-    }, [dispatch, areaCode, typeCode, initCode]);
+        getSingerList(typeCode, areaCode, initCode, 100).then(res => {
+            console.log(res)
+            setAllSingerList(res?.artists || allSingerList)
+        })
+    }, [areaCode, typeCode, initCode]);
     const areaList = Object.keys(singerAreaList);
     const typeList = Object.keys(singerTypeList);
     const initial = ['全部', ...singInitial, '#'];

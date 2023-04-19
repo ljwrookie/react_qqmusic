@@ -1,12 +1,9 @@
-import React, { useEffect, memo, useRef } from 'react';
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-// import { useHistory } from 'react-router-dom';
-import { Carousel } from 'antd';
+import React, { useEffect, memo, useRef, useState } from 'react';
 
 import {
-    getNewMvAction
-} from "../../../../store/actionCreator";
-
+    getNewMv
+} from '@/service/mv'
+import { Carousel } from 'antd';
 import {
     NewMvWrapper, MvControl
 } from "./style";
@@ -18,12 +15,8 @@ import VideoCover from '@/components/video-cover'
 export default memo(function NewMv() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
-    const dispatch = useDispatch()
+    const [newMv, setNewMv] = useState([])
     const newMvRef = useRef()
-    const {newMv = []} = useSelector(
-        state => ({
-            newMv: state.getIn(["mv", "newMv"])
-    }), shallowEqual);
 
     const hover = () => {
         const btn = document.querySelectorAll('.btn span');
@@ -37,11 +30,12 @@ export default memo(function NewMv() {
         btn[2].style.visibility = 'hidden';
     };
     useEffect(() => {
-        dispatch(getNewMvAction(24))
-    }, [dispatch]);
+        getNewMv().then(res => {
+            setNewMv(res?.data || newMv)
+        })
+    }, []);
     const arr = new Array(Math.floor(newMv.length / 6)).fill(0);
-    const nums = arr.map((item, index) => {
-        
+    const groupNum = arr.map((item, index) => {
         return index + item
     })
 
@@ -55,7 +49,7 @@ export default memo(function NewMv() {
                     <Carousel ref={newMvRef} dots={false}>
                         {
                             // const cover_props= {key:it.id, info:it ,url_name:"picUrl", playCount:true, width:200, height:200}
-                            nums.map((item) => {
+                            groupNum.map((item) => {
                                 return (
                                     <div key={item} className="page">
                                         {

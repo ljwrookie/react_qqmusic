@@ -1,11 +1,11 @@
-import React, { useEffect, memo, useRef } from 'react';
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-// import { useHistory } from 'react-router-dom';
+import React, { useEffect, memo, useRef, useState } from 'react';
+
+import {
+    getAllMv
+} from '@/service/mv'
+
 import { Carousel } from 'antd';
 import { nanoid } from 'nanoid';
-import {
-    getAllMvAction
-} from "../../../../store/actionCreator";
 
 import {
     RecommendMvWrapper, MvControl
@@ -18,17 +18,14 @@ import VideoCover from '@/components/video-cover'
 export default memo(function RecommendMv() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
-    const dispatch = useDispatch()
+    const [recommendMv, setRecommendMv] = useState([])
     const recommendMvRef = useRef()
-    const { recommendMv = [] } = useSelector(
-        state => ({
-            recommendMv: state.getIn(["mv", "allMv"])
-        }), shallowEqual);
-
 
     useEffect(() => {
-        dispatch(getAllMvAction())
-    }, [dispatch]);
+        getAllMv().then(res => {
+            setRecommendMv(res?.data || recommendMv)
+        })
+    }, []);
     const list_num = 12
     const page_num = 3
     const arr_list = new Array(Math.floor(recommendMv.length / list_num)).fill(0);

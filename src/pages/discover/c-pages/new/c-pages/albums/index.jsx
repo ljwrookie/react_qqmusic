@@ -1,10 +1,13 @@
-import React, { memo, useEffect, useCallback, useState } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { getNewAlbumAction } from '@/pages/discover/store/actionCreators';
+import React, { memo, useEffect, useState } from 'react';
+
+import {
+    getNewAlbum
+} from '@/service/discover'
 import ThemeCover from '@/components/theme-cover';
 import { SwitchArea, CardWrapper } from './style';
 export default memo(function DiscoverNewAlbum() {
     const [area, setArea] = useState('全部');
+    const [newAlbumList, setNewAlbumList] = useState([])
     const [currentCode, setCurrentCode] = useState('ALL');
     const catLink = {
         全部: 'ALL',
@@ -13,17 +16,13 @@ export default memo(function DiscoverNewAlbum() {
         韩国: 'KR',
         日本: 'JP',
     };
-    const catkeys = Object.keys(catLink);
-    const { newAlbumList } = useSelector(
-        (state) => ({
-            newAlbumList: state.getIn(['discover', 'newAlbumList']),
-        }),
-        shallowEqual
-    );
-    const dispatch = useDispatch();
+    const catKeys = Object.keys(catLink);
+    
     useEffect(() => {
-        dispatch(getNewAlbumAction(currentCode));
-    }, [dispatch, currentCode]);
+        getNewAlbum(currentCode).then(res => {
+            res && res.albums && setNewAlbumList(res.albums)
+        })
+    }, [currentCode]);
     const changeArea = (e) => {
         // e.target.className = e.target.className + ' active';
         // console.log(e.target.value);
@@ -34,7 +33,7 @@ export default memo(function DiscoverNewAlbum() {
     return (
         <div style={{minHeight: '80vh'}}>
             <SwitchArea>
-                {catkeys.map((item) => {
+                {catKeys.map((item) => {
                     return (
                         <span
                             key={item}

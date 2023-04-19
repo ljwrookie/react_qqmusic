@@ -1,21 +1,18 @@
-import React, { memo, useEffect, useCallback, useState } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { getNewSongAction } from '@/pages/discover/store/actionCreators';
+import React, { memo, useEffect, useState } from 'react';
+import {
+    getNewSong
+} from '@/service/discover'
 import SongListItem from '@/components/song-item';
 import { SwitchArea, PlayList } from './style';
 export default memo(function DiscoverNewSong() {
     const [area, setArea] = useState(0);
     const [current, setCurrent] = useState('全部');
-    const { newSongList } = useSelector(
-        (state) => ({
-            newSongList: state.getIn(['discover', 'newSongList']),
-        }),
-        shallowEqual
-    );
-    const dispatch = useDispatch();
+    const [newSongList, setNewSongList] = useState([])
     useEffect(() => {
-        dispatch(getNewSongAction(area));
-    }, [dispatch, area]);
+        getNewSong(area).then(res => {
+            res && res.data && setNewSongList(res.data)
+        })
+    }, [area]);
     const catLink = {
         全部: 0,
         华语: 7,
@@ -23,7 +20,7 @@ export default memo(function DiscoverNewSong() {
         韩国: 16,
         日本: 8,
     };
-    const catkeys = Object.keys(catLink);
+    const catKeys = Object.keys(catLink);
     const changeArea = (e) => {
         // e.target.className = e.target.className + ' active';
         // console.log(e.target.value);
@@ -34,7 +31,7 @@ export default memo(function DiscoverNewSong() {
     return (
         <div>
             <SwitchArea>
-                {catkeys.map((item) => {
+                {catKeys.map((item) => {
                     // console.log(item);
                     return (
                         <span

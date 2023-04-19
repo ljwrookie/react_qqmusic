@@ -1,10 +1,13 @@
 import React, { useEffect, memo, useRef, useState } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import moment from 'moment';
 import { Carousel } from 'antd';
-import { getNewSongsAction } from '../../store/actionCreators';
+import {
+    getNewSongs
+} from '@/service/recommend'
+import { useDispatch } from 'react-redux';
+
 import { getSongDetailAction } from '@/pages/player/store/actionCreators';
 import { RecommendWrapper, RecommendControl } from './style';
 
@@ -15,6 +18,7 @@ export default memo(function NewSongs() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
     const dispatch = useDispatch();
+    const [newSongs, setNewSongs] = useState([]);
     const [state, setState] = useState({
         type: 0,
         index: 0,
@@ -30,12 +34,7 @@ export default memo(function NewSongs() {
         btn[7].style.visibility = 'hidden';
     };
     const newSongsRef = useRef();
-    const { newSongs = [] } = useSelector(
-        (state) => ({
-            newSongs: state.getIn(['recommend', 'newSongs']),
-        }),
-        shallowEqual
-    );
+    
     // const keywordClick = useCallback((keyword) => {
     //     // navigate.push({ pathname: "/discover/songs", type: keyword });
     const keywordClick = (keyword) => {
@@ -60,16 +59,18 @@ export default memo(function NewSongs() {
                 return;
         }
     };
-    // }, [navigate]);
 
+    // 全部:0 华语:7 欧美:96 日本:8 韩国:16
     useEffect(() => {
-        dispatch(getNewSongsAction(state.type));
-    }, [dispatch, state]);
+        getNewSongs(state.type).then(res => {
+            res && res.data && setNewSongs(res.data)
+        })        
+    }, [state]);
     const arr = new Array(5).fill(0);
-    const nums = arr.map((item, index) => {
+    const groupNum = arr.map((item, index) => {
         return index + item;
     });
-    // 全部:0 华语:7 欧美:96 日本:8 韩国:16
+    
     const clickPlay = (id) => {
         return () => {
             dispatch(getSongDetailAction(id));
@@ -89,7 +90,7 @@ export default memo(function NewSongs() {
                     onClick={e => carouselRef.current.prev()}></div> */}
                 <div className="album">
                     <Carousel ref={newSongsRef} dots={false}>
-                        {nums.map((item) => {
+                        {groupNum.map((item) => {
                             return (
                                 <div key={item} className="page">
                                     {newSongs

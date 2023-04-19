@@ -1,5 +1,4 @@
 import React, { memo, useEffect, useState } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import ThemeCover from '@/components/theme-cover';
 import { getPlaylistDetail } from '@/service/playlist';
 
@@ -8,15 +7,14 @@ export default memo(function RankingItem(props) {
     const [songList, setSongList] = useState([]);
 
     const { id, name, img_url, playCount, width, height } = props;
-    const dispatch = useDispatch();
     useEffect(() => {
         getPlaylistDetail(id).then((res) => {
-            setSongList(res.playlist.tracks.splice(0, 3));
+            setSongList(res?.playlist?.tracks.splice(0, 3) || songList);
         });
         return () => {
             setSongList([]);
         };
-    }, [dispatch, id]);
+    }, [id]);
 
     const info = {
         img_url,

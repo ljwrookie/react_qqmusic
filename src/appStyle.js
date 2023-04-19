@@ -9,6 +9,7 @@ export const AppWrapper = styled.div`
     .app_main {
         display: flex;
         height: 100%;
+        background-color: ${bodyColor};
         /* min-width: 800px; */
     }
     .app_left {

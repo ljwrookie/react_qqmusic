@@ -1,11 +1,10 @@
-import React, { useEffect, memo, useRef } from 'react';
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-// import { useHistory } from 'react-router-dom';
-import { Carousel } from 'antd';
+import React, { useEffect, memo, useRef, useState } from 'react';
 
 import {
-    getMvRankingAction
-} from "../../../../store/actionCreator";
+    getMvRanking
+} from '@/service/mv'
+// import { useHistory } from 'react-router-dom';
+import { Carousel } from 'antd';
 
 import {
     HotMvWrapper, MvControl
@@ -27,20 +26,16 @@ const leave = () => {
 export default memo(function HotMv() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
-    const dispatch = useDispatch()
+    const [hotMv, setHotMv] = useState([])
     const hotMvRef = useRef()
-    const { hotMv = [] } = useSelector(
-        state => ({
-            hotMv: state.getIn(["mv", "mvRanking"])
-        }), shallowEqual);
-
-
+    
     useEffect(() => {
-        dispatch(getMvRankingAction())
-    }, [dispatch]);
+        getMvRanking().then(res => {
+            setHotMv(res?.data || hotMv)
+        })
+    }, []);
     const arr = new Array(Math.floor(hotMv.length / 3)).fill(0);
-    const nums = arr.map((item, index) => {
-
+    const groupNum = arr.map((item, index) => {
         return index + item
     })
 
@@ -54,7 +49,7 @@ export default memo(function HotMv() {
                     <Carousel ref={hotMvRef} dots={false}>
                         {
                             // const cover_props= {key:it.id, info:it ,url_name:"picUrl", playCount:true, width:200, height:200}
-                            nums.map((item) => {
+                            groupNum.map((item) => {
                                 return (
                                     <div key={item} className="page">
                                         {

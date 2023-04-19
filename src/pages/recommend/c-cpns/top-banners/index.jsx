@@ -1,9 +1,10 @@
 // 1. 第三方开库
-import React, { memo, useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 
 // 2. 功能性东西
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { getTopBannersAction } from '../../store/actionCreators';
+import {
+    getTopBanners,
+} from '@/service/recommend.js';
 // 3. 导入的组件
 import { Carousel } from 'antd';
 import { RecommendControl, BannerWrapper } from './style';
@@ -11,10 +12,7 @@ import { RecommendControl, BannerWrapper } from './style';
 export default memo(function TopBanners() {
     // const [currentIndex, setCurrentIndex] = useState(0);
     // redux Hook 组件和redux关联: 获取数据和进行操作
-    const dispatch = useDispatch();
-    // const carousel = document.querySelector('.content');
-    
-    // console.log(carousel);
+    const [topBanners, setTopBanners] = useState([])
     
     const hover = () => {
         const btn = document.querySelectorAll('.btn span');
@@ -26,34 +24,28 @@ export default memo(function TopBanners() {
         btn[0].style.visibility = 'hidden';
         btn[1].style.visibility = 'hidden';
     };
-    const { topBanners } = useSelector(
-        
-        (state) => ({
-            // topBanners: state.get('recommend').get('topBanners')
-            // 获取redux-reducer转换成Immutable对象的深层state
-            topBanners: state.getIn(['recommend', 'topBanners']),
-        }),
-        shallowEqual
-    );
+
     // 其他Hook
     const bannerRef = useRef();
     useEffect(() => {
         // 在组件渲染之后发送网络请求
-        dispatch(getTopBannersAction());
-    }, [dispatch]);
+        getTopBanners().then(res => {
+            res && res.banners && setTopBanners(res.banners)
+        })
+    }, []);
 
     // const bannerChange = useCallback((from, to) => {
     //     setCurrentIndex(to)
     // }, [])
     const arr = new Array(Math.floor(topBanners.length / 2)).fill(0);
-    const nums = arr.map((item, index) => {
+    const groupNum = arr.map((item, index) => {
         return index + item;
     });
 
     return (
         <BannerWrapper onMouseLeave={leave} onMouseEnter={hover}>
             <Carousel effect="fade" autoplay ref={bannerRef} >
-                {nums.map((item) => {
+                {groupNum.map((item) => {
                     return (
                         <div key={item} className="content">
                             {topBanners
