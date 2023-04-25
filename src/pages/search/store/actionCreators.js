@@ -4,7 +4,7 @@ import { getSearchList } from '@/service/search';
 
 const changeSongListAction = (res) => ({
     type: actionTypes.CHANGE_SONG_LIST,
-    songList: res.result.songs,
+    songList: res.result.songs || [],
 });
 
 const changeMvListAction = (res) => ({
